@@ -1,1 +1,366 @@
-Hello World
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="de" dir="ltr" class="client-nojs">
+</html>
+<!--<form method=GET action="http://www.google.com/search" target="file:///home/quado/x.html">
+<table><tr><td>
+<input TYPE="text" name="q" size="25" maxlength="255">
+<input TYPE="hidden" name="q" value="">
+<input TYPE="hidden" name="hl" value="de">
+<input type="submit" name="btnG" VALUE="Suchen mit Google">
+</td></tr></table>
+</form>-->
+<body>
+<title>Appguru EU</title>
+<style type="text/css">
+	
+</style>
+<html>
+<html>
+<head>
+<html>
+<style type="text/css">
+  body {
+    font: normal 100.01% Helvetica, Arial, sans-serif;
+    color: black; background-color: #ff000000;
+  }
+
+  div#Rahmen {
+    width: 47.1em;
+    padding: 0.8em;
+    border: 1px solid black;
+    background-color: white;
+  }
+  * html div#Rahmen {  /* Korrektur fuer IE 5.x */
+    width: 48.7em;
+    w\idth: 47.1em;
+  }
+  div#Rahmen div {
+    clear: left;
+  }
+  ul#Navigation {
+    margin: 0; padding: 0;
+    text-align: center;
+  }
+
+  ul#Navigation li {
+    list-style: none;
+    float: left;
+    width: 8.6em;
+    position: relative;
+    margin: 0.4em; padding: 0;
+  }
+  * html ul#Navigation li {  /* Korrektur fuer den IE 5 und 6 */
+    margin-bottom: -0.4em;
+  }
+  *:first-child+html ul#Navigation li {  /* Korrektur fuer den IE 7 */
+    margin-bottom: -0.1em;
+  }
+
+  ul#Navigation li ul {
+    margin: 0; padding: 0;
+    position: absolute;
+    top: 1.7em; left: -0.4em;
+  }
+  * html ul#Navigation li ul {  /* Korrektur fuer IE 5.x */
+    left: -1.5em;
+    lef\t: -0.4em;
+  }
+  ul#Navigation li ul li {
+    float: none;
+    display: block;
+    margin-bottom: 0.2em;
+  }
+
+  ul#Navigation a, ul#Navigation span {
+    display: block;
+    padding: 0.2em 1em;
+    text-decoration: none; font-weight: bold;
+    border: 1px solid black;
+    border-radius: 20px;
+    border-left-color: solid black; border-top-color: solid black;
+    color: white; background-color: black;
+  }
+  * html ul#Navigation a, * html ul#Navigation span {  /* nur fuer IE erforderlich */
+    width: 100%;
+    w\idth: 6.4em;
+  }
+  ul#Navigation a:hover, ul#Navigation span, li a#aktuell {
+    border-color: solid black;
+    border-left-color: solid black; border-top-color: solid black;
+    color: black; background-color: white;
+  }
+  li a#aktuell {  /* aktuelle Rubrik kennzeichnen */
+    color: black; background-color: white;
+  }
+  ul#Navigation li ul span {  /* aktuelle Unterseite kennzeichnen */
+    background-color: white;
+  }
+
+</style>
+
+<style> 
+<!-- 
+* {
+    padding: 0;
+    margin: 0;
+}
+ 
+body {
+    font-family: Helvetica, Verdana, Arial, sans-serif;
+    font-size: large;
+}
+
+ul#main_menu {
+    width: 605px;
+    list-style: none;
+    margin: 0.5em;
+    color: white; background-color: black;
+}
+ 
+ul#main_menu li.main_menu_item {
+    position: relative;
+    line-height: 24px;
+    float: left;
+    border: 1px solid black;
+    text-decoration: none; font-weight: bold;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-right: -1px;
+    width: 150px;
+    color: black;background-color: white;
+}
+ul#main_menu li.main_menu_item:hover {
+    position: relative;
+    line-height: 24px;
+    float: left;
+    text-decoration: none; font-weight: bold;
+    border: 1px solid black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-right: -1px;
+    width: 150px;
+    color: white;background-color: black;
+}
+
+ul#main_menu li.main_menu_item2 {
+    position: relative;
+    line-height: 24px;
+    float: left;
+    text-decoration: none; font-weight: bold;
+    border: 1px solid black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-right: -1px;
+    width: 150px;
+    color: white;background-color: black;
+}   
+ul#main_menu li a {
+    display: block;
+    padding: 5px;
+    width: 160px;
+    w\idth: 150px;
+      
+}
+ul#main_menu li a:visited {
+    display: block;
+    padding: 5px;
+    width: 160px;
+    w\idth: 150px;
+      
+}
+ 
+li ul.sub_menu {
+    position: absolute;
+    left: -999px;
+    width: 162px;
+    w\idth: 152px;
+    margin-left: -1px;
+    
+}
+ 
+ul.sub_menu li.sub_menu_item {
+    list-style: none;
+    line-height: 24px
+    text-decoration: none; font-weight: bold;
+    border: 1px solid black;
+    margin-bottom: -1px;
+    color: black;background-color: white;
+}
+ul.sub_menu li.sub_menu_item2 {
+    list-style: none;
+    line-height: 24px;
+    text-decoration: none; font-weight: bold;
+    border: 1px solid black;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-bottom: -1px;
+    color: black;background-color: white;
+}
+ul.sub_menu li.sub_menu_item:hover {
+    list-style: none;
+    line-height: 24px;
+    text-decoration: none; font-weight: bold;
+    border: 1px solid black;
+    margin-bottom: -1px;
+    color: white;background-color: black;
+}
+ul.sub_menu li.sub_menu_item2:hover {
+    list-style: none;
+    line-height: 24px;
+    border: 1px solid black;
+    text-decoration: none; font-weight: bold;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-bottom: -1px;
+    color: white;background-color: black;
+} 
+ul#main_menu li:hover ul.sub_menu {
+    left: auto;
+}
+code#python {
+color: black; background-color: #CCFFCC;
+}
+
+
+</style> 
+<style type="text/css">
+ul#main_menu a {
+    color: black;
+  }
+ul#main_menu a:hover, li a#akt {
+    color: white;
+  }
+</style>
+<code id="python">Python Code</code>
+</head> 
+<body id="index"> 
+<ul id="main_menu"> 
+    <li class="main_menu_item2"><a href="#" id="akt"title="Home">Home</a></li> 
+    <li class="main_menu_item"><a id="m" href="#" title="Link 2">Apps</a> 
+        <ul class="sub_menu"> 
+            <li class="sub_menu_item"><a id="s" href="#" title"Spiel">Spiele</a></li> 
+            <li class="sub_menu_item"><a id="s" href="#" title="Dies">Dies</a></li> 
+            <li class="sub_menu_item2"><a id="s" href="#" title="Jenes">Jenes</a></li> 
+        </ul> 
+    </li> 
+    <li class="main_menu_item"><a id="m" href="#" title="Screenshots">Screenshots</a> 
+        <ul class="sub_menu"> 
+            <li class="sub_menu_item"><a id="s" href="#" title="Spiele">Spiele</a></li> 
+ 
+            <li class="sub_menu_item"><a id="s" href="#" title="Dies">Dies</a></li> 
+            <li class="sub_menu_item2"><a id="s" href="#" title="Jenes">Jenes</a></li> 
+        </ul> 
+    </li> 
+    <li class="main_menu_item"><a id="m" href="#" title="Impressum">Impressum</a></li> 
+</ul> 
+ 
+ 
+</body> 
+ 
+</html>
+<!-- 
+</html>
+</head>
+<body>
+  <h2 id="navigation">Navigation</h2>
+
+  <div id="navigieren"><ul id="Navigation">
+      <ul>
+        <li><a href="file:///home/quado/internes.html">Apps</a></li>
+        <div id="navigieren"><ul id="Navigation">
+            <ul>
+			    <li><a href="#">Seite 4a</a></li>
+			    <li><span>aktuelle Seite</span></li>
+			    <li><a href="#">Seite 4c</a></li>
+		    </ul>
+		</ul><div></div></div>
+        <li><a id="Navigation" href="file:///home/quado/stundenplan.html">Stundenplan</a></li>
+        <li><span href="file:///home/quado/termine.html">Termine</span></li>
+            <ul>
+                <li>A</li>
+                <li>B</li>
+            </ul>
+        <li><a href="file:///home/quado/infos.html">Infos</a></li>
+        <li><a href="file:///home/quado/artikel.html">Artikel</a></li>
+        <li><a href="file:///home/quado/ha.html">Hausaufgaben</a></li>
+        <li><a href="file:///home/quado/downloads.html">Downloads</a></li>
+        <li><a href="file:///home/quado/galerie.html">Screenshots</a></li>
+        <li><a href="file:///home/quado/sonstiges.html">Sonstiges</a></li>
+      </ul>
+    </li>
+    <li><a href="file:///home/quado/impressum.html">Impressum</a></li>
+      <ul>
+        <li><span>Home</span></li>
+      </ul>
+    </li>
+  </ul><div></div></div>
+
+</body>
+<head>
+-->
+
+<!--<script type="text/javascript">
+function WertHolen () {
+  var Wert = "";
+  if (document.cookie) {
+    var Wertstart = document.cookie.indexOf("=") + 1;
+    var Wertende = document.cookie.indexOf(";");
+    if (Wertende == -1)
+      Wertende = document.cookie.length;
+    Wert = document.cookie.substring(Wertstart, Wertende);
+  }
+  return Wert;
+}
+
+function WertSetzen (Bezeichner, Wert, Verfall) {
+  var jetzt = new Date();
+  var Auszeit = new Date(jetzt.getTime() + Verfall);
+  document.cookie = Bezeichner + "=" + Wert + "; expires=" + Auszeit.toGMTString() + ";";
+}
+
+function Zaehlerstand () {
+  var Verfallszeit = 1000 * 60 * 60 * 24 * 365;
+  var Anzahl = WertHolen();
+  var Zaehler = 0;
+  if (Anzahl != "")
+    Zaehler = parseInt(Anzahl);
+  Zaehler = Zaehler + 1;
+  WertSetzen("Zaehler", Zaehler, Verfallszeit);
+  return (Zaehler);
+}
+</script>
+</head>
+<body>
+
+<script type="text/javascript">
+var x = Zaehlerstand();
+document.write("<p><h2><span style=color:blue>Sie besuchen die Seite zum " + x + ".<\/b> Mal!<\/p></h2>");
+</script>-->
+<!--<a href="file:///home/quado/galgen.html" onmouseover="einschalten(4)" onmouseout="abschalten()"><img src="weiter.gif" width="300" height="100" border="0" alt="Weiter"></a>-->
+
+
+
+<meta name="description"    content="Appguru EU Website">
+<meta name="keywords"       content="apps,Apps,appguru-eu,appguru.eu,Appguru EU,">
+<meta name="author"         content="Lars Müller">
+<meta name="DC.Publisher"   content="GitHub">
+<meta name="DC.Date"        content="2018,3.1">
+<meta name="DC.Identifier"  content="appguru.eu">
+<meta name="DC.Language"    content="de">
+<meta name="DC.Rights"      content="free">
+<meta name="DC.Date.created" content="2018-1-3T08:00+01:00">
+<meta name="SELF.Pagetype"  content="html">
+<div class="thumbinner" style="width:1000px;">
+		<img alt="Banner" src="webbanner.svg" width="1000" height="30" class="thumbimage"/></a>
+<link href="appguruicon64x64.ico" rel="shortcut icon" type="image/ico">
+<a href="circuscamp/index.html">Virtual "Circus Camp" Website Template, a School Project. Keep in mind : It's not real !</a><br>
+<h3>Downloads : </h3>
+<a href="http://clara-online.de/images/Mathe/Ergaenzungskurs/FraktaleGeometrie_20152016/Fraktal-Suite.jar">Fraktal-Suite - Language : German</a><br>
+<a href="Planetenbewegungssimulation_Windows_i586.zip">Planetary Movement Simulation Windows i586 - Language : German</a><br>
+<a href="Planetenbewegungssimulation_Windows_amd64.zip">Planetary Movement Simulation Windows amd64 - Language : German</a><br>
+<a href="Planetenbewegungssimulation_Linux_i586.zip">Planetary Movement Simulation Linux i586 - Language : German</a><br>
+<a href="Planetenbewegungssimulation_Linux_amd64.zip">Planetary Movement Simulation Linux amd64 - Language : German</a><br>
+<!--<small><small><small><small><small><span style="color: black;"></span style="color: black;">erstellt von Lars<br>
+</small></small></small></small></small></body></html>-->
+
