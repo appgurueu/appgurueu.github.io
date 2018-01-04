@@ -48,12 +48,14 @@ function prev() {
   if (selection==-1) {
     selection=images.length-1;
   }
+  update();
 }
 function next() {
   selection++;
   if (selection==images.length) {
     selection=0;
   }
+  update();
 }
 document.getElementById("previous").onclick=prev;
 document.getElementById("next").onclick=next;
@@ -84,5 +86,5 @@ function update() {
    document.getElementById("normal").width = document.getElementById("normal").naturalWidth*images[selection].x_size; 
    document.getElementById("normal").height = document.getElementById("normal").naturalHeight*images[selection].y_size; 
 }
-setInterval(update,100);
+setTimeout(update,50)
 </script>
