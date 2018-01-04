@@ -1,7 +1,7 @@
 :root {
   --border-color: black;
-  --background-color: skyblue;
-  --foreground-color: lime;
+  --background-color: white;
+  --foreground-color: black;
   --body-background-color: lightgrey;
   --body-foreground-color: black;
 } 
@@ -100,6 +100,8 @@ button {
   font-family: ubuntu;
 }
 button:hover {
+  box-shadow: 2px 2px #666;
+  transform: translateY(-2px) translateX(-2px);
 color: var(--background-color); background-color: var(--foreground-color);
     transition: all 0.5s;
 }
@@ -107,7 +109,7 @@ button:after, button:active {
   box-shadow: -2px -2px #666;
     transform: translateY(4px) translateX(4px);
 color: var(--background-color); background-color: var(--foreground-color);
-    transition: all 0.5s;
+    transition: all 1s;
 }
 th#overline {
   font-weight:bold;
@@ -175,7 +177,7 @@ div.menu {
     position: fixed;
     top: 0;
     left:50%;
-    color: green; background-color: orange;
+    color: #505050; background-color: #505050;
     padding: 10px;
     width: 800px;
     margin-top:10px;
@@ -185,7 +187,7 @@ div.menu {
     border-radius: 50px;
     border: 1px solid var(--border-color);
     font: normal 100.01% Helvetica, Arial, sans-serif;
-    color: green; background-color: orange;
+    color: white; background-color: #505050;
      padding: 10px;
   margin: 5% 20%;
   }
