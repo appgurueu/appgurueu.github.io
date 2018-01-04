@@ -83,6 +83,9 @@ function update() {
    document.getElementById("title").innerHTML = "Title : "+images[selection].title;
    document.getElementById("description").innerHTML = "Description : "+images[selection].text;
    document.getElementById("normal").src = images[selection].source;
+   setTimeout(updatewidth,50)
+}
+function updatewidth() {
    document.getElementById("normal").width = document.getElementById("normal").naturalWidth*images[selection].x_size; 
    document.getElementById("normal").height = document.getElementById("normal").naturalHeight*images[selection].y_size; 
 }
