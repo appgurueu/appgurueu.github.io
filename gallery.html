@@ -63,8 +63,10 @@ function Image(source, title, text, x_size, y_size) {
   this.title=title;
 	     this.text=text;
          this.source=source;
-         this.x_size=x_size;
-         this.y_size=y_size;
+         var img=new Image();
+         img.src=source;
+         this.x_size=x_size*img.naturalWidth;
+         this.y_size=y_size*img.naturalWidth;
 }
 var images=[
 new Image("aglogo.png", "Appguru EU Logo", "My Logo", 1, 1),
@@ -83,11 +85,8 @@ function update() {
    document.getElementById("title").innerHTML = "Title : "+images[selection].title;
    document.getElementById("description").innerHTML = "Description : "+images[selection].text;
    document.getElementById("normal").src = images[selection].source;
-   setTimeout(updatewidth,100)
-}
-function updatewidth() {
-   document.getElementById("normal").width = document.getElementById("normal").naturalWidth*images[selection].x_size; 
-   document.getElementById("normal").height = document.getElementById("normal").naturalHeight*images[selection].y_size; 
+   document.getElementById("normal").width = images[selection].x_size; 
+   document.getElementById("normal").height = images[selection].y_size; 
 }
 setTimeout(update,50)
 </script>
