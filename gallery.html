@@ -83,7 +83,7 @@ function update() {
    document.getElementById("title").innerHTML = "Title : "+images[selection].title;
    document.getElementById("description").innerHTML = "Description : "+images[selection].text;
    document.getElementById("normal").src = images[selection].source;
-   setTimeout(updatewidth,50)
+   setTimeout(updatewidth,100)
 }
 function updatewidth() {
    document.getElementById("normal").width = document.getElementById("normal").naturalWidth*images[selection].x_size; 
