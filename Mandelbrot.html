@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style type="text/css">
+input {
+   position: relative; top: 0; left: 0;
+}
+</style>
+<!--
+  <p>Fraktal-Suite online : </p>
+<label for="w">Breite : </label>
+<input align="left" type="number" min="1" max="2400" step="10" value="800" size="6" id="w">
+<label for="h">Höhe : </label>
+<input align="left" type="number" min="1" max="2400" step="10" value="600" size="6" id="h">
+<label for="exp">Exponent : </label>
+<input align="left" type="range" min="2" max="20" step="1" value="2" size="6" id="exp">
+<input align="left" type="radio" id="mandelbrot" name="mb" value="Julia/Mandelbrot">
+<label for="mandelbrot">Mandelbrot</label>
+<input align="left" type="radio" id="julia" name="mb" value="Julia/Mandelbrot">
+<label for="julia">Julia</label>
+<input align="left" type="radio" id="maj" name="mb" value="Julia/Mandelbrot">
+<label for="maj">Mandelbrot aus Julia</label>
+<input align="left" type="radio" id="abs" name="farbe" value="Färbung">
+<label for="abs">Absolut</label>
+<input align="left" type="radio" id="betrag" name="farbe" value="Färbung">
+<label for="betrag">Betrag</label>
+<input align="left" type="radio" id="kreise" name="farbe" value="Färbung">
+<label for="kreise">Kreise</label>
+<input align="left" type="radio" id="cos" name="farbe" value="Färbung">
+<label for="cos">Cosinus</label>
+<label align="left" for="c_real">C-Realteil : </label>
+<input align="left" type="number" min="-10" max="10" step="0.1" value="0.5" size="6" id="c_real">
+<label for="c_imag">C-Imaginärteil : </label>
+<input align="left" type="number" min="-10" max="10" step="0.1" value="0.5" size="6" id="c_imag">
+<label for="m_real">M-Realteil : </label>
+<input align="left" type="number" min="-10" max="10" step="0.1" value="0.5" size="6" id="m_real">
+<label for="m_imag"> M-Imaginärteil : </label>
+<input align="left" type="number" min="-10" max="10" step="0.1" value="0.5" size="6" id="m_imag">
+<label for="wc">Winkeländerung : </label>
+<input align="left" type="number" min="-360" max="360" step="0.1" value="0.5" size="6" id="wc">
+<label for="wi">Winkel : </label>
+<input align="left" type="number" min="0" max="360" step="1" value="0" size="6" id="wi">
+<input align="left" type="radio" id="add" name="transform" value="Transformieren">
+<label for="add">Addieren</label>
+<input align="left" type="radio" id="circles" name="transform" value="Transformieren">
+<label for="circles">Ellipse berechnen</label>
+-->
+
+<canvas align="right" id="myCanvas" width="800" height="600" style="border:1px solid #d3d3d3;">
+
+<script>
+function ComplexNumber(rpart,ipart) {
+         this.rpart=rpart;
+         this.ipart=ipart;
+}
+function bs(cn) {
+         var a = (cn.rpart*cn.rpart) + (cn.ipart*cn.ipart) ;
+         var betrag = Math.sqrt(a);
+         return  betrag ;
+}
+function erzeugeplus(that,other){
+         var wert1=that.rpart+other.rpart;
+         var wert2=that.ipart+other.ipart;
+         return new ComplexNumber(wert1,wert2);
+     }
+     function erzeugemal(that,other){
+         var wert1=that.rpart * other.rpart - that.ipart * other.ipart ;
+         var wert2=that.rpart * other.ipart + that.ipart * other.rpart ;
+         return new ComplexNumber(wert1,wert2) ;
+     }       
+     function hoch(that,iters,other){
+         var cn=(erzeugemal(that,other)) ;
+         if (iters > 2) {
+             for (i=0; i<iters-1; i++) {
+                  cn=erzeugemal(cn,cn) ;
+             }
+         }
+         return cn;
+     }
+     function iter(that,iters,other){
+         var cn=(erzeugemal(that,other)) ;
+         if (iters > 0) {
+             for (i=0; i<iters-1; i++) {
+                  cn=erzeugemal(cn,other) ;
+             }
+         }
+         return cn ;
+     }
+
+
+//function update() {
+var c = document.getElementById("myCanvas");
+var mouseX=0;
+var mouseY=0;
+var zoomed=10;
+var moveX=0;
+var moveY=0;
+var mode=2;
+var m=0;
+/*function relPos(evt) {
+    var r=c.getBoundingClientRect();
+    return {x:evt.clientX-rect.left,y:evt.clientY-rect.top};
+}
+function processMove(evt) {
+    var p=relPos(evt);
+    mouseX=p.x;
+    mouseY=p.y;
+}*/
+function mouseMove(e)
+{
+
+    if(e.offsetX) {
+        mouseX = e.offsetX;
+        mouseY = e.offsetY;
+    }
+    else if(e.layerX) {
+        mouseX = e.layerX;
+        mouseY = e.layerY;
+    }
+}
+function mWheel(e) {
+    mouseMove(e);
+    zoomed+=e.wheelDelta/480;
+    moveX+=(e.wheelDelta/480)*((mouseX-400)/4000);
+    moveY+=(e.wheelDelta/480)*((mouseY-300)/3000);
+    //zoomed+=1;
+}
+function mClick(e) {
+    mode+=1;
+}
+function mRightClick(e) {
+    if (m != 1) {
+        m++;
+    }
+    else {
+        m=0;
+    }
+    return false;
+}
+c.oncontextmenu=mRightClick;
+c.addEventListener('onmousemove', mouseMove, false);
+var mousewheelevt=(/Firefox/i.test(navigator.userAgent))? "DOMMouseScroll" : "mousewheel"
+//c.attachEvent(mousewheelevt,mWheel);
+c.addEventListener(mousewheelevt, mWheel, false);
+c.addEventListener("click",mClick);
+//var colors=new Array();
+//var m = document.getElementById("mandelbrot");
+var ctx = c.getContext("2d");
+var gr = ctx.createImageData(800,800);
+//var mchecked=m.checked;
+var w=800;
+var h=600;
+var cc=new ComplexNumber(0.7,0.3);
+
+function drawPixel(x,y,r,g,b) {
+    i=(x+y*gr.width)*4;
+    var d=gr.data;
+    gr.data[i]=r;
+    gr.data[i+1]=g;
+    gr.data[i+2]=b;
+    gr.data[i+3]=255;
+}
+
+function eval_mbm(x, y, zoom, resx, resy, type,movex,movey){
+    for(xs=0; xs<resx; xs++) {
+        for(ys=0; ys<resy; ys++) {
+            var z = new ComplexNumber(0.0,0.0) ;
+            var c = new ComplexNumber(((xs-(resx/2.0))/zoom)+movex,((ys-(resy/2.0))/zoom)+movey) ;
+            var benoetigte_iterationen=0 ;
+            var iters=75;
+            while (true)  {
+                benoetigte_iterationen += 1 ;
+                z=erzeugeplus(c,iter(z,type,z)) ;
+                var betrag = bs(z) ;
+                /*if (benoetigte_iterationen > 75) {
+                    drawPixel(xs+x,ys+y,0,0,255);
+                    break ;
+                }
+                if  (betrag > 100.0) {
+                    if (benoetigte_iterationen <= 18){
+                        drawPixel(xs+x,ys+y,benoetigte_iterationen*3,benoetigte_iterationen*6,0);
+                    }
+                    if (benoetigte_iterationen > 18) {
+                        drawPixel(xs+x,ys+y,0,benoetigte_iterationen*1.5,benoetigte_iterationen*3);
+                    }
+                    break ;
+                }*/
+                if (benoetigte_iterationen > iters) {
+                    if (true) {
+                       var ci=(betrag*2.4) ;
+                       drawPixel(0,0,ci);
+                       break ;
+                    }
+                }
+                if  (betrag > iters/18*100) {
+                    if (benoetigte_iterationen <= iters/2){
+                        drawPixel(int(benoetigte_iterationen*3),int(benoetigte_iterationen*6),0) ;
+                    }
+                    if (benoetigte_iterationen > iters/2) {
+                        drawPixel(0,int(benoetigte_iterationen*1.5),int(benoetigte_iterationen*3)) ;
+                    }
+                    break ;
+                }
+            }
+        }
+    }
+}
+
+function eval_jm(wert1, x, y, zoom, resx, resy, type, movex, movey){
+    for(xs=0; xs<resx; xs++) {
+        for(ys=0; ys<resy; ys++) {
+            z = new ComplexNumber(0.0,0.0) ;
+            c = new ComplexNumber(((xs-(resx/2.0))/zoom)+movex,((ys-(resy/2.0))/zoom)+movey) ;
+            z = c ;
+            benoetigte_iterationen=0 ;
+            while (true)  {
+                benoetigte_iterationen += 1 ;
+                z=erzeugeplus(wert1,iter(z,type,z)) ;
+                betrag = bs(z) ;
+                if (benoetigte_iterationen > 75) {
+                    drawPixel(xs+x,ys+y,0,0,255);
+                    break ;
+                }
+                if  (betrag > 100.0) {
+                    if (benoetigte_iterationen <= 18){
+                        drawPixel(xs+x,ys+y,benoetigte_iterationen*3,benoetigte_iterationen*6,0);
+                    }
+                    if (benoetigte_iterationen > 18) {
+                        drawPixel(xs+x,ys+y,0,benoetigte_iterationen*1.5,benoetigte_iterationen*3);
+                    }
+                    break ;
+                }
+            }
+        }
+    }
+}
+
+
+for (x=0; x < gr.width; x++) {
+   for (y=0; y < gr.height; y++) {
+      drawPixel(x,y,0,0,0);
+   }
+}
+ctx.putImageData( gr, 0,0 );
+ctx.stroke();
+function getGUIVars() {
+   return {};
+}
+function update() {
+   for (x=0; x < gr.width; x++) {
+      for (y=0; y < gr.height; y++) {
+         drawPixel(x,y,0,0,0);
+      }
+   }
+   if (m==0) {
+       eval_mbm(0,0,zoomed,800,600,mode,moveX,moveY);
+   }
+   if (m==1) {
+       eval_jm(cc,0,0,zoomed,800,600,mode,moveX,moveY);
+   }
+   ctx.putImageData( gr, 0,0 );
+   ctx.stroke();
+}
+setInterval(update,16);
+//}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<div class="menu">
+</head>
+<link rel="stylesheet" type="text/css" href="stylesheets.css"/>
+
+  <div id="navigieren"><ul id="Navigation">
+  </li>
+      <ul>
+        <li><span>Gallery</span></li>
+      </ul>
+      <li><a href="index.html">Home</a></li>
+    </li>
+      <ul>
+        <li><a href="applications.html">About Me</a></li>
+        <li><a href="gallery.html">Applications</a></li>
+      </ul>
+    
+  </ul><div></div></div>
+
+<head>
+</head></div>
+<html lang="de" dir="ltr" class="client-nojs">
+<title>Appguru EU</title>
+<div class="doc">
+<meta name="description"    content="Appguru EU Website">
+<meta name="keywords"       content="apps,Apps,appguru-eu,appguru.eu,Appguru EU,">
+<meta name="author"         content="Lars Müller">
+<meta name="DC.Publisher"   content="GitHub">
+<meta name="DC.Date"        content="2018,3.1">
+<meta name="DC.Identifier"  content="appguru.eu">
+<meta name="DC.Language"    content="de">
+<meta name="DC.Rights"      content="free">
+<meta name="DC.Date.created" content="2018-1-3T08:00+01:00">
+<meta name="SELF.Pagetype"  content="html">
+<link href="appguruicon64x64.ico" rel="shortcut icon" type="image/ico">
+<h1>Gallery</h1>
+<a id="t">All images can be viewed here</a></br>
+<button type="button" id="previous">Previous</button> <button type="button" id="next">Next</button></br>
+<a class="t" id="number">Number : </a></br>
+<a class="t" id="title">Title : </a></br>
+<a class="t" id="description">Description : </a></br>
+<img class="bild" id="normal"></bild>
+
+<script>
+function prev() {
+  selection--;
+  if (selection==-1) {
+    selection=images.length-1;
+  }
+}
+function next() {
+  selection++;
+  if (selection==images.length) {
+    selection=0;
+  }
+}
+document.getElementById("previous").onclick=prev;
+document.getElementById("next").onclick=next;
+function Image(source, title, text, x_size, y_size) {
+  this.title=title;
+	     this.text=text;
+         this.source=source;
+         this.x_size=x_size;
+         this.y_size=y_size;
+}
+var images=[
+new Image("aglogo2.svg", "Appguru EU Logo", "My Logo", 1, 1),
+new Image("fractal_screenie.png", "Fractal-Suite Screenshot", "Do you notice my own GUI ? Also, as this image is too big, it is at half it's original size", 0.5, 0.5),
+new Image("capture08.07.2017 19_20_02_1.jpg", "Planetary Movement Simulation Screenshot", "Try it out ! In there, you are the master of Gravity and the world.", 1, 1),
+new Image("https://forum.minetest.net/download/file.php?mode=view&id=13354", "Colorful Stones in Minetest", "Made using Schematic Creator. Did you know it's based on an oil painting by Leonid Afremov ?", 0.5, 0.5),
+new Image("https://forum.minetest.net/download/file.php?mode=view&id=13421&sid=e9302f697f9419ad34b6386e860fe677", "Baubles in Minetest", "Is there a country where they use cactuses as Christmas Trees ?", 0.5, 0.5),
+new Image("https://forum.minetest.net/download/file.php?mode=view&id=13321&sid=37968944da7cbeadd96607818f5001ed", "Schematic Creator Screenshot", "Default Java GUI.", 1, 1),
+new Image("https://forum.minetest.net/download/file.php?mode=view&id=13397&sid=f9f6a94a9cd4b622d90944c130ed5a7a", "Model Creator Screenshot", "Hope it helps.", 1, 1),
+new Image("https://forum.minetest.net/download/file.php?mode=view&id=13396", "Bauble in Blender", "Created with Model Creator.", 1, 1)
+
+];
+var selection=0;
+function update() {
+   document.getElementById("number").innerHTML = "Number : "+String(selection+1)+" out of "+String(images.length);
+   document.getElementById("title").innerHTML = "Title : "+images[selection].title;
+   document.getElementById("description").innerHTML = "Description : "+images[selection].text;
+   document.getElementById("normal").src = images[selection].source;
+   document.getElementById("normal").width = document.getElementById("normal").naturalWidth*images[selection].x_size; 
+   document.getElementById("normal").height = document.getElementById("normal").naturalHeight*images[selection].y_size; 
+}
+setInterval(update,16);
+</script>

@@ -1,0 +1,297 @@
+:root {
+  --border-color: black;
+  --background-color: skyblue;
+  --foreground-color: lime;
+  --body-background-color: lightgrey;
+  --body-foreground-color: black;
+} 
+
+@font-face {
+  font-family: 'ubuntu';
+  src: url('fonts/ubuntu.woff') format('woff');
+}
+@font-face {
+  font-family: 'ubuntubold';
+  src: url('fonts/ubuntubold.woff') format('woff');
+}
+.bild {
+  border: 1px solid var(--border-color);
+  background: repeating-radial-gradient(
+  var(--background-color),
+  var(--background-color) 20px,
+  var(--foreground-color) 40px,
+  var(--foreground-color) 60px
+  ); padding: 10px;
+  margin: 5px;
+}
+img#normal {
+  border-radius: 10px;
+}
+img#rounded {
+  border-radius: 25% 25% 25% 25%;
+}
+img#circle {
+  border-radius: 50%;
+}
+img#strange1 {
+  border-radius: 25% 75%;
+}
+img#strange2 {
+  border-radius: 75% 25%;
+}
+img#shield {
+  border-radius: 25% 25% 75% 75%;
+}
+img#house {
+  border-radius: 75% 75% 25% 25%;
+}
+canvas#map {
+  border-radius: 10px;
+  border: 1px solid black;
+  background: repeating-radial-gradient(
+  red,
+  red 20px,
+  white 40px,
+  white 60px
+);
+  padding: 10px;
+  margin: 5px;
+}
+div#breit {
+    width: 80%;
+    padding: 30px;
+    list-style: none;
+    float: left;
+}
+table{border-radius: 10px;
+
+  border: 1px solid black;
+  font-size:100%;
+    font-style: italic;
+    font-family: urw;
+    vertical-align:baseline;
+    background: white;
+}
+tr{border-radius: 10px;
+padding: 10px;
+  border: 1px solid black;
+  font-size:100%;
+    font-style: italic;
+    font-family: ubuntu;
+    vertical-align:baseline;
+    background: red;
+}
+th{
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-size:100%;
+    font-style: italic;
+    font-weight:normal;
+    font-family: ubuntu;
+    vertical-align:baseline;
+}
+button {
+  margin: 5px;
+  padding: 5px;
+  color: var(--foreground-color); background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-family: ubuntu;
+}
+button:hover {
+color: var(--background-color); background-color: var(--foreground-color);
+    transition: all 0.5s;
+}
+button:after, button:active {
+  box-shadow: -2px -2px #666;
+    transform: translateY(4px) translateX(4px);
+color: var(--background-color); background-color: var(--foreground-color);
+    transition: all 0.5s;
+}
+th#overline {
+  font-weight:bold;
+}
+h1 {
+    text-align: left;
+    font-size:250%;
+    font-family: ubuntu;
+    font-style: bold;
+    vertical-align:baseline;
+    
+}
+h2 {
+    text-align: left;
+    font-size:175%;
+    font-family: ubuntu;
+    font-style: bold;
+    vertical-align:baseline;
+    
+}
+h3 {
+    text-align: left;
+    font-size:125%;
+    font-style: bold;
+    font-family: ubuntu;
+    vertical-align:baseline;
+    text-decoration: underline;
+    
+}
+a#u {
+    font-size:100%;
+    font-family: ubuntubold;
+    vertical-align:baseline;
+}
+a#t {
+    font-size:100%;
+    font-family: ubuntu;
+    vertical-align:baseline;
+}
+a.t {
+    font-size:100%;
+    font-family: ubuntu;
+    vertical-align:baseline;
+}
+u {
+    font-size:125%;
+    font-family: ubuntu;
+    text-decoration: underline;
+    vertical-align:baseline;
+}
+canvas#myCanvas {
+  border : 1px solid var(--border-color);
+  border-radius: 50px;
+}
+ul#t {
+    font-size:125%;
+    font-style: italic;
+    font-family: ubuntu;
+    vertical-align:baseline;
+}
+
+div.menu {
+  border : 1px solid var(--border-color);
+  border-radius: 50px;
+    position: fixed;
+    top: 0;
+    left:50%;
+    color: green; background-color: orange;
+    padding: 10px;
+    width: 800px;
+    margin-top:10px;
+    margin-left: -400px;
+}
+  div.doc {
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+    font: normal 100.01% Helvetica, Arial, sans-serif;
+    color: green; background-color: orange;
+     padding: 10px;
+  margin: 5% 20%;
+  }
+
+  body {
+    color: var(--body-foreground-color); background-color: var(--body-background-color);
+  }
+
+  div#Rahmen {
+    width: 47.1em;
+    padding: 0.8em;
+    border: 1px solid white;
+    background-color: silver;
+  }
+  * html div#Rahmen {  /* Korrektur fuer IE 5.x */
+    width: 48.7em;
+    w\idth: 47.1em;
+  }
+  div#Rahmen div {
+    clear: left;
+  }
+  ul#Navigation {
+    margin: 0; padding: 0;
+    text-align: center;
+    font-family: sans-serif;
+  }
+
+  ul#Navigation li {
+    list-style: none;
+    float: left;
+    width: 10.6em;
+    position: relative;
+    margin: 0.4em; padding: 0;
+  }
+  * html ul#Navigation li {  /* Korrektur fuer den IE 5 und 6 */
+    margin-bottom: -0.4em;
+  }
+  *:first-child+html ul#Navigation li {  /* Korrektur fuer den IE 7 */
+    margin-bottom: -0.1em;
+  }
+
+  ul#Navigation li ul {
+    margin: 0; padding: 0;
+    position: absolute;
+    top: 1.7em; left: -0.4em;
+  }
+  * html ul#Navigation li ul {  /* Korrektur fuer IE 5.x */
+    left: -1.5em;
+    lef\t: -0.4em;
+  }
+  ul#Navigation li ul li {
+    float: none;
+    display: block;
+    margin-bottom: 0.2em;
+  }
+
+  ul#Navigation a, ul#Navigation span {
+    display: block;
+    padding: 0.2em 1em;
+    text-decoration: none; font-weight: bold;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--foreground-color); background-color: var(--background-color);
+  }
+  * html ul#Navigation a, * html ul#Navigation span {  /* nur fuer IE erforderlich */
+    width: 100%;
+    w\idth: 6.4em;
+  }
+  a#copyright {
+    font-family: sans;
+    font-size: 50%;
+    color: grey;
+  }
+  ul#Navigation span, li a#aktuell {
+    text-align: center;
+    border: 1px solid var(--border-color);
+    color: var(--foreground-color); background-color: var(--background-color);
+  }
+  ul#Navigation a:hover, li a#aktuell {
+    font-size: 100%;
+    text-align: center;
+    transform: translateY(-2px) translateX(-2px);
+    box-shadow: 2px 2px #666;
+    border: 1px solid var(--border-color);
+    color: var(--background-color); background-color: var(--foreground-color);
+    transition: all 0.5s;
+  }
+  /*ul#Navigation a:hover , ul#Navigation a:after, li a#aktuell {
+    transition: all 1s;
+    text-align: center;
+    border-color: solid black;
+    border-left-color: solid black; border-top-color: solid black;
+    color: red; background-color: white;
+  }
+  ul#Navigation a:active {
+    border: 1px solid black;
+    box-shadow: -2px -2px #666;
+    transform: translateY(-2px) translateX(2px);
+    border-color: solid black;
+    border-left-color: solid black; border-top-color: solid black;
+    color: red; background-color: white;
+  }*/
+  ul#Navigation a:active, ul#Navigation a:after {
+    border: 1px solid var(--border-color);
+    box-shadow: -2px -2px #666;
+    transform: translateY(4px) translateX(4px);
+    color: var(--foreground-color); background-color: var(--background-color);
+    transition: all 1s;
+  }
