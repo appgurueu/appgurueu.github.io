@@ -33,7 +33,7 @@
 <meta name="DC.Rights"      content="free">
 <meta name="DC.Date.created" content="2018-1-3T08:00+01:00">
 <meta name="SELF.Pagetype"  content="html">
-<link href="appguruicon64x64.ico" rel="shortcut icon" type="image/ico">
+<link href="favicon.ico" rel="shortcut icon" type="image/ico">
 <h1>Gallery</h1>
 <a id="t">All images can be viewed here</a></br>
 <button type="button" id="previous">Previous</button> <button type="button" id="next">Next</button></br>
@@ -67,6 +67,7 @@ function Image(source, title, text, x_size, y_size) {
          img.src=source;
          this.x_size=x_size*img.naturalWidth;
          this.y_size=y_size*img.naturalWidth;
+         delete img;
 }
 var images=[
 new Image("aglogo.png", "Appguru EU Logo", "My Logo", 1, 1),
