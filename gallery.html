@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
 <div class="menu">
 </head>
@@ -35,11 +35,14 @@
 <meta name="SELF.Pagetype"  content="html">
 <link rel="icon" type="image/ico" href="favicon.ico"/>
 <h1>Gallery</h1>
-<a id="t">All images can be viewed here</a></br>
-<button type="button" id="previous">Previous</button> <button type="button" id="next">Next</button></br>
-<a class="t" id="number">Number : </a></br>
-<a class="t" id="title">Title : </a></br>
-<a class="t" id="description">Description : </a></br>
+<a id="t">Some images can be viewed here.</a></br>
+<!---<code class="t" id="c"> if  if  if s were highlighted...,
+ class es where happy. int int int</code></br>-->
+<button type="button" id="previous">Previous</button> <button type="button" id="next">Next</button><button type="button" id="shuffle">Shuffle</button></br>
+<a class="t" id="number">Number : -</a></br>
+<a class="t">Source : </a><a class="link" id="source">-</a></br>
+<a class="t">Title : </a><a class="t" id="title">-</a></br>
+<a class="t" id="description">Description : -</a></br>
 <img class="bild" id="normal"></bild>
 
 <script>
@@ -57,9 +60,13 @@ function next() {
   }
   update();
 }
+function dos() {
+  setTimeout(shuffle,100)
+}
 document.getElementById("previous").onclick=prev;
 document.getElementById("next").onclick=next;
-function MyImage(source, title, text, x_size, y_size) {
+document.getElementById("shuffle").onclick=dos;
+function MyImage(source, title, text, x_size, y_size, is_link, href) {
   this.title=title;
 	     this.text=text;
          this.source=source;
@@ -67,27 +74,77 @@ function MyImage(source, title, text, x_size, y_size) {
          this.img.src=source;
          this.x_size=x_size*this.img.width;
          this.y_size=y_size*this.img.height;
+         this.is_link=is_link;
+         this.href=href;
 }
 var images=[
 new MyImage("aglogo.png", "Appguru EU Logo", "My Logo", 1, 1),
-new MyImage("fractal_screenie.png", "Fractal-Suite Screenshot", "Do you notice my own GUI ? Also, as this image is too big, it is at half it's original size", 0.5, 0.5),
-new MyImage("capture08.07.2017 19_20_02_1.jpg", "Planetary Movement Simulation Screenshot", "Try it out ! In there, you are the master of Gravity and the world.", 1, 1),
-new MyImage("https://forum.minetest.net/download/file.php?mode=view&id=13354", "Colorful Stones in Minetest", "Made using Schematic Creator. Did you know it's based on an oil painting by Leonid Afremov ?", 0.5, 0.5),
-new MyImage("https://forum.minetest.net/download/file.php?mode=view&id=13421&sid=e9302f697f9419ad34b6386e860fe677", "Baubles in Minetest", "Is there a country where they use cactuses as Christmas Trees ?", 0.5, 0.5),
-new MyImage("https://forum.minetest.net/download/file.php?mode=view&id=13321&sid=37968944da7cbeadd96607818f5001ed", "Schematic Creator Screenshot", "Default Java GUI.", 1, 1),
-new MyImage("https://forum.minetest.net/download/file.php?mode=view&id=13397&sid=f9f6a94a9cd4b622d90944c130ed5a7a", "Model Creator Screenshot", "Hope it helps.", 1, 1),
-new MyImage("https://forum.minetest.net/download/file.php?mode=view&id=13396", "Bauble in Blender", "Created with Model Creator.", 1, 1)
+new MyImage("fractal_screenie.png", "Fractal-Suite Screenshot", "Do you notice my own GUI ? Also, as this image is too big, it is at half it's original size", 0.5, 0.5, false, ""),
+new MyImage("capture08.07.2017 19_20_02_1.jpg", "Planetary Movement Simulation Screenshot", "Try it out ! In there, you are the master of Gravity and the world.", 1, 1, false, ""),
+new MyImage("https://forum.minetest.net/download/file.php?mode=view&id=13354", "Colorful Stones in Minetest", "Made using Schematic Creator. Did you know it's based on an oil painting by Leonid Afremov ?", 0.5, 0.5, false, ""),
+new MyImage("https://forum.minetest.net/download/file.php?mode=view&id=13421&sid=e9302f697f9419ad34b6386e860fe677", "Baubles in Minetest", "Is there a country where they use cactuses as Christmas Trees ?", 0.5, 0.5, false, ""),
+new MyImage("https://forum.minetest.net/download/file.php?mode=view&id=13321&sid=37968944da7cbeadd96607818f5001ed", "Schematic Creator Screenshot", "Default Java GUI.", 1, 1, false, ""),
+new MyImage("https://forum.minetest.net/download/file.php?mode=view&id=13397&sid=f9f6a94a9cd4b622d90944c130ed5a7a", "Model Creator Screenshot", "Hope it helps.", 1, 1, false, ""),
+new MyImage("https://forum.minetest.net/download/file.php?mode=view&id=13396", "Bauble in Blender", "Created with Model Creator.", 1, 1, false, ""),
+new MyImage("differences.jpg", "Analyzing an image", "Spotted differences between two screenshots posted by the Minetest user Hybrid Dog.", 1, 1, true, "https://forum.minetest.net/viewtopic.php?f=3&t=156&start=7050#p307075"),
+new MyImage("differences_invert.jpg", "Analyzing an image - inverted", "Same but inverted.", 1, 1, true, "https://forum.minetest.net/viewtopic.php?f=3&t=156&start=7050#p307075"),
+new MyImage("iterations_factors.jpg", "Analyzing an image - inverted", "Same.", 1, 1, true, "https://forum.minetest.net/viewtopic.php?f=3&t=156&start=7050#p307075"),
+new MyImage("iterations_factors_invert.jpg", "Analyzing an image - inverted", "Same but inverted.", 1, 1, true, "https://forum.minetest.net/viewtopic.php?f=3&t=156&start=7050#p307075"),
+new MyImage("iterations_differences.jpg", "Analyzing an image - inverted", "Same.", 1, 1, true, "https://forum.minetest.net/viewtopic.php?f=3&t=156&start=7050#p307075"),
+new MyImage("iterations_differences_invert.jpg", "Analyzing an image - inverted", "Same but inverted.", 1, 1, true, "https://forum.minetest.net/viewtopic.php?f=3&t=156&start=7050#p307075")
 
 ];
+function shuffle() {
+  const newarray=new Array(images.length);
+  for (const i in images) {
+      var s=Math.round(Math.random()*(images.length-1));
+      while (newarray[s] != undefined) {
+        s=Math.round(Math.random()*(images.length-1));
+      }
+      newarray[s]=images[i];
+  }
+  for (const i in images) {
+      images[i]=newarray[i];
+  }
+  delete(newarray);
+  update();
+}
 var selection=0;
 function update() {
+   document.getElementById("source").innerHTML = images[selection].source;
+   document.getElementById("source").href = images[selection].source;
    document.getElementById("number").innerHTML = "Number : "+String(selection+1)+" out of "+String(images.length);
-   document.getElementById("title").innerHTML = "Title : "+images[selection].title;
+   document.getElementById("title").innerHTML = images[selection].title;
+   if (images[selection].is_link) {
+       document.getElementById("title").className="link";
+       document.getElementById("title").href = images[selection].href;
+   }
+   else {
+       document.getElementById("title").className="t";
+       document.getElementById("title").removeAttribute("href");
+   }
    document.getElementById("description").innerHTML = "Description : "+images[selection].text;
-   document.getElementById("normal").src = images[selection].source;   
-   document.getElementById("normal").width = images[selection].x_size; 
+   document.getElementById("normal").src = images[selection].img.src;
+   document.getElementById("normal").width = images[selection].x_size;
    document.getElementById("normal").height = images[selection].y_size;
 }
+/*var scheme={
+  "blue":["if ", "for ", "private ", "protected ", "public ", "static ", "interface ", "class ", "void "],
+  "green":["int ", "short "]
+};
+function highlight() {
+    var text=document.getElementById("c").innerHTML;
+    for (const [key, value] of Object.entries(scheme)) {
+         var newvar="<a style=\"color:"+key+"\">";
+         for (var word in value) {
+          var nt=text.replace(new RegExp(value[word],"g"), function myFunction(x){return newvar+x+"</a>";});
+          text=nt;
+         }
+    }
+    text.replace(new RegExp("\n","g"), "</br>");
+    document.getElementById("c").innerHTML=text;
+}*/
 setTimeout(update,50)
+//setTimeout(highlight,100)
 </script>
 <!--aCHANGE-->

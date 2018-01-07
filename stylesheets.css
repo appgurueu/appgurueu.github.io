@@ -6,6 +6,16 @@
   --body-foreground-color: black;
 } 
 
+::selection {
+   background-color: var(--background-color);
+   color: var(--foreground-color);
+}
+
+::moz-selection {
+   background-color: var(--background-color);
+   color: var(--foreground-color);
+}
+
 @font-face {
   font-family: 'ubuntu';
   src: url('fonts/ubuntu.woff') format('woff');
@@ -63,6 +73,7 @@ div#breit {
     list-style: none;
     float: left;
 }
+
 table{border-radius: 10px;
 
   border: 1px solid black;
@@ -80,6 +91,29 @@ padding: 10px;
     font-family: ubuntu;
     vertical-align:baseline;
     background: red;
+}
+
+a.link {
+  font-family: ubuntu;
+    vertical-align:baseline;
+}
+a.link:link {
+  text-decoration: none;
+  color: blue;
+}
+a.link:hover {
+  text-decoration: none;
+  border-bottom: 2px dotted blue;
+}
+a.link:active {
+  text-decoration: none;
+  transform: translateY(-2px) translateX(-2px);
+  text-shadow: 2px solid grey;
+}
+a.link:visited {
+  text-decoration: none;
+  color: purple;
+  border-bottom: 2px dotted purple;
 }
 th{
   padding: 10px;
@@ -190,7 +224,7 @@ div.menu {
     font: normal 100.01% Helvetica, Arial, sans-serif;
     color: white; background-color: #505050;
      padding: 10px;
-  margin: 5% 20%;
+  margin: 5% 10%;
   }
 
   body {
@@ -256,6 +290,15 @@ div.menu {
   * html ul#Navigation a, * html ul#Navigation span {  /* nur fuer IE erforderlich */
     width: 100%;
     w\idth: 6.4em;
+  }
+
+  code {
+    margin: 2px;
+    padding: 2px;
+    border-radius: 5px;
+    border-style: 1px solid black;
+    color: black;
+    background-color:#98FB98;
   }
   a#copyright {
     font-family: sans;
