@@ -333,7 +333,7 @@ div.menu {
   ul#Navigation span, li a#aktuell {
     text-align: center;
     border: 1px solid var(--border-color);
-    color: var(--foreground-color); background-color: var(--background-color);
+    color: var(--background-color); background-color: var(--foreground-color);
   }
   ul#Navigation a:hover, li a#aktuell {
     font-size: 100%;
