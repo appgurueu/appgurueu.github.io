@@ -1,25 +1,6 @@
  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
-<div class="menu">
-</head>
-<link rel="stylesheet" type="text/css" href="stylesheets.css"/>
-
-  <div id="navigieren"><ul id="Navigation">
-  </li>
-      <ul>
-        <li><span>Gallery</span></li>
-      </ul>
-      <li><a href="index.html">Home</a></li>
-    </li>
-      <ul>
-        <li><a href="aboutme.html">About Me</a></li>
-        <li><a href="applications.html">Applications</a></li>
-      </ul>
-    
-  </ul><div></div></div>
-
-<head>
-</head></div>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <html lang="de" dir="ltr" class="client-nojs">
 <title>Appguru EU - Gallery</title>
 <div class="doc">
@@ -43,7 +24,13 @@
 <a class="t">Source : </a><a class="link" id="source">-</a></br>
 <a class="t">Title : </a><a class="t" id="title">-</a></br>
 <a class="t" id="description">Description : -</a></br>
-<img class="bild" id="normal"></bild>
+<input type="image" id="preview1" onclick="prev2();"></input>
+<input type="image" id="preview2" onclick="prev();"></input>
+<input type="image" id="preview3"></input>
+<input type="image" id="preview4" onclick="next();"></input>
+<input type="image" id="preview5" onclick="next2();"></input>
+</br>
+<img alt="Image" src="fractal_screenie.png" class="bild" id="normal"/>
 
 <script>
 function prev() {
@@ -58,6 +45,16 @@ function next() {
   if (selection==images.length) {
     selection=0;
   }
+  update();
+}
+function prev2() {
+  scroll(-2);
+}
+function next2() {
+  scroll(2);
+}
+function scroll(scrollvar) {
+  selection=mirror(selection+scrollvar);
   update();
 }
 function dos() {
@@ -109,8 +106,41 @@ function shuffle() {
   delete(newarray);
   update();
 }
+function mirror(value) {
+  if (value > images.length-1) {
+    return value-images.length+1;
+  }
+  if (value < 0) {
+    return images.length+value-1;
+  }
+  return value;
+}
 var selection=0;
+var maxsize=50;
+function adjust() {
+  maxsize=window.innerWidth*0.6/5.0;
+  update();
+}
 function update() {
+   mirror(selection-2)
+   for (m=0; m < 5; m++) {
+        var p="preview"+String(m+1);
+        var index=mirror(selection+m-2);
+        document.getElementById(p).src=images[index].source;
+        var ratio;
+        if (images[index].img.width > images[index].img.height) {
+          ratio=maxsize/images[index].img.width;
+        }
+        else {
+          ratio=maxsize/images[index].img.height;
+        }
+        if (ratio > 1.0) {
+          ratio=1.0;
+        }
+        document.getElementById(p).width = images[index].img.width*ratio;
+        document.getElementById(p).height = images[index].img.height*ratio;
+        //document.getElementById(p).onclick=function() {selection=index;};
+   }
    document.getElementById("source").innerHTML = images[selection].source;
    document.getElementById("source").href = images[selection].source;
    document.getElementById("number").innerHTML = "Number : "+String(selection+1)+" out of "+String(images.length);
@@ -144,7 +174,25 @@ function highlight() {
     text.replace(new RegExp("\n","g"), "</br>");
     document.getElementById("c").innerHTML=text;
 }*/
-setTimeout(update,50)
+setTimeout(update,50);
+setInterval(adjust, 50);
 //setTimeout(highlight,100)
 </script>
+<div class="menu">
+<link rel="stylesheet" type="text/css" href="stylesheets.css"/>
+
+  <div id="navigieren"><ul id="Navigation">
+  </li>
+      <ul>
+        <li><span>Gallery</span></li>
+      </ul>
+      <li><a href="index.html">Home</a></li>
+    </li>
+      <ul>
+        <li><a href="aboutme.html">About Me</a></li>
+        <li><a href="applications.html">Applications</a></li>
+      </ul>
+    
+  </ul><div></div></div>
+</div>
 <!--aCHANGE-->

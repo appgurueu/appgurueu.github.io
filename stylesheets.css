@@ -24,6 +24,18 @@
   font-family: 'ubuntubold';
   src: url('fonts/ubuntubold.woff') format('woff');
 }
+input {
+  padding: 10px
+}
+input:hover {
+  text-decoration: none;
+  padding: 10px;
+  border-bottom: 2px dotted blue;
+}
+input:active {
+  text-decoration: none;
+  border-bottom: 2px dotted black;
+}
 .bild {
   border: 1px solid var(--border-color);
   background: repeating-radial-gradient(
@@ -33,6 +45,19 @@
   var(--foreground-color) 60px
   ); padding: 10px;
   margin: 5px;
+}
+.bildnormal {
+  width:auto;
+  height: auto;
+  border: 1px solid var(--border-color);
+  background: repeating-radial-gradient(
+  var(--background-color),
+  var(--background-color) 20px,
+  var(--foreground-color) 40px,
+  var(--foreground-color) 60px
+  ); padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
 }
 img#normal {
   border-radius: 10px;

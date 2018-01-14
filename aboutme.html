@@ -1,25 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="stylesheets.css"/>
-<div class="menu">
-</head>
-
-  <div id="navigieren"><ul id="Navigation">
-  </li>
-      <ul>
-        <li><span>About Me</span></li>
-      </ul>
-      <li><a href="index.html">Home</a></li>
-    </li>
-      <ul>
-        <li><a href="applications.html">Applications</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-      </ul>
-    
-  </ul><div></div></div>
-
-<head>
-</head></div>
 <html lang="de" dir="ltr" class="client-nojs">
 <title>Appguru EU - About Me</title>
 <div class="doc">
@@ -40,4 +22,41 @@
 <a id="t">E-Mail : </a><a class="link" id="t" href="mailto:appgurulars@gmx.de">appgurulars@gmx.de</a></br></br></br>
 </html>
 </div>
+<div class="menu">
+
+  <div id="navigieren"><ul id="Navigation">
+  </li>
+      <ul>
+        <li><span>About Me</span></li>
+      </ul>
+      <li><a href="index.html">Home</a></li>
+    </li>
+      <ul>
+        <li><a href="applications.html">Applications</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+    
+  </ul><div></div></div>
+</div>
+<script>
+function adjust_images() {
+  var maxsize=window.innerWidth;
+  maxsize*=0.8;
+  var imgs=document.getElementsByTagName('img');
+  for (i=0; i < imgs.length; i++) {
+    var image=imgs[i];
+    //alert(String(imgs[i].width)+"<"+String(maxsize));
+    if (imgs[i].width > maxsize) {
+      var ratio=maxsize/image.width;
+      ratio*=0.95;
+      image.style.width=String(ratio*100)+"%";
+      image.style.height=String(ratio*100)+"%";
+      //alert("1"+String(image.width));
+      //image.width=imgs[i].width*ratio;
+      //image.height=imgs[i].height*ratio;
+    }
+  }
+}
+setInterval(adjust_images, 1000);
+</script>
 <!--aCHANGE-->
