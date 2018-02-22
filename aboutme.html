@@ -20,29 +20,53 @@
 <a id="t">Minetest Forums Account : </a><a class="link" id="t" href="https://forum.minetest.net/memberlist.php?mode=viewprofile&u=20958">LMD</a></br>
 <a id="t">GitHub Account : </a><a class="link" id="t" href="https://github.com/appgurueu/">appgurueu</a></br>
 <a id="t">E-Mail : </a><a class="link" id="t" href="mailto:appgurulars@gmx.de">appgurulars@gmx.de</a></br></br></br>
-</html>
-</div>
+<link rel="stylesheet" type="text/css" href="stylesheets.css"/>
+<div class="parent">
 <div class="menu">
-
-  <div id="navigieren"><ul id="Navigation">
-  </li>
-      <ul>
+  <ul id="Navigation">
         <li><span>About Me</span></li>
-      </ul>
-      <li><a href="index.html">Home</a></li>
-    </li>
-      <ul>
+       <li><a href="index.html">Home</a></li>
         <li><a href="applications.html">Applications</a></li>
         <li><a href="gallery.html">Gallery</a></li>
-      </ul>
-    
-  </ul><div></div></div>
+  </ul>
+</div>
+</div>
+</html>
+</div>
+<div class="modal" id="modal1" style="display:none;">
+<div class="modal-content" id="content">
+<input type="button" class="close" onclick="disable_popup('modal1');" value="&times;"/>
+<a>We've got to celebrate your <a id="visit_count">first</a> visit to this site !</br>
+Please take a look at the gallery and the applications.</a>
+</div>
+</div>
+<div class="modal" id="modal2" style="display:none;">
+<div class="modal-content" id="content2">
+<input type="button" class="close" onclick="disable_popup('modal2');" value="&times;"/>
+<b><a style="font-size: 110%;" id="fullsizetitle"></a></b></br>
+<a style="font-size: 90%" id="fullsizedescription"></a></br>
+<img alt="Alt" id="fullsize" src=""/>
+</div>
 </div>
 <script>
-function adjust_images() {
+function show_image_popup(image_id) {
+  var im=document.getElementById(image_id);
+  document.getElementById("fullsizetitle").innerHTML=im.getAttribute("data-title");
+  document.getElementById("fullsizedescription").innerHTML=im.getAttribute("data-description");
+  document.getElementById("fullsize").src=im.src;
+  enable_popup("modal2");
+}
+function enable_popup(popup) {
+  document.getElementById(popup).style.display="block";
+}
+function disable_popup(popup) {
+  //document.getElementById(popup).innerHTML=document.getElementById("saved").innerHTML;
+  document.getElementById(popup).style.display="none";
+}
+function adjust_images(tagname) {
   var maxsize=window.innerWidth;
   maxsize*=0.8;
-  var imgs=document.getElementsByTagName('img');
+  var imgs=document.getElementsByTagName(tagname);
   for (i=0; i < imgs.length; i++) {
     var image=imgs[i];
     //alert(String(imgs[i].width)+"<"+String(maxsize));
@@ -57,7 +81,34 @@ function adjust_images() {
     }
   }
 }
-setInterval(adjust_images, 1000);
+
+function adjust_inputs() {
+  adjust_images("input");
+}
+
+function adjust_imgs() {
+  adjust_images("img");
+}
+
+function cookie() {
+  var cookie=document.cookie;
+  if (cookie==undefined) {
+    var v=new Date();
+    var d=new Date(v.getYear()+1, v.getMonth(), v.getDay(), v.getHours(), v.getMinutes(), v.getSeconds(), v.getMilliseconds());
+    cookie="visit=1;expires="+d.getUTCDate()+";";
+    enable_popup("modal1");
+  }
+  var split=cookie.split(";");
+  var access=split[0].split("=")[1];
+  access=Number(access);
+  if (access % 10 == 0) {
+    document.getElementById("visit_count").innerHTML=String(access)+".";
+    enable_popup("modal1");
+  }
+  access=access+1;
+  document.cookie="visit="+String(access);
+}
+setTimeout(cookie, 0);
+setInterval(adjust_imgs, 2000);
+setInterval(adjust_inputs, 2000);
 </script>
-<!--aCHANGE-->
-<!--aCHANGE-->

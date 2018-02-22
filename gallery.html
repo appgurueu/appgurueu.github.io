@@ -3,6 +3,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <html lang="de" dir="ltr" class="client-nojs">
 <title>Appguru EU - Gallery</title>
+
 <div class="doc">
 <meta name="description"    content="Appguru EU Website">
 <meta name="keywords"       content="apps,Apps,appguru-eu,appguru.eu,Appguru EU,">
@@ -16,21 +17,22 @@
 <meta name="SELF.Pagetype"  content="html">
 <link rel="icon" type="image/ico" href="favicon.ico"/>
 <h1>Gallery</h1>
-<a id="t">Some images can be viewed here.</a></br>
+<a id="t">Some images can be viewed here.</a><br>
 <!---<code class="t" id="c"> if  if  if s were highlighted...,
- class es where happy. int int int</code></br>-->
-<button type="button" id="previous">Previous</button> <button type="button" id="next">Next</button><button type="button" id="shuffle">Shuffle</button></br>
-<a class="t" id="number">Number : -</a></br>
-<a class="t">Source : </a><a class="link" id="source">-</a></br>
-<a class="t">Title : </a><a class="t" id="title">-</a></br>
-<a class="t" id="description">Description : -</a></br>
-<input type="image" id="preview1" onclick="prev2();"></input>
-<input type="image" id="preview2" onclick="prev();"></input>
-<input type="image" id="preview3"></input>
-<input type="image" id="preview4" onclick="next();"></input>
-<input type="image" id="preview5" onclick="next2();"></input>
-</br>
-<img alt="Image" src="fractal_screenie.png" class="bild" id="normal"/>
+ class es where happy. int int int</code><br>-->
+<button type="button" id="previous">Previous</button> <button type="button" id="next">Next</button><button type="button" id="shuffle">Shuffle</button><br>
+<a class="t" id="number">Number : -</a><br>
+<a class="t">Source : </a><a class="link" id="source">-</a><br>
+<a class="t">Title : </a><a class="t" id="title">-</a><br>
+<a class="t" id="description">Description : -</a><br>
+<input class="bild" type="image" id="preview1" onclick="prev2();"></input>
+<input class="bild" type="image" id="preview2" onclick="prev();"></input>
+<input class="bild" type="image" id="preview3"></input>
+<input class="bild" type="image" id="preview4" onclick="next();"></input>
+<input class="bild" type="image" id="preview5" onclick="next2();"></input>
+<br>
+<input class="bild" type="image" id="normal" src="aglogo.png" data-title="An Image" data-description="Nice descri." onclick="show_image_popup(this.id);"></input>
+<!--<img alt="Image" src="fractal_screenie.png" class="bild" id="normal"/>-->
 
 <script>
 function prev() {
@@ -154,7 +156,9 @@ function update() {
        document.getElementById("title").removeAttribute("href");
    }
    document.getElementById("description").innerHTML = "Description : "+images[selection].text;
-   document.getElementById("normal").src = images[selection].img.src;
+   document.getElementById("normal").src = images[selection].source;
+   document.getElementById("normal").setAttribute("data-title",images[selection].title);
+   document.getElementById("normal").setAttribute("data-description",images[selection].text);
    document.getElementById("normal").width = images[selection].x_size;
    document.getElementById("normal").height = images[selection].y_size;
 }
@@ -171,28 +175,102 @@ function highlight() {
           text=nt;
          }
     }
-    text.replace(new RegExp("\n","g"), "</br>");
+    text.replace(new RegExp("\n","g"), "<br>");
     document.getElementById("c").innerHTML=text;
 }*/
 setTimeout(update,50);
 setInterval(adjust, 50);
 //setTimeout(highlight,100)
 </script>
-<div class="menu">
-<link rel="stylesheet" type="text/css" href="stylesheets.css"/>
+<div class="modal" id="modal1" style="display:none;">
+<div class="modal-content" id="content">
+<input type="button" class="close" onclick="disable_popup('modal1');" value="&times;"/>
+<a>We've got to celebrate your <a id="visit_count">first</a> visit to this site !<br>
+Please take a look at the gallery and the applications.</a>
+</div>
+</div>
+<div class="modal" id="modal2" style="display:none;">
+<div class="modal-content" id="content2">
+<input type="button" class="close" onclick="disable_popup('modal2');" value="&times;"/>
+<b><a style="font-size: 110%;" id="fullsizetitle"></a></b><br>
+<a style="font-size: 90%" id="fullsizedescription"></a><br>
+<img alt="Alt" id="fullsize" src=""/>
+</div>
+</div>
+<script>
+function show_image_popup(image_id) {
+  var im=document.getElementById(image_id);
+  document.getElementById("fullsizetitle").innerHTML=im.getAttribute("data-title");
+  document.getElementById("fullsizedescription").innerHTML=im.getAttribute("data-description");
+  document.getElementById("fullsize").src=im.src;
+  enable_popup("modal2");
+}
+function enable_popup(popup) {
+  document.getElementById(popup).style.display="block";
+}
+function disable_popup(popup) {
+  //document.getElementById(popup).innerHTML=document.getElementById("saved").innerHTML;
+  document.getElementById(popup).style.display="none";
+}
+function adjust_images(tagname) {
+  var maxsize=window.innerWidth;
+  maxsize*=0.8;
+  var imgs=document.getElementsByTagName(tagname);
+  for (i=0; i < imgs.length; i++) {
+    var image=imgs[i];
+    //alert(String(imgs[i].width)+"<"+String(maxsize));
+    if (imgs[i].width > maxsize) {
+      var ratio=maxsize/image.width;
+      ratio*=0.95;
+      image.style.width=String(ratio*100)+"%";
+      image.style.height=String(ratio*100)+"%";
+      //alert("1"+String(image.width));
+      //image.width=imgs[i].width*ratio;
+      //image.height=imgs[i].height*ratio;
+    }
+  }
+}
 
-  <div id="navigieren"><ul id="Navigation">
-  </li>
-      <ul>
+function adjust_inputs() {
+  adjust_images("input");
+}
+
+function adjust_imgs() {
+  adjust_images("img");
+}
+
+function cookie() {
+  var cookie=document.cookie;
+  if (cookie==undefined) {
+    var v=new Date();
+    var d=new Date(v.getYear()+1, v.getMonth(), v.getDay(), v.getHours(), v.getMinutes(), v.getSeconds(), v.getMilliseconds());
+    cookie="visit=1;expires="+d.getUTCDate()+";";
+    enable_popup("modal1");
+  }
+  var split=cookie.split(";");
+  var access=split[0].split("=")[1];
+  access=Number(access);
+  if (access % 10 == 0) {
+    document.getElementById("visit_count").innerHTML=String(access)+".";
+    enable_popup("modal1");
+  }
+  access=access+1;
+  document.cookie="visit="+String(access);
+}
+setTimeout(cookie, 0);
+setInterval(adjust_imgs, 50);
+setInterval(adjust_inputs, 50);
+</script>
+<link rel="stylesheet" type="text/css" href="stylesheets.css"/>
+<div class="parent">
+<div class="menu">
+  <ul id="Navigation">
         <li><span>Gallery</span></li>
-      </ul>
-      <li><a href="index.html">Home</a></li>
-    </li>
-      <ul>
+       <li><a href="index.html">Home</a></li>
         <li><a href="aboutme.html">About Me</a></li>
         <li><a href="applications.html">Applications</a></li>
-      </ul>
-    
-  </ul><div></div></div>
+  </ul>
 </div>
+</div>
+<!--aCHANGE-->
 <!--aCHANGE-->

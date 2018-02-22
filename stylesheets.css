@@ -4,6 +4,11 @@
   --foreground-color: black;
   --body-background-color: lightgrey;
   --body-foreground-color: black;
+}
+
+a.date {
+	color: darkgrey;
+	font-size: 90%;
 } 
 
 ::selection {
@@ -24,40 +29,73 @@
   font-family: 'ubuntubold';
   src: url('fonts/ubuntubold.woff') format('woff');
 }
-input {
-  padding: 10px
+input.bild {
+  border-radius: 2px;
+  padding: 3px;
+  border: 1px solid black;
+  background: linear-gradient(160deg,
+  #707070 0%,
+  #FFFFFF 30%,
+  #707070 100%
+  );
+  margin: 5px;
 }
-input:hover {
-  text-decoration: none;
-  padding: 10px;
-  border-bottom: 2px dotted blue;
+blockquote {
+	display: inline-block;
+	padding: 5px;
+	margin:5px;
+	border-radius: 3px;
+	border-left: 2px solid black;
+	color: black;
+	background-color: lightgrey;
 }
-input:active {
+blockquote:before {
+	content: "<a>«";
+}
+blockquote:after {
+  content: "»";
+}
+input.bild:hover {
+  border-radius: 2px;
+  padding: 3px;
+  margin: 5px;
+  border: 1px solid black;
+  background: linear-gradient(160deg,
+  #7070FF 0%,
+  #FFFFFF 30%,
+  #7070FF 100%
+  );
+}
+input.bild:active {
   text-decoration: none;
-  border-bottom: 2px dotted black;
+  background: linear-gradient(160deg,
+  #4040EE 0%,
+  #EEEEEE 30%,
+  #4040EE 100%
+  );
+  border: 1px dotted blue;
 }
 .bild {
   border: 1px solid var(--border-color);
-  background: repeating-radial-gradient(
-  var(--background-color),
-  var(--background-color) 20px,
-  var(--foreground-color) 40px,
-  var(--foreground-color) 60px
+  background: linear-gradient(160deg,
+  #707070 0%,
+  #FFFFFF 30%,
+  #707070 100%
   ); padding: 10px;
   margin: 5px;
+  border-radius: 2px;
 }
 .bildnormal {
   width:auto;
   height: auto;
   border: 1px solid var(--border-color);
-  background: repeating-radial-gradient(
-  var(--background-color),
-  var(--background-color) 20px,
-  var(--foreground-color) 40px,
-  var(--foreground-color) 60px
+  background: linear-gradient(160deg,
+  #707070 0%,
+  #FFFFFF 30%,
+  #707070 100%
   ); padding: 10px;
   margin: 5px;
-  border-radius: 10px;
+  border-radius: 2px;
 }
 img#normal {
   border-radius: 10px;
@@ -92,6 +130,17 @@ canvas#map {
   padding: 10px;
   margin: 5px;
 }
+
+div.comment {
+	display: inline-block;
+	padding: 5px;
+	margin:5px;
+	border-radius: 5px;
+	border: 1px solid black;
+	color: black;
+	background-color: lightgrey;
+}
+
 div#breit {
     width: 80%;
     padding: 30px;
@@ -150,8 +199,85 @@ th{
     font-family: ubuntu;
     vertical-align:baseline;
 }
-/*PLIZ*/
-button {
+input[type=text],textarea {
+    padding:5px; 
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+input[type=text]:hover,textarea:hover {
+	border: 2px solid skyblue;
+    transition: all 1s;
+}
+
+input[type=text]:focus,textarea:focus {
+	border: 2px solid lightblue;
+    transition: all 1s;
+}
+
+div.dot-container {
+  display: table;
+  margin: 0px auto;
+  margin-top: 5%;
+  color: rgba(0,0,0,0);
+}
+
+input.dot {
+  float:left;
+  display: block;
+  width: 20px;
+  height: 20px;
+  color: green;
+  border-radius: 50%;
+  background-color: gray;
+  border-width: 0px;
+  margin: 5px;
+}
+
+input.dot:hover {
+  color: grey;
+  background-color: white;
+  text-align: 50%;
+  transition: all 0.5s;
+}
+
+input.dot:active, input.dot:after {
+  color: lightgrey;
+  background-color: black;
+  transition: all 0.5s;
+}
+
+input.navigate {
+  font-family: ubuntubold;
+  font-size: 150%;
+  display: block;
+  height: 80%;
+  color: white;
+  border-radius: 2px;
+  background-color: grey;
+  border-width: 0px;
+  margin-right: 5px;
+  margin-left: 5px;
+  vertical-align: center;
+  margin-top: 3.5%;
+  margin-bottom: 3.5%;
+}
+
+input.navigate:hover {
+  color: grey;
+  background-color: white;
+  text-align: 50%;
+  transition: all 0.5s;
+}
+
+input.navigate:active, input[type=button].navigate:after {
+  color: lightgrey;
+  background-color: black;
+  transition: all 0.5s;
+}
+
+
+button, input[type=submit] {
   margin: 5px;
   padding: 5px;
   color: var(--foreground-color); background-color: var(--background-color);
@@ -159,13 +285,13 @@ button {
   border-radius: 10px;
   font-family: ubuntu;
 }
-button:hover {
+button:hover,input[type=submit]:hover {
   box-shadow: 2px 2px #666;
   transform: translateY(-2px) translateX(-2px);
 color: var(--background-color); background-color: var(--foreground-color);
     transition: all 0.5s;
 }
-button:after, button:active {
+button:after, button:active, input[type=submit]:after, input[type=submit]:active {
   box-shadow: -2px -2px #666;
     transform: translateY(4px) translateX(4px);
 color: var(--background-color); background-color: var(--foreground-color);
@@ -209,6 +335,9 @@ a#t {
     font-family: ubuntu;
     vertical-align:baseline;
 }
+a {
+  font-family: ubuntu;
+}
 a.t {
     font-size:100%;
     font-family: ubuntu;
@@ -231,17 +360,24 @@ ul#t {
     vertical-align:baseline;
 }
 
+div.parent {
+  position: fixed;
+  display: block;
+  top: 10px;
+  align-content:center;
+  padding: 5% auto;
+}
+
 div.menu {
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: top;
+  align-content: center;
+  z-index: 0.5;
   border : 1px solid var(--border-color);
-  border-radius: 50px;
-    position: fixed;
-    top: 0;
-    left:50%;
-    color: #505050; background-color: #505050;
-    padding: 10px;
-    width: 800px;
-    margin-top:10px;
-    margin-left: -400px;
+  border-radius: 20px;
+  color: #505050; background-color: #505050;
+  padding: 5px;
 }
   div.doc {
     border-radius: 50px;
@@ -256,65 +392,79 @@ div.menu {
     color: var(--body-foreground-color); background-color: var(--body-background-color);
   }
 
-  div#Rahmen {
-    width: 47.1em;
-    padding: 0.8em;
-    border: 1px solid white;
-    background-color: silver;
-  }
-  * html div#Rahmen {  /* Korrektur fuer IE 5.x */
-    width: 48.7em;
-    w\idth: 47.1em;
-  }
-  div#Rahmen div {
-    clear: left;
-  }
   ul#Navigation {
     margin: 0; padding: 0;
     text-align: center;
-    font-family: sans-serif;
+    font-family: ubuntu;
   }
 
   ul#Navigation li {
     list-style: none;
     float: left;
     width: 10.6em;
-    position: relative;
-    margin: 0.4em; padding: 0;
-  }
-  * html ul#Navigation li {  /* Korrektur fuer den IE 5 und 6 */
-    margin-bottom: -0.4em;
-  }
-  *:first-child+html ul#Navigation li {  /* Korrektur fuer den IE 7 */
-    margin-bottom: -0.1em;
+    margin: 0; padding: 5px;
   }
 
-  ul#Navigation li ul {
-    margin: 0; padding: 0;
-    position: absolute;
-    top: 1.7em; left: -0.4em;
-  }
-  * html ul#Navigation li ul {  /* Korrektur fuer IE 5.x */
-    left: -1.5em;
-    lef\t: -0.4em;
-  }
-  ul#Navigation li ul li {
-    float: none;
-    display: block;
-    margin-bottom: 0.2em;
-  }
+
+input.close {
+  float: right;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 50%;
+  border:1px solid red;
+  background-color: red;
+  color : white;
+  font-size: 150%;
+}
+input.close:hover {
+  box-shadow: 2px 2px #666;
+  transform: translateY(-2px) translateX(-2px);
+  color: red; background-color: white;
+  transition: all 0.5s;
+}
+input.close:active, input.close:after {
+  box-shadow: -2px -2px #666;
+  transform: translateY(2px) translateX(2px);
+  color: white; background-color: red;
+  transition: all 0.5s;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  left: 0;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 25px;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  vertical-align: top;
+  align-content: center;
+  color: var(--foreground-color);
+  box-shadow: 8px 8px rgba(0.6,0.6,0.6,0.4);
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px dotted black;
+  background-color: var(--background-color);
+}
+
 
   ul#Navigation a, ul#Navigation span {
     display: block;
-    padding: 0.2em 1em;
+    padding: 4px;
     text-decoration: none; font-weight: bold;
     border: 1px solid var(--border-color);
     border-radius: 20px;
     color: var(--foreground-color); background-color: var(--background-color);
-  }
-  * html ul#Navigation a, * html ul#Navigation span {  /* nur fuer IE erforderlich */
-    width: 100%;
-    w\idth: 6.4em;
   }
 
   code {
@@ -336,7 +486,6 @@ div.menu {
     color: var(--background-color); background-color: var(--foreground-color);
   }
   ul#Navigation a:hover, li a#aktuell {
-    font-size: 100%;
     text-align: center;
     transform: translateY(-2px) translateX(-2px);
     box-shadow: 2px 2px #666;
