@@ -242,12 +242,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">f(x) = a \cdot g(x)</span></td>
-<td><span class="math inline">f&#39;(x) = a \cdot g&#39;(x)</span></td>
+<td><span class="math inline">a \cdot g(x)</span></td>
+<td><span class="math inline">a \cdot g&#39;(x)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">f(x) = g(x) + h(x)</span></td>
-<td><span class="math inline">f&#39;(x) = g&#39;(x) + h&#39;(x)</span></td>
+<td><span class="math inline">g(x) + h(x)</span></td>
+<td><span class="math inline">g&#39;(x) + h&#39;(x)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">g(x) \cdot h(x)</span></td>
+<td><span class="math inline">g&#39;(x)h(x) + g(x)h&#39;(x)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">g(h(x))</span></td>
+<td><span class="math inline">h&#39;(x) \cdot g&#39;(h(x))</span></td>
 </tr>
 </tbody>
 </table>
