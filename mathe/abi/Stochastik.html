@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Statistik &amp; Stochastik</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Statistik &amp; Stochastik</h1>
+</header>
+<h2 id="definitionen">Definitionen</h2>
+<ul>
+<li>Klasse: Zusammenfassung mehrerer Ereignisse zu einer Klasse</li>
+<li>Absolute Häufigkeit: Anzahl der Vorkomnisse eines Ereignisses</li>
+<li>Relative Häufigkeit: Absolute Häufigkeit geteilt durch die insgesamte Anzahl der Ereignisse</li>
+<li>Wahrscheinlichkeit: Idealwert der relativen Häufigkeit. Die relative Häufigkeit nähert sich mit steigender Ereignisanzahl immer weiter der Häufigkeit an (“Gesetz der großen Zahlen”).</li>
+<li>Wahrscheinlichkeitsdichte: Wahrscheinlichkeit geteilt durch Klassenbreite.</li>
+</ul>
+<p>Für eine Zufallsgröße <span class="math inline">X</span> mit den Werten <span class="math inline">x_1, x_2, x_n</span> sei definiert als Erwartungswert von <span class="math inline">X</span>:</p>
+<p><span class="math inline">\mu = x_1P(X = x_1) + x_2P(X = x_2) + ... + x_nP(X = x_n)</span></p>
+<p>und</p>
+<p><span class="math inline">\sigma = \sqrt{(x_1 - \mu)^2P(X = x_1) + (x_2 - \mu)^2P(X = x_2) + ... + (x_n - \mu)^2P(X = x_n)}</span></p>
+<p>als Standardabweichung</p>
+<h3 id="fakultät">Fakultät</h3>
+<p>Die Fakultät <span class="math inline">n! = \prod_{i=1}^n{i} = 1 \cdot 2 \cdot ... \cdot n</span> einer Zahl gibt die Anzahl der möglichen Permutationen (verschiedenen Anordnungen) eines “Tupels” mit <span class="math inline">n</span> verschiedenen Elementen an. So ist bspw. <span class="math inline">3! = 6</span>, da jedes 3-er-Tupel (Tripel) <span class="math inline">(a, b, c)</span> 6 mögliche Reihenfolgen besitzt:</p>
+<ul>
+<li><span class="math inline">(a, b, c)</span></li>
+<li><span class="math inline">(a, c, b)</span></li>
+<li><span class="math inline">(b, a, c)</span></li>
+<li><span class="math inline">(b, c, a)</span></li>
+<li><span class="math inline">(c, a, b)</span></li>
+<li><span class="math inline">(c, b, a)</span></li>
+</ul>
+<p>Intuitiv ist die Begründung der Formel klar: Es gibt <span class="math inline">n</span> Möglichkeiten, das erste Element auszuwählen. Es bleiben dann <span class="math inline">n - 1</span> Möglichkeiten, das zweite Element auszuwählen. Beim vorletzten Element schließlich bleiben nur noch zwei Wahlmöglichkeiten, beim letzten gar nur noch eine, also <span class="math inline">n! = n \cdot (n - 1) \cdot ... \cdot 2 \cdot 1</span>. Diese “Wahlmöglichkeiten” werden nun multipliziert. Nach dieser Intuition ist auch klar, warum die Fakultät häufig bei Zufallsexperimenten ohne Zurücklegen zur Anwendung kommt.</p>
+<h3 id="binomialkoeffizient">Binomialkoeffizient</h3>
+<p>${nk} = <span class="math inline">\frac{n!}{k!(n-k)!}</span></p>
+<p>Gesprochen “<span class="math inline">n</span> über <span class="math inline">k</span>” oder <strong>“wähle <span class="math inline">k</span> aus <span class="math inline">n</span>”</strong>.</p>
+<p>Intuitiv: Gibt an, auf wieviele Arten <span class="math inline">k</span> Elemente in <span class="math inline">n</span> Elementen verteilt werden können, wenn die Reihenfolge der <span class="math inline">k</span> Elemente untereinander ebenso egal ist wie die der übrigen <span class="math inline">n-k</span> Elemente.</p>
+<p>Im Baumdiagramm einer binomialverteilten Zufallsgröße mit zwei Ereignissen, Erfolg und Misserfolg: <span class="math inline">{n \choose k}</span> gibt die Anzahl der Pfade an, bei denen eines der beiden Ereignisse bei <span class="math inline">n</span>-facher Wiederholung genau <span class="math inline">k</span>-mal auftritt.</p>
+<h3 id="baumdiagramm">Baumdiagramm</h3>
+<p>Pfadregeln:</p>
+<ul>
+<li>Multiplizieren von Wahrscheinlichkeiten entlang eines Pfades</li>
+<li>Addieren von Wahrscheinlichkeiten auf der gleichen Ebene</li>
+</ul>
+<h2 id="bernoulli-experimente-binomialverteilung">Bernoulli-Experimente / Binomialverteilung</h2>
+<p>Definition: Ein Zufallsexperiment mit nur zwei möglichen Ergebnissen: “Erfolg” oder “Misserfolg”. Dabei gilt <span class="math inline">P(Erfolg) = p</span> und <span class="math inline">P(Misserfolg) = q</span> mit <span class="math inline">p + q = 1</span>.</p>
+<p>Wird ein Bernoulli-Experiment <span class="math inline">n</span>-Mal durchgeführt und ändert sich die Wahrscheinlichkeit von Stufe zu Stufe nicht, so spricht man von einem <span class="math inline">n</span>-stufigen Bernoulli-Experiment (= Bernoulli-Kette).</p>
+<p><span class="math inline">P(k Erfolge)</span> lässt sich als <span class="math inline">(n über k)p^kq^{n-k}</span> berechnen (entsprechend den Pfadregeln im Baumdiagramm: Die Wahrscheinlichkeiten aller Pfade mit genau <span class="math inline">k</span> Erfolgen sind gleich - nämlich <span class="math inline">p^kq^{n-k}</span>. Mithilfe des Binomialkoeffizienten bestimmt man die Anzahl dieser Pfade, mit der noch multipliziert wird).</p>
+<ul>
+<li>Erwartungswert: <span class="math inline">\mu = p \cdot n</span></li>
+<li>Standardabweichung: <span class="math inline">\sigma = \sqrt{p \cdot q \cdot n}</span></li>
+</ul>
+<p>Bei gegebenen Wahrscheinlichkeiten <span class="math inline">p</span> (bzw. <span class="math inline">q</span>) sowie <span class="math inline">k</span> lässt sich ein notwendiger “Stichprobenumfang” <span class="math inline">n</span> berechnen, damit ein gewisses Ereignis eine gewisse Wahrscheinlichkeit <span class="math inline">y</span> besitzt. Bsp.:</p>
+<p><span class="math display">
+P(x \geq 1) = y \\
+1 - P(x = 0) = y \\
+1 - q^n = y \\
+q^n = 1 - y \\
+n = log_q(1 - y)
+</span></p>
+<p>Der erhaltene Wert für den Stichprobenumfang <span class="math inline">n</span> muss <em>aufgerundet</em> werden, wenn mit der Wahrscheinlichkeit <span class="math inline">y</span> <em>mindestens</em> <span class="math inline">x</span> Erfolge erreicht werden sollen.</p>
+<p><strong>Kumulierte Wahrscheinlichkeiten</strong>, d.h. die Wahrscheinlichkeit, dass die Anzahl der Erfolge in einem bestimmten Bereich liegt, können auf zwei Arten ausgerechnet werden:</p>
+<ul>
+<li>Falls möglich mit dem <a href="#gtr">GTR</a> und <code>binomcdf</code></li>
+<li>Alternativ als Summe der Einzelwahrscheinlichkeiten für genau <span class="math inline">k</span> Erfolge für alle <span class="math inline">k</span> aus dem Bereich</li>
+<li>In einigen Sonderfällen lässt sich mit der Gegenwahrscheinlichkeit rechnen, wenn der Gegenbereich wesentlich kleiner ist. Bsp.: Bis zu 9 Erfolge bei 10 Durchführungen =&gt; Gegenereignis: Genau 10 Erfolge =&gt; <span class="math inline">P(x \leq 9) = 1 - P(x = 10)</span> für <span class="math inline">x</span> Anzahl der Erfolge; <span class="math inline">P(x = 10)</span> lässt sich mit der bekannten Formel berechnen.</li>
+</ul>
+<h2 id="hypothesen">Hypothesen</h2>
+<p>Hypothesen sollen mit hohem Signifikanzniveau <em>verworfen</em> werden, da dann eine extrem hohe Signifikanz besteht; entsprechend ist die Nullhypothese das Gegenteil der zu beweisenden Hypothese.</p>
+<p><span class="math inline">H_0</span> Nullhypothese, <span class="math inline">H_1</span> Alternativhypothese</p>
+<h2 id="hypothesentests">Hypothesentests</h2>
+<ul>
+<li>Fehler 1. Art: Nullhypothese wird fälschlicherweise verworfen</li>
+<li>Fehler 2. Art: Nullhypothese wird fälschlicherweise angenommen</li>
+</ul>
+<h2 id="zweiseitiger-signifikanztest">Zweiseitiger Signifikanztest</h2>
+<p>Def. signifikant, hochsignifikant</p>
+<p>Verwerfungsbereich, Annahmebereich</p>
+<h2 id="stetige-zufallsgrößen">Stetige Zufallsgrößen</h2>
+<p>Können alle Werte in einem reellen Intervall angenommen werden, spricht man von einer stetigen Zufallgröße.</p>
+<p>Eine <strong>Dichtefunktion</strong> - gibt ähnlich wie ein Histogramm - für einen Wert .</p>
+<p>Für eine Dichtefunktion gilt:</p>
+<ul>
+<li><span class="math inline">f(x) \geq 0 \forall x \in R</span> (Dichten müssen offensichtlich positiv sein - negative Dichten wären sinnlos) und</li>
+<li><span class="math inline">\int_a^b f(x)dx</span> ist die Wahrscheinlichkeit für <span class="math inline">x \in [a, b]</span>; somit ist f(x)dx = 1$ (Gesamtwahrscheinlichkeit 1)</li>
+</ul>
+<h3 id="normalverteilung">Normalverteilung</h3>
+<p>Stetige, normalverteilte Zufallsgrößen besitzen die “Gaußsche Glockenfunktion” <span class="math inline">\psi_{\mu; \sigma}(x) = \frac{1}{\sigma\sqrt{2\pi}} \cdot e^\frac{(x - \mu)^2}{2\sigma^2}</span> als Dichtefunktion.</p>
+<h4 id="moivre-laplace-näherungsformeln">Moivre-Laplace-Näherungsformeln</h4>
+<p>Ist die <strong>Laplace-Bedingung</strong> <span class="math inline">\sigma &gt; 3</span> erfüllt, so gilt:</p>
+<ul>
+<li><span class="math inline">P(x = k) \approx \psi_{\mu; \sigma}(k)</span></li>
+<li><span class="math inline">P(a \leq x \leq b) \approx \int_a^b \psi_{\mu; \sigma}(x) dx</span></li>
+</ul>
+<h4 id="sigma-umgebungen">Sigma-Umgebungen</h4>
+<p>Für normalverteilte Zufallsgrößen gilt (alle Wahrscheinlichkeiten bzw. <span class="math inline">\sigma</span>-Umgebungen nur ungefähr und nicht exakt):</p>
+<div class="line-block"><span class="math inline">\sigma</span>-Umgebung | Wahrscheinlichkeit |</div>
+<p>|===================|====================| |<span class="math inline">[\mu - \sigma; \mu + \sigma]</span>|<span class="math inline">68,3%</span>| |<span class="math inline">[\mu - 2\sigma; \mu + 2\sigma]</span>|<span class="math inline">95,5%</span>| |<span class="math inline">[\mu - 3\sigma; \mu + 3\sigma]</span>|<span class="math inline">99,7%</span>|</p>
+<div class="line-block">Wahrscheinlichkeit | <span class="math inline">\sigma</span>-Umgebung |</div>
+<p>|===================|====================| |<span class="math inline">90%</span>|<span class="math inline">[\mu - 1,64\sigma; \mu + 1,64\sigma]</span>| |<span class="math inline">95%</span>|<span class="math inline">[\mu - 1,94\sigma; \mu + 1,94\sigma]</span>| |<span class="math inline">99%</span>|<span class="math inline">[\mu - 2,58\sigma; \mu + 2,58\sigma]</span>|</p>
+<p>Aufgrund der <a href="#moivre-laplace-näherungsformeln">Moivre-Laplace-Näherungsformeln</a> lassen sich die Sigmaregeln - insofern die Laplace-Bedingung erfüllt ist - auch auf <strong>Binomialverteilungen</strong> anwenden.</p>
+<p>Fürs Runden gilt: Symmetrie nicht beachten, mit GTR ab-und aufgerundete Intervallgrenzen ausprobieren; sind die Wahrscheinlichkeiten Mindestwerte, wird normalerweise betraglich <em>aufgerundet</em>.</p>
+<h2 id="visualisierungen">Visualisierungen</h2>
+<ul>
+<li>Strich- und Balkendiagramme: Zeigen relative Häufigkeiten von Ereignissen oder Ereignisklassen.</li>
+<li>Kreisdiagramme: Anteilige Darstellung relativer Häufigkeiten.</li>
+<li>Histogramme: Für Intervalle als Ereignisklassen: Breite der Balken entspricht der Breite der Ereignisklasse; Fläche der Balken entspricht der Wahrscheinlichkeit bzw. relativen Häufigkeit, s.d. Histogramme - anders als Strich-, Balken- und Kreisdiagramme nicht optisch irreführend sind. Höhe der Balken ist somit nicht mehr die Wahrscheinlichkeit sondern die Wahrscheinlichkeitsdichte. Klassen müssen weiterhin intelligent gewählt werden; zu kleine Klassen scheitern daran, Häufungen als erhöhte Wahrscheinlichkeitsdichte zu zeigen (Extremfall: Minimale Klassen, genau zwei verschiedene Dichten) - zu große Klassen dahingegen bieten nicht genügend Granularität (Extremfall: Eine Klasse).</li>
+</ul>
+<h2 id="hilfsmittel">Hilfsmittel</h2>
+<h3 id="formelsammlung">Formelsammlung</h3>
+<p>Stochastik auf S. 36 - S. 51. Relevant davon sind:</p>
+<ul>
+<li>S. 36 zu <strong>Visualisierungen</strong></li>
+<li>S. 37 zu <strong>Fakultät, Binomialkoeffizient etc.</strong></li>
+<li>S. 38 mit weiteren <strong>Definitionen von Grundbegriffen</strong></li>
+<li>S. 39: <strong>Standardabweichung</strong>, “Rechenregeln” für Baumdiagramme</li>
+<li>S. 40: <strong>Wahrscheinlichkeitsrechnung</strong></li>
+<li>S. 41: <strong>Wahrscheinlichkeitsverteilung</strong>, <strong>Binomialverteilung</strong></li>
+<li>S. 42: <strong>Normalverteilung</strong>, Näherungsformel für Binomialverteilungen</li>
+<li>S. 43: <strong>Testen von Hypothesen</strong></li>
+</ul>
+<p>Auf den übrigen Seiten 44 - 51 finden sich hauptsächlich durch den GTR obsolet gewordene Wertetabellen. Nur auf S. 50 findet sich noch etwas zur <strong>Standardnormalverteilung</strong> (allerdings weitestgehnd redundant mit S. 42).</p>
+<p>Es ist davon auszugehen, dass im hilfsmittelfreien Teil keine äußerst rechenintensiven Normalverteilungen oder Sigma-Umgebungen vorkommen, durchaus aber die Berechnung von binomialverteilten Zufallsgrößen für kleine Werte oder die Angabe von Termen; einfach zu integrierende Dichtefunktionen sind ebenfalls denkbar.</p>
+<h3 id="gtr">GTR</h3>
+<ul>
+<li><code>binompdf(n, p, x)</code>
+<ul>
+<li><code>n</code>: Anzahl Versuche</li>
+<li><code>p</code>: Erfolgswahrscheinlichkeit</li>
+<li><code>x</code>: Anzahl Erfolge</li>
+</ul></li>
+<li><code>binomcdf(n, p, min, max)</code>
+<ul>
+<li><code>n</code>: Anzahl Versuche</li>
+<li><code>p</code>: Erfolgswahrscheinlichkeit</li>
+<li><code>min</code>: Min. Anzahl Erfolge (inklusive)</li>
+<li><code>max</code>: Max. Anzahl Erfolge (inklusive), <strong>optional</strong></li>
+</ul></li>
+<li><code>normpdf</code>: Wie <code>binompdf</code></li>
+<li><code>normcdf</code>: Wie <code>binomcdf</code>; <code>min</code> &amp; <code>max</code> sind allerdings nicht mehr zwingend ganzzahlig</li>
+</ul>
+</body>
+</html>

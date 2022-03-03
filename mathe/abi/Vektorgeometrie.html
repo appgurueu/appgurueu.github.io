@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Vektorielle Geometrie</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Vektorielle Geometrie</h1>
+</header>
+<!-- TODO Taschenrechner-Guide -->
+<h3 id="schulnotation">Schulnotation</h3>
+<p>Auf Schule:</p>
+<ul>
+<li>Richtungsvektoren mit einem Pfeil versehen und als Spaltenvektoren notieren</li>
+<li>Punktvektoren mit Großbuchstaben bezeichnen (<span class="math inline">A, B, C, ...</span>) und als Zeilenvektoren notieren, wobei die Koordinaten von Schrägstrichen getrennt werden</li>
+<li>Skalare mit Kleinbuchstaben (meist <span class="math inline">x</span>) und Index (<span class="math inline">x_1, x_2, x_3</span>)</li>
+<li>Benannte “Formengleichungen” mit Doppelpunkt und Gleichung mit <span class="math inline">x</span>. Gleichungen müssen direkt eingesetzt werden, <span class="math inline">E = g</span> ist falsch.
+<ul>
+<li>Ebenen: <span class="math inline">E: x = ...</span></li>
+<li>Geraden: <span class="math inline">g: x = ...</span></li>
+</ul></li>
+</ul>
+<h4 id="terminologie">Terminologie</h4>
+<p>Komponenten = Einträge.</p>
+<h3 id="punkte">Punkte</h3>
+<p>Einfach Vektoren. Werden häufig als Zeilenvektoren notiert: <span class="math inline">(x/y/z)</span>.</p>
+<h3 id="richtungsvektoren">Richtungsvektoren</h3>
+<p>Richtungsvektor von Punkt <span class="math inline">A</span> nach <span class="math inline">B</span>: <span class="math inline">A</span> von <span class="math inline">B</span> abziehen: <span class="math inline">\overline{AB} = B - A</span>.</p>
+<h4 id="kolinearität">Kolinearität</h4>
+<p>Zwei Richtungsvektoren <span class="math inline">a, b</span> sind genau dann kolinear zueinander, wenn die Gleichung <span class="math inline">xa = b</span> mit <span class="math inline">x</span> Skalar erfüllt ist (wenn also ein Vektor nur eine Skalierung des Anderen ist). Dann sind <span class="math inline">a</span> und <span class="math inline">b</span> auch parallel zueinander: <span class="math inline">a \parallel b</span>.</p>
+<h3 id="vektoraddition">Vektoraddition</h3>
+<p>Verschiebt einen Vektor um einen Anderen, indem jeweils die Komponenten addiert werden.</p>
+<h3 id="skalare-multiplikation">Skalare Multiplikation</h3>
+<p>Skaliert einen Vektor mit einem Skalar, indem jede Komponente mit dem Skalar multipliziert wird. Analog lässt sich ein Vektor auch durch einen Skalar teilen.</p>
+<h3 id="länge">Länge</h3>
+<p>Die Länge eines Vektors lässt sich mithilfe des Satzes des Pythagoras berechnen: Alle Komponenten müssen quadriert werden und anschließend summiert werden. Schließlich muss die Wurzel gezogen werden: <span class="math inline">|(x, y, z)| = \sqrt{x^2 + y^2 + z^2}</span>.</p>
+<h4 id="normieren">Normieren</h4>
+<p>Man normiert einen Vektor, indem man ihn durch seine Länge teilt. Der resultierende Vektor hat immer Länge <span class="math inline">1</span> (Einzige Ausnahme: Der Nullvektor).</p>
+<p><span class="math inline">a_n = \frac{a}{|a|}</span></p>
+<h4 id="abstand">Abstand</h4>
+<p>Der Abstand zweier (Punkt-)Vektoren ist einfach die Länge des Richtungsvektors: <span class="math inline">d = |B - A| = |A - B|</span>. Ob man <span class="math inline">A</span> von <span class="math inline">B</span> abzieht oder andersherum ist wegen der Quadrate bei der <a href="#länge">Länge</a>nbestimmung egal.</p>
+<h3 id="punktprodukt">Punktprodukt</h3>
+<p>Addition der Produkte der jeweiligen Komponenten. Ergebnis ist ein Skalar, weswegen das Punktprodukt auch als <em>Skalarprodukt</em> bekannt ist. Gleich dem Produkt der Längen mal dem Cosinus des Winkels <span class="math inline">\alpha</span> zwischen den Vektoren <span class="math inline">a, b</span>:</p>
+<p><span class="math inline">a \cdot b = cos(\alpha)|a||b| = a_1b_1 + a_2b_2 + a_3b_3</span></p>
+<h4 id="orthogonalität">Orthogonalität</h4>
+<p>Orthogonalität heißt, dass der Winkel zwischen den zwei Richtungsvektoren <span class="math inline">90°</span> beträgt. Dann ist der Cosinus und somit das Punktprodukt <span class="math inline">0</span>.</p>
+<p><span class="math inline">a \perp b \lrArr a \cdot b = 0</span></p>
+<h4 id="parallelität">Parallelität</h4>
+<p>Bei Parallelität der Richtungsvektoren beträgt der Winkel <span class="math inline">0°</span>, der Cosinus nimmt einen Wert von <span class="math inline">1</span> and und somit ist das Punktprodukt das Produkt der Längen der beiden Vektoren.</p>
+<p><span class="math inline">a \parallel b \lrArr a \cdot b = |a||b|</span>. Allerdings prüft man Parallelität am Besten über <a href="#kolinearität">Kolinearität</a>.</p>
+<h4 id="winkelbestimmung">Winkelbestimmung</h4>
+<p>Der Winkel zwischen zwei Richtungsvektoren entspricht dem Punktprodukt geteilt durch die Länge der Vektoren</p>
+<p><span class="math inline">\alpha = acos(\frac{a \cdot b}{|a||b|})</span></p>
+<h3 id="kreuzprodukt">Kreuzprodukt</h3>
+<p>Für <span class="math inline">a</span>, <span class="math inline">b</span> Richtungsvektoren lässt sich aus <span class="math inline">a \perp c \lrArr a \cdot c = 0</span> und <span class="math inline">b \perp c \lrArr b \cdot c = 0</span> folgendes herleiten:</p>
+<p><span class="math inline">a \times b = c = (a_2 b_3 - a_2 b_3, a_3 b_2 - a_2 b_3, a_1 b_2 - a_2 b_1)</span></p>
+<p><span class="math inline">|a \times b| = |a||b| \cdot sin(\alpha)</span></p>
+<p>Ergebnis ist ein Richtungsvektor <span class="math inline">c</span> (weswegen das Kreuzprodukt häufig auch <em>Vektorprodukt</em> genannt wird), der orthogonal zu <span class="math inline">a, b</span> steht (außerdem entspricht die Länge <span class="math inline">|c|</span> dem Volumen des von <span class="math inline">a, b</span> aufgespannten Parallelogramms).</p>
+<h1 id="geraden">Geraden</h1>
+<h2 id="formen">Formen</h2>
+<p>Eindeutig gegeben durch zwei verschiedene Punkte <span class="math inline">A, B</span>. Der Richtungsvektor lässt sich dann wahlweise von <span class="math inline">A</span> nach <span class="math inline">B</span> oder <span class="math inline">B</span> nach <span class="math inline">A</span> bestimmen. Sowohl <span class="math inline">A</span> als auch <span class="math inline">B</span> können als Stützvektor verwendet werden.</p>
+<p>Stützvektor (= beliebiger Punkt auf Gerade) plus Skalar <span class="math inline">s</span> mal Richtungsvektor <span class="math inline">b</span> der Geraden: <span class="math inline">g: x = A + sb</span>.</p>
+<h2 id="schnitte">Schnitte</h2>
+<p>Einfach Gleichungen gleichsetzen: Punkt-Gerade-Schnitt (Probe, ob Punkt enthalten), Gerade-Gerade-Schnitt, Punkt-Ebene-Schnitt. Fallunterscheidung im Dreidimensionalen.</p>
+<ul>
+<li>Punkt-Gerade-Schnitt
+<ul>
+<li>Eine Lösung / Gleichung erfüllt: Punkt liegt auf Gerade</li>
+<li>Keine Lösung / Gleichung nicht erfüllt: Punkt liegt nicht auf Gerade</li>
+</ul></li>
+<li>Punkt-Ebene-Schnitt, analog zum Punkt-Gerade-Schnitt:
+<ul>
+<li>Eine Lösung / Gleichung erfüllt: Punkt liegt auf Ebene</li>
+<li>Keine Lösung / Gleichung nicht erfüllt: Punkt liegt nicht auf Ebene</li>
+</ul></li>
+<li>Gerade-Gerade-Schnitt
+<ul>
+<li>Unendlich viele Lösungen: “Gleiche” Gerade, d.h. parallel und kein Abstand zwischen den Geraden</li>
+<li>Eine Lösung: Schnittpunkt</li>
+<li>Keine Lösung:
+<ul>
+<li>Windschief</li>
+<li>Parallel, wenn Richtungsvektoren kolinear</li>
+</ul></li>
+</ul></li>
+</ul>
+<!-- TODO refine -->
+<h2 id="abstand-punkt-gerade">Abstand Punkt-Gerade</h2>
+<p>Gegeben: Ein Punkt <span class="math inline">p</span> und eine Gerade <span class="math inline">g</span>. Gesucht: Der Abstand <span class="math inline">d</span> zwischen <span class="math inline">p</span> und <span class="math inline">g</span>.</p>
+<p>Finde den zu <span class="math inline">p</span> am nächsten liegenden Punkt <span class="math inline">x</span> auf der Geraden. Es muss gelten <span class="math inline">(p - x) \perp b</span>. Wir erhalten als Gleichung:</p>
+<p><span class="math inline">(p - (A + sb)) \cdot b = 0 \lrArr (p - A - sb) \cdot b = 0 \lrArr p \cdot b - A \cdot b - s(b \cdot b)</span>. Man erhält eine Lösung für <span class="math inline">s</span>. Einsetzen in die Geradengleichung liefert den Punkt <span class="math inline">x</span>. Schließlich muss der Abstand berechnet werden; siehe dafür <a href="#abstand">Abstand</a>.</p>
+<h2 id="abstand-zweier-windschiefer-geraden">Abstand zweier windschiefer Geraden</h2>
+<p>Normalenvektor der Hilfsebene als Kreuzprodukt der Richtungsvektoren, Stützvektor ein Punkt von Gerade A. Abstand von beliebigem Punkt der Geraden B zur Hilfsebene bestimmen.</p>
+<h3 id="alternativ-punktprodukt">Alternativ: Punktprodukt</h3>
+<p>Ziehe von <span class="math inline">p</span> <span class="math inline">A</span> ab (verschiebe <span class="math inline">p</span>). Verschiebe ebenfalls <span class="math inline">g</span>, sodass <span class="math inline">g</span> durch den Ursprung geht; an der relativen Lage von Punkt und Gerade ändert sich dabei nichts. Berechne nun <span class="math inline">\frac{(p - A) \cdot b}{|b|} = s}</span>: Das Punktprodukt liefert die Länge der Projektion auf die Gerade, diese muss nur noch durch die Länge des Richtungsvektors geteilt werden, da wir in der Geradengleichung ja damit multiplizieren (und der Richtungsvektor nicht normiert ist).</p>
+<h1 id="ebenen">Ebenen</h1>
+<p>Eindeutig gegeben durch drei verschiedene Punkte. Parameterform konstruierbar, indem man einen Punkt als Stützvektor wählt und von diesem aus die beiden Spannvektoren bestimmt:</p>
+<p>Gegeben Punkte <span class="math inline">A, B, C</span>, wähle <span class="math inline">A</span> als Stützvektor. Dann ergeben sich Spannvektoren <span class="math inline">b, c</span> als <span class="math inline">b = B - A</span>, <span class="math inline">c = C - A</span>. Somit ist die Parameterform: <span class="math inline">E: x = A + sb + tc</span> mit <span class="math inline">s, t</span> Skalaren.</p>
+<h2 id="formen-1">Formen</h2>
+<h3 id="parameterform">Parameterform</h3>
+<p><span class="math inline">E: x = A + sb + tc</span> mit <span class="math inline">x</span> Punkt auf Ebene, <span class="math inline">A</span> Stützvektor, <span class="math inline">s, t</span> Skalaren und <span class="math inline">b, c</span> Spannvektoren.</p>
+<p>Bestimmung aus Koordinatenform: Drei Punkte <span class="math inline">A, B, C</span> durch Einsetzen in die Koordinatenform bestimmen (bspw. Spurpunkte).</p>
+<h3 id="normalenform">Normalenform</h3>
+<p>Punktprodukt aus Punkt <span class="math inline">x</span> minus Stützvektor <span class="math inline">P</span> mit Normalenvektor <span class="math inline">n</span> muss null sein (siehe <a href="#orthogonalität">Orthogonalität</a>): <span class="math inline">E: n \cdot (x - P) = 0</span>. Lässt sich einfach umstellen:</p>
+<p><span class="math inline">E: n \cdot (x - P) = 0 \lrArr n \cdot x - n \cdot P = 0 \lrArr n \cdot x = n \cdot P</span>, wobei <span class="math inline">n \cdot P</span> als Skalar ausgerechnet werden kann (“vereinfachte” Normalenform).</p>
+<p>Bestimmung aus Parameterform: <span class="math inline">n = b \times c</span> (Normalenvektor als Kreuzprodukt der SPannvektoren), <span class="math inline">P = A</span> (Stützvektor / beliebiger Punkt auf Ebene).</p>
+<p>Bestimmung aus Koordinatenform: Trivial. Komponenten des Normalenvektors sind Koeffizienten von <span class="math inline">x_1, x_2, x_3</span>. Wenn <span class="math inline">P</span> bestimmt werden muss, lässt sich eine beliebige Lösung für <span class="math inline">x_1, x_2, x_3</span> nehmen (bspw. Spurpunkte).</p>
+<h4 id="koordinatenform">Koordinatenform</h4>
+<p>Bestimmung aus Normalenform: Setze <span class="math inline">P = (x_1, x_2, x_3)</span>. Es ergibt sich <span class="math inline">ax_1, bx_2, cx_3 = d</span> mit <span class="math inline">a, b, c, d</span> Skalaren. In <span class="math inline">d</span> steckt der Abstand zum Ursprung sowie die Länge des Normalenvektors.</p>
+<h5 id="spurpunkte">Spurpunkte</h5>
+<p>Als Spurpunkte bezeichnet man die Schnittpunkte einer Ebene mit den Koordinatenachsen. In der Koordinatenform sind Spurpunkte einfach zu bestimmen, indem man jeweils zwei Variablen auf <span class="math inline">0</span> setzt:</p>
+<ul>
+<li>Schnittpunkt mit <span class="math inline">x_1</span>-Achse: <span class="math inline">x_2 = 0</span> und <span class="math inline">x_3 = 0</span> setzen</li>
+<li>Schnittpunkt mit <span class="math inline">x_2</span>-Achse: <span class="math inline">x_1 = 0</span> und <span class="math inline">x_3 = 0</span> setzen</li>
+<li>Schnittpunkt mit <span class="math inline">x_3</span>-Achse: <span class="math inline">x_1 = 0</span> und <span class="math inline">x_2 = 0</span> setzen</li>
+</ul>
+<p>Es kann sein, dass nicht alle Spurpunkte existieren (Koeffizienten können <span class="math inline">0</span> sein, dann schneidet sich die Ebene nicht mit der Koordinatenachse):</p>
+<ul>
+<li>Ein Koeffizient <span class="math inline">0</span> (bspw. <span class="math inline">x_1 + x_2 = 1</span>): Schnitte mit zwei Koordinatenachsen</li>
+<li>Zwei Koeffizienten <span class="math inline">0</span>: Schnitt mit einer Koordinatenachse (Normalenvektor ist parallel zu einer Koordinatenachse)</li>
+</ul>
+<p>Wenn außerdem <span class="math inline">d = 0</span> ist, geht die Ebene durch den Ursprung. In diesem Fall sind unendlich viele Spurpunkte auf allen Achsen, die Koeffizient <span class="math inline">0</span> haben möglich; bei der Spurpunktebestimmung erhält man dann Gleichungen <span class="math inline">0 = 0</span>.</p>
+<h2 id="schnitte-1">Schnitte</h2>
+<p>Einfach gleichsetzen: Punkt-Ebene-Schnitt (Probe, ob Punkt enthalten), Gerade-Ebene-Schnitt, Ebene-Ebene-Schnitt.</p>
+<ul>
+<li>Gerade-Ebene-Schnitt
+<ul>
+<li>Unendlich viele Lösungen: Gerade liegt in Ebene, d.h. orthogonal zum Normalenvektor</li>
+<li>Eine Lösung: Schnittpunkt. Wenn zusätzlich der Richtungsvektor parallel zum Normalenvektor ist, steht die Gerade orthogonal zur Ebene.</li>
+<li>Keine Lösung: Gerade ist parallel zur Ebene, d.h. orthogonal zum Normalenvektor</li>
+</ul></li>
+<li>Ebene-Ebene-Schnitt
+<ul>
+<li>Unendlich viele Lösungen:
+<ul>
+<li>Auf einer Schnittgerade</li>
+<li>Gleiche Ebenen: Ebenen parallel (Normalenvektoren kolinear)</li>
+</ul></li>
+<li>Keine Lösung: Parallel (Normalenvektoren kolinear)</li>
+</ul></li>
+</ul>
+<h2 id="abstand-punkt-ebene"><a href="https://appgurueu.github.io/mathe/abstand-punkt-ebene/">Abstand Punkt-Ebene</a></h2>
+<h1 id="shortcuts">Shortcuts</h1>
+<h2 id="kreuzprodukt-zur-dreiecksflächenbestimmung">Kreuzprodukt zur Dreiecksflächenbestimmung</h2>
+<p>Bestimme <span class="math inline">|A \times B| / 2</span></p>
+</body>
+</html>

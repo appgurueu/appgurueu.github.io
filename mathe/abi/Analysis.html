@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Analysis</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Analysis</h1>
+</header>
+<h2 id="notation">Notation</h2>
+<ul>
+<li>Intervalle:
+<ul>
+<li>Runde Klammern für exklusive, eckige Klammern für inklusive Intervallgrenzen</li>
+<li>Offen: <span class="math inline">(-1, 1)</span> - alle Zahlen von <span class="math inline">-1</span> bis <span class="math inline">1</span>, Intervallgrenzen exklusive</li>
+<li>Halboffen: <span class="math inline">(-1, 1]</span> oder <span class="math inline">[-1, 1)</span></li>
+<li>Geschlossen: <span class="math inline">[-1, 1]</span> - beide Intervallgrenzen sind enthalten</li>
+</ul></li>
+</ul>
+<p>Bei Intervallen mit Unendlichkeiten müssen auf Seiten der Unendlichkeit immer runde Klammern verwendet werden, da unendlich ja kein erreichbarer Wert ist:</p>
+<p><span class="math inline">(-\infty, +\infty)</span>, <span class="math inline">(-\infty, b]</span>, <span class="math inline">[a, +\infty)</span></p>
+<h2 id="terminologie">Terminologie</h2>
+<p>Stelle: X-Wert</p>
+<p>Punkt: Paar (X, Y)</p>
+<h2 id="funktionen">Funktionen</h2>
+<h3 id="definitionen">Definitionen</h3>
+<ul>
+<li>Definitionsbereich: Intervall von <span class="math inline">x</span>-Werten, für die der Funktionswert <span class="math inline">f(x)</span> definiert ist</li>
+<li>Wertebereich: Bereich aller Werte <span class="math inline">y = f(x)</span>, die die Funktion annehmen kann</li>
+<li>Polynome:</li>
+</ul>
+<p>Die in der Schule behandelten Funktionen bilden immer von Intervallen der reellen Zahlen als Definitionsbereiche auf Wertebereiche ab. Teilweise sind auch einzige Werte ausgenommen.</p>
+<h4 id="beispiele">Beispiele</h4>
+<ul>
+<li><span class="math inline">x^2</span>: Wertebereich sind die nicht-negativen reellen Zahlen, d.h. <span class="math inline">[0, +\infty)</span></li>
+</ul>
+<h3 id="transformationen">Transformationen</h3>
+<ul>
+<li>Verschiebung um <span class="math inline">d</span>:
+<ul>
+<li>X-Richtung: <span class="math inline">g(x) = f(x - d)</span> (nach “rechts”).</li>
+<li>Y-Richtung: <span class="math inline">g(x) = f(x) + d</span> (nach “oben”)</li>
+</ul></li>
+<li>Skalierung um Faktor <span class="math inline">a</span>:
+<ul>
+<li>X-Richtung: <span class="math inline">g(x) = f(a \cdot x)</span></li>
+<li>Y-Richtung: <span class="math inline">g(x) = a \cdot f(x)</span></li>
+</ul></li>
+</ul>
+<p><strong>Wichtig:</strong> Verschiebung und Skalierung in X-Richtung verhält sich immer genau entgegengesetzt der “intuitiven Erwartung”:</p>
+<ul>
+<li>Verschiebung: Minus statt Plus für Verschiebung nach rechts
+<ul>
+<li><span class="math inline">x-d</span> statt <span class="math inline">x+d</span>, da bei letzterem die Funktion ja schon <span class="math inline">d</span> Einheiten <em>früher</em> den Wert erreichen würde - wir wollen aber, dass der Wert <em>später</em> erst erreicht wird.</li>
+</ul></li>
+<li>Skalierung: <span class="math inline">a &lt; 1</span> streckt, <span class="math inline">a &gt; 1</span> staucht</li>
+</ul>
+<h3 id="symmetrie">Symmetrie</h3>
+<p>Funktionen sind immer <em>entweder</em> achsen- oder punktsymmetrisch. Einzige Ausnahme ist hierbei <span class="math inline">f(x) = 0</span>.</p>
+<h4 id="achsensymmetrie">Achsensymmetrie</h4>
+<p>Achsensymmetrie zur y-Achse:</p>
+<p><span class="math inline">f(x) = f(-x)</span>.</p>
+<p>Ist nach Punktsymmetrie zu einer Gerade mit <span class="math inline">x = a</span> gefragt, so muss die Funktion um <span class="math inline">a</span> verschoben werden, sodass der Ursprung der Ausgangsfunktion an Stelle <span class="math inline">a</span> liegt:</p>
+<p><span class="math inline">g(x) = f(x - a)</span> und danach <span class="math inline">g(x) = g(-x) \lrArr f(x - a) = f(-(x - a)) \lrArr f(x - a) = f(a - x)</span></p>
+<p>Polynome mit geraden Exponenten (inklusive der <span class="math inline">0</span> und negativer Exponenten) sind immer achsensymmetrisch. Beispiele:</p>
+<ul>
+<li><span class="math inline">f(x) = 42</span></li>
+<li><span class="math inline">f(x) = 42 + 3x^2</span></li>
+<li><span class="math inline">f(x) = 33x^{100} + x^{1000000}</span></li>
+<li><span class="math inline">f(x) = x^3 - x^3 + x^8 = x^8</span></li>
+</ul>
+<p>Polynome mit ungeraden Exponenten (inklusive der <span class="math inline">1</span> und negativer Exponenten) können nicht achsensymmetrisch sein. Beispiele:</p>
+<ul>
+<li><span class="math inline">f(x) = \frac{1}{2}x</span></li>
+<li><span class="math inline">f(x) = x^3 + x^{2000}</span></li>
+<li><span class="math inline">f(x) = x^{99} + x^{100}</span></li>
+</ul>
+<h4 id="punktsymmetrie">Punktsymmetrie</h4>
+<p>Punktsymmetrie zum Ursprung:</p>
+<p><span class="math inline">-f(x) = f(-x)</span>.</p>
+<p>Ist nach Punktsymmetrie zu einem Punkt <span class="math inline">P(p_x|p_y)</span> gefragt, so muss die Funktion in X- und Y-Richtung derart verschoben werden, dass der Ursprung in <span class="math inline">P</span> liegt:</p>
+<p><span class="math inline">g(x) = f(x - p_x) + p_y</span> und weiter <span class="math inline">-g(x) = g(-x)</span></p>
+<p>Polynome mit geraden Exponenten können nicht punktsymmetrisch sein; Polynome mit ungeraden Exponenten (inkl. negativer Exponenten) sind immer punktsymmetrisch.</p>
+<h3 id="inverse">Inverse</h3>
+<p>Für eine Inverse <span class="math inline">f^-1</span> zu <span class="math inline">f</span> gilt: Wenn <span class="math inline">f(x) = y</span>, dann ist <span class="math inline">f^-1(y) = x</span>. Somit heben sich <span class="math inline">f</span> und <span class="math inline">f^-1</span> auf: <span class="math inline">f(f^-1(x)) = x = f^-1(f(x))</span> (bspw.: auf positiven reellen Zahlen heben sich Wurzel &amp; Quadrat auf).</p>
+<p>Synonym: Umkehrabbildung.</p>
+<p>Inverse sind - insbesondere als Fkt. - nicht immer eindeutig/vollständig. Bsp. Wurzel (positiv/negativ) oder log als Inverse zur e-Fkt.</p>
+<h3 id="nullstellen">Nullstellen</h3>
+<ul>
+<li>Lineare Funktionen: Trivial</li>
+<li>Quadratische Funktionen: p-q-Formel</li>
+<li><span class="math inline">ax^4 + bx^2 + c</span>: <span class="math inline">z = x^2</span> substituieren</li>
+<li>Produkt ist 0, g.d.w. min. einer der Faktoren 0 ist
+<ul>
+<li>Bei Exponentialfkt. mit einer Basis != 0 (insbesondere <span class="math inline">e^x</span>)</li>
+<li>Nullstellenform: <span class="math inline">(x - a)(x - b)(x - c)</span>, offensichtlich Nst. <span class="math inline">a, b, c</span></li>
+</ul></li>
+</ul>
+<h3 id="grenzwerte-limes">Grenzwerte (Limes)</h3>
+<h3 id="trigonometrische-funktionen">Trigonometrische Funktionen</h3>
+<h4 id="ableitungen">Ableitungen</h4>
+<ul>
+<li><span class="math inline">cos&#39;(x) = -sin(x)</span></li>
+<li><span class="math inline">sin&#39;(x) = cos(x)</span></li>
+</ul>
+<blockquote>
+<p>Merkhilfe: “Ableitungskreis” <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOsAAADVCAMAAACBpPc6AAAAElBMVEX///8AAADMzMyZmZlmZmYzMzNvr/RZAAAEJUlEQVR4nO2ci5KjIBBF5eH//3IEBB8xBhWabrmnKrNxJoZ7AsJWBXsYAAAAAAAAAAQo1ToBHT25yuRaDxmrrJnPUkobpUx8Hzv9sNy7+4Lt5Ka8XnCNRw6ttH9wR+Xqutfp4OkeZj7yWKVTJ/Mmz3YawVrHl4dT0omTtYBuDWR1rp1eNepD12H0l6wUMmz1NB+N4vvV88fW2yzX6+YMd73K6thz1908HE4Jf3JzsDnpWGarkRc4f8l2fY0n+X//ra+c/qvls1TNw8V2zlE5DQfblKF6lta2q/YJkjS1VT+ekzRIi/p5QNMkHaqBaqNxrE4P6Rpu0CJhAmLZ75FEGYB0HB+0Rftht71iqAcWUTMMVInG8XEbDVaC+k3+aIHBqifu/S9RNwwr1bpxmKnWDMROtV4khqq1QrFUrROLqWqNYGxVy0djrFo8XEeurFXLxmOuWjIge9VyEQWolgopQrVQTJGu90ILUS3yhUtHrmJU11Ffr7qEffsIdjxzFaUa4/bQrc9chamGwG9WVWqza+P1I3jekHzfVY5qRGVvZ/46s2wQznSk2pNrR6pduQIAAAAAAAAAAABcwipl3M3QS1mOeDuxQ0aBjkziPeHaFThwN/37SgfiCnTkYCYpHQp0mHA0314du1JOgY6/JKfRd54bsqlch0dcIYffLPdTL/f5x3IdAVkFOs446NdUrsNj8vrVzWw2nuDnukGP6RPT/u3GxgMkXK/2/Hr937E6zWeje2L1qhJGbMa0vu5DSL2ehw9C/u0PE8uZmPCRzUf64kdWGzuPtEfr68ppmIesexO9foXwRTp9UXswxfmBYpOtbT2Cn/LtuvTrhDFp3L5o6QpXqN1er3p1vY5qmdqFI2IeLoVO8xnf9RUAAAAAAAAAAAAAAAAAAAD0g/Avzq9w/25ocfhb3KXaXosdyzSItL2u+qzeSEsuRd5YyuvaK4H31XKE2d5RfVz6qREXwqrDp3K4p/p61yLnNeR25J5c5ck+CSxM9lHcnlxlyT4M25OrJNnnUcXIFgjak6sU2X7rSrd9l8p0VAi+XET2siUDMpctG4+1bOFwPblyli0fja1sjWBMZevEYilbKxRD2XqR2MnWDMRMtm4cVrK1wzCSrR+lkex3sxRB2nwfu2+UKkULWXV6SNcwfYuUAcjH8aY96tZvNXc/ZNvvwO+0WMS1yWxB2OhqnwqbNe8HseqICjv/TCqdk1uD5GBzDjWZLadqMsH1Rm2Z/Z6rFuSNqFTVKzyMvlzja1dsqRE5zaeqXsE1jmaPztq8y34j6LIHOVb1in27Dp5T40sxNx02+61DVa8D16waX4I2bqeqXgeuWTW+xJh+zcPuV9E1dx6WY7tbX4cUPr/GlyDbAnRm2zoAJZ11bV+2rQMAAAAAAAAAAAAAAADAm/gAeXIGeKYVOXYAAAAASUVORK5CYII=" alt="Ableitungskreis" /></p>
+</blockquote>
+<p>Aufleitungen entsprechend “rückwärts”.</p>
+<h4 id="inverse-1">Inverse</h4>
+<p>Die Inversen zu den trigonometrischen Funktionen <span class="math inline">sin</span>, <span class="math inline">cos</span> und <span class="math inline">tan</span> heißen <span class="math inline">arcsin</span>, <span class="math inline">arccos</span> und <span class="math inline">arctan</span> (“arc” ist dabei kurz for “arcus”). Bei Taschenrechnern findet man meist als Notation für Inverse <span class="math inline">sin^{-1}</span>, <span class="math inline">cos^{-1}</span> und <span class="math inline">tan^{-1}</span>.</p>
+<h3 id="änderungsrate-steigung-über-zeitraum">Änderungsrate / Steigung über Zeitraum</h3>
+<p>Berechnung des Steigungsdreiecks durch:</p>
+<p><span class="math inline">\frac{\Delta x}{\Delta y} = \frac{f(x_2) - f(x_1)}{x_2 - x_1}</span></p>
+<p><span class="math inline">tan(\alpha) = \frac{\Delta x}{\Delta y}</span> liefert die Steigung für einen Steigungswinkel <span class="math inline">\alpha</span>, <span class="math inline">atan(\frac{\Delta x}{\Delta y}) = \alpha</span> als Inverse den Steigungswinkel für eine Steigung.</p>
+<h3 id="momentane-änderungsrate">Momentane Änderungsrate</h3>
+<p>Setze nun <span class="math inline">x_1 = x</span> und <span class="math inline">x_2 = x_1 + h = x + h</span>:</p>
+<p><span class="math inline">\frac{f(x + h) - f(x)}{(x + h) - x} = \frac{f(x + h) - f(x)}{h}</span></p>
+<p><span class="math inline">h</span> gehe gegen <span class="math inline">0</span>, sodass man unendlich kleine Steigungsdreiecke erhält. Die berechnete Steigung nähert sich immer weiter einer <em>momentanen</em> Änderungsrate <em>für die Stelle <span class="math inline">x_1</span></em> an. Als Grenzwert:</p>
+<p><span class="math inline">lim_{x \rarr 0} \frac{f(x + h) - f(x)}{h}</span></p>
+<h3 id="monotonieverhalten">Monotonieverhalten</h3>
+<p>Zwischen zwei Extremstellen ist eine Fkt. immer monoton steigend/fallend.</p>
+<h3 id="ableitungen-1">Ableitungen</h3>
+<p>Die Ableitung einer Funktion <span class="math inline">f(x)</span> heißt <span class="math inline">f&#39;(x)</span> und liefert die momentane Änderungsrate. Es gilt also:</p>
+<p><span class="math inline">f&#39;(x) = lim_{x \rarr 0} \frac{f(x + h) - f(x)}{h}</span>.</p>
+<h3 id="ableitungsregeln">Ableitungsregeln</h3>
+<h4 id="faktorregel">Faktorregel</h4>
+<p>Konstante Vorfaktoren (alles, was keinen Parameter der Fkt. - also kein <span class="math inline">x</span> - enthält) bleiben unverändert:</p>
+<p><span class="math inline">f(x) = a \cdot g(x)</span>, dann ist <span class="math inline">f&#39;(x) = a \cdot g&#39;(x)</span>.</p>
+<h4 id="summenregel">Summenregel</h4>
+<p>Die Ableitung einer Summe ist die Summe der Ableitungen:</p>
+<p><span class="math inline">f(x) = g(x) + h(x)</span>, dann ist <span class="math inline">f&#39;(x) = g&#39;(x) + h&#39;(x)</span>.</p>
+<h4 id="potenzregel">Potenzregel</h4>
+<p>Konstante Potenzen werden um <span class="math inline">1</span> reduziert und kommen “herunter” (werden also zu Vorfaktoren):</p>
+<p><span class="math inline">f(x) = x^n</span>, dann ist <span class="math inline">f&#39;(x) = (n-1)x^n</span>.</p>
+<p>Zur Erinnerung:</p>
+<ul>
+<li><span class="math inline">x^{-n} = \frac{1}{x^n}</span></li>
+<li><span class="math inline">x^{\frac{1}{n}} = \sqrt[n]{x}</span></li>
+<li>Und somit auch: <span class="math inline">x^{-\frac{1}{n}} = \frac{1}{\sqrt[n]{x}}</span></li>
+</ul>
+<p>Über die Potenzregel ist es also möglich, <span class="math inline">n</span>-te Wurzeln, einfache Brüche und Brüche mit Wurzeln abzuleiten.</p>
+<h4 id="polynome-ableiten">Polynome ableiten</h4>
+<p>Faktorregel, Summenregel und Potenzregel reichen, um beliebige Polynome abzuleiten.</p>
+<h4 id="produktregel">Produktregel</h4>
+<p>Summe der beiden abgeleitet-unabgeleitet-Produkte:</p>
+<p><span class="math inline">f(x) = g(x) \cdot h(x)</span>, dann ist <span class="math inline">f&#39;(x) = g&#39;(x)h(x) + g(x)h&#39;(x)</span></p>
+<h4 id="kettenregel">Kettenregel</h4>
+<p><span class="math inline">f(x) = g(h(x))</span>, dann ist <span class="math inline">f&#39;(x) = h&#39;(x) \cdot g&#39;(h(x))</span></p>
+<p>Spezialfall: <span class="math inline">e</span>-Funktion mit Faktor im Exponenten: <span class="math inline">f(x) = e^{nx}</span> wird nach der Kettenregel zu <span class="math inline">ne^{nx}</span></p>
+<h4 id="spezielle-ableitungen">Spezielle Ableitungen</h4>
+<p>Siehe Formelsammlung.</p>
+<p><span class="math inline">a^x</span> lässt sich als <span class="math inline">c \cdot e^x</span> schreiben und mit <span class="math inline">e&#39;(x) = e(x)</span> bequem ableiten.</p>
+<p>Mit <span class="math inline">a^x</span> = <span class="math inline">e^{ln(x)}</span> ergibt sich <span class="math inline">a^x = (e^{ln(x)})^x = e^{ln(x)x}</span>.</p>
+<h4 id="zusammenfassung">Zusammenfassung</h4>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">f(x)</span></th>
+<th><span class="math inline">f&#39;(x)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">f(x) = a \cdot g(x)</span></td>
+<td><span class="math inline">f&#39;(x) = a \cdot g&#39;(x)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">f(x) = g(x) + h(x)</span></td>
+<td><span class="math inline">f&#39;(x) = g&#39;(x) + h&#39;(x)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="kurvendiskussion">Kurvendiskussion</h3>
+<p>Als erstes wird die Funktion abgeleitet, um Aussagen über das Steigungsverhalten treffen zu können.</p>
+<p>An Extremstellen (lokalen Minima, Maxima, oder Sattelpunkten) nimmt die momentane Änderungsrate den Wert 0 an. Demnach sind die Extremstellen die Nullstellen der ersten Ableitung.</p>
+<p>Da wir hier von stetigen Funktionen ausgehen, können die Steigung unmittelbar vor- und nach der Extremstelle betrachtet werden, um eine Aussage über die Art treffen zu können:</p>
+<p>Bei Maxima wechselt eine vorher positive Steigung zu einer negativen - bei Minima ist dies genau umgekehrt; bei Sattelpunkten dahingegen wechselt das Vorzeichen der Steigung nicht.</p>
+<p>Dies lässt sich als Tabelle der Vorzeichen der Werte der Ableitung eintragen. Hierzu werden zwischen den Nullstellen freie Spalten gelassen, für die beliebige Werte zwischen den beiden Nullstellen in die erste Ableitung eingesetzt werden können; dann werden die Vorzeichen eingetragen. An den beiden Rändern kommen zwei weitere Spalten. Als Hilfestellung kann man sich noch das Steigungsverhalten von f dazuschreiben:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">x</th>
+<th style="text-align: center;"><span class="math inline">-1000</span></th>
+<th style="text-align: center;"><span class="math inline">-10</span></th>
+<th style="text-align: center;"><span class="math inline">0</span></th>
+<th style="text-align: center;"><span class="math inline">10</span></th>
+<th style="text-align: center;"><span class="math inline">20</span></th>
+<th style="text-align: center;"><span class="math inline">100</span></th>
+<th style="text-align: center;"><span class="math inline">1000</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Vorzeichen f’(x)</td>
+<td style="text-align: center;"><span class="math inline">+</span></td>
+<td style="text-align: center;"><span class="math inline">0</span></td>
+<td style="text-align: center;"><span class="math inline">-</span></td>
+<td style="text-align: center;"><span class="math inline">0</span></td>
+<td style="text-align: center;"><span class="math inline">-</span></td>
+<td style="text-align: center;"><span class="math inline">0</span></td>
+<td style="text-align: center;"><span class="math inline">+</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aussehen/Verhalten f(x)</td>
+<td style="text-align: center;"><code>/</code></td>
+<td style="text-align: center;"><code>°</code></td>
+<td style="text-align: center;"><code>\</code></td>
+<td style="text-align: center;"><code>.</code></td>
+<td style="text-align: center;"><code>\</code></td>
+<td style="text-align: center;"><code>.</code></td>
+<td style="text-align: center;"><code>/</code></td>
+</tr>
+</tbody>
+</table>
+<p>Die <span class="math inline">-1000</span>, <span class="math inline">0</span> und <span class="math inline">20</span> (alle Werte zwischen den Nullstellen) sind dabei willkürlich aus dem Bereich gewählt.</p>
+<p>Wir schließen:</p>
+<ul>
+<li>Im Negativen gegen <span class="math inline">-\infty</span></li>
+<li>Maximum bei x=-10 (VZW <span class="math inline">+ \rarr -</span>)</li>
+<li>Sattelpunkt bei x=10 (gleiches VZ)</li>
+<li>Minimum bei x=100 (VZW <span class="math inline">- \rarr +</span>)</li>
+<li>Im Positiven gegen <span class="math inline">+\infty</span></li>
+</ul>
+<p>Bildet man nun die <strong>zweite Ableitung</strong>, so kann man Aussagen über die Extremstellen der <strong>ersten Ableitung fällen</strong> und somit das <strong>Krümmungsverhalten</strong> - die Änderung der Änderung:</p>
+<p>Analogie aus der Physik: der Ort sei die Funktion <span class="math inline">s(t)</span>. Dann ist die Geschwindigkeit <span class="math inline">v(t)</span> als Änderung des Ortes die erste Ableitung und die Beschleunigung <span class="math inline">a(t)</span> als Änderung der Geschwindigkeit die erste Ableitung von <span class="math inline">v(t)</span> und die zweite Ableitung der ursprünglichen Ortsfunktion <span class="math inline">s(t)</span>: <span class="math inline">v(t) = s&#39;(t); a(t) = v&#39;(t) = s&#39;&#39;(t)</span></p>
+<ul>
+<li><strong>Minima</strong> der 1. Ableitung sind Wendepunkte mit lokal <strong>minimaler Steigung</strong>;</li>
+<li><strong>Maxima</strong> sind analog Wendepunkte mit lokal <strong>maximaler Steigung</strong>;</li>
+<li><strong>Sattelpunkte</strong> der 1. Ableitung sind keine Wendepunkte</li>
+</ul>
+<p>Minima &amp; Maxima der ursprünglichen Funktion können nach der Bestimmung des Krümmungsverhaltens als Vorzeichen der 2. Ableitung an der Stelle von Sattelpunkten (mit 2. Ableitung = 0) unterschieden werden:</p>
+<ul>
+<li>In lokalen Maxima ist die Funktion <em>linksgekrümmt</em> (?) mit negativem Vorzeichen der 2. Ableitung: Die Steigung ist anfangs positiv und wird dann immer negativer, erreicht im Maximum die 0 und geht nachher negativ weiter.</li>
+<li>Exakt umgekehrt im lokalen Minimum: Dort ist die Funktion <em>rechtsgekrümmt</em> mit positivem Vorzeichen der 2. Ableitung</li>
+</ul>
+<p>Dazu Herr Langenbruch’s Merkhilfe für die “umgekehrte” Zuordnung positiv - Minimum, negativ - Maximum:</p>
+<blockquote>
+<p>Negative 2. Ableitung ⇒ Trauriger Smiley ☹️ ⇒ Maximum<br />
+Positive 2. Ableitung ⇒ Glücklicher Smiley 🙂️ ⇒ Minimum</p>
+</blockquote>
+<p>Dies muss analog mit der dritten Ableitung für Minima und Maxima als Wendepunkte geschehen.</p>
+<h3 id="globales-maximum-minimum">Globales Maximum / Minimum</h3>
+<p>Immer Maximum / Minimum aller lok. Maxima bzw. Minimum mit evtl. Randwerten bzw. Verhalten im Unendlichen.</p>
+<h3 id="ortskurve-der-extrempunkte">Ortskurve der Extrempunkte</h3>
+<p>Gegeben: Funktionenschar <span class="math inline">f_k</span> mit Extrempunkten <span class="math inline">(x, y)</span> mit <span class="math inline">x</span> abhängig von Parameter <span class="math inline">k</span>.</p>
+<p>Einfach nach <span class="math inline">k</span> die erste Gleichung auflösen (<span class="math inline">k</span> in Abhängigkeiten von <span class="math inline">x</span>) und in <span class="math inline">y</span> einsetzen.</p>
+<h2 id="asymptote-von-e-fkt.">Asymptote von E-Fkt.</h2>
+<p>Additiver Restterm wenn E-Fkt gegen 0 geht (negativer Exponent), ansonsten gegen Unendlich</p>
+<h3 id="integrieren">Integrieren</h3>
+<p>Prinzipiell können alle Ableitungsregeln “rückwärts” angewandt werden. Insbesondere bei der Potenzregel ist dies noch intuitiv. Produkt- und Kettenregeln sind allerdings komplizierter:</p>
+<h4 id="partielle-integration">Partielle Integration</h4>
+<p>Auch “Produktintegration” genannt; Produktregel rückwärts. Herleitung:</p>
+<p>So wählen, dass abgeleitete Fkt. einfacher wird und zumindest aufgeleitete Fkt. nicht schwieriger (es sei denn, übers Produkt wird’s wieder einfacher)</p>
+<h4 id="integration-durch-substitution">Integration durch Substitution</h4>
+<p>Kettenregel rückwärts</p>
+<p>Innere Funktion so wählen, dass Ableitung Faktor ist</p>
+<h3 id="integrale-über-bereich">Integrale über Bereich</h3>
+<h4 id="rotationskörper">Rotationskörper</h4>
+<p>Formel für die Kreisfläche ist <span class="math inline">\pi r^2</span>. Liefer nun eine Funktion <span class="math inline">f(x)</span> den Radius <span class="math inline">r</span> an der Stelle <span class="math inline">x</span>, so lässt sich über Integration bequem das Volumen des Rotationskörpers bestimmen:</p>
+<p><span class="math inline">V = \int_a^b \pi f(x)^2</span></p>
+<h3 id="hauptsatz-der-differential--und-integralrechnung">Hauptsatz der Differential- und Integralrechnung</h3>
+<ol type="1">
+<li><p>Integral über Intervall/Bereich als Differenz der Stammfunktion von den Intervallgrenzen: <span class="math inline">\int_a^b f(x) = F(b) - F(a)</span></p></li>
+<li><p>Die Ableitung der Stammfunktion ist die Fkt.</p></li>
+</ol>
+<h1 id="hilfsmittel">Hilfsmittel</h1>
+<h2 id="formelsammlung">Formelsammlung</h2>
+<ul>
+<li>S. 20: Gleichungen und Fkt.</li>
+</ul>
+<p>Die Analysis findet sich auf S. 52 - 61. Dennoch müssen die Verfahren - allein wegen des hilfsmittelfreien Teils und zur Geschwindigkeitsmaximierung - auswendig gekonnt werden. Davon relevant:</p>
+<ul>
+<li>S. 53: Grenzwerte &amp; Stetigkeit</li>
+<li>S. 54: <strong>Ableitungen</strong>, sowohl zugrundeliegende Def. als auch Ableitungsregeln</li>
+<li>S. 55: <strong>Ableitung spezieller Funktionen</strong></li>
+<li>S. 56: <strong>Schrittfolge einer Kurvendiskussion</strong></li>
+<li>S. 58, 59: <strong>Integralrechnung</strong></li>
+<li>S. 60: <strong>Anwendung Integration</strong>: Flächeninhaltsberechnung, Rotationskörper</li>
+<li>S. 61: <strong>Wachstum</strong></li>
+</ul>
+<p>Irrelevant sind also:</p>
+<ul>
+<li>S. 52 (Folgen und Reihen)</li>
+<li>S. 55 (Näherungsverfahren zur Berechnung von NST: Wird vom GTR verwendet)</li>
+<li>S. 57 (Horner-Schema; Polynomdivision)</li>
+<li>S. 62 (Wachstumsprozesse, Wachstum</li>
+</ul>
+<p>Eventuell können sich auch Seiten außerhalb des Analysis-Kapitels als nützlich erweisen (bspw. grundlegende Umformungsregeln oder die festgelegte Notation).</p>
+<!-- TODO -->
+<h2 id="grafikfähiger-taschenrechner-gtr">Grafikfähiger Taschenrechner (GTR)</h2>
+<!-- TODO -->
+<ul>
+<li><code>nfMin</code></li>
+</ul>
+<h2 id="wörterbuch-zur-deutschen-rechtschreibung">Wörterbuch zur deutschen Rechtschreibung</h2>
+<p>In 99% der Fälle nutzlos.</p>
+<h1 id="appendix">Appendix</h1>
+<p>p-q-Formel in Lua:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lua"><code class="sourceCode lua"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">function</span> pqf<span class="op">(</span>p<span class="op">,</span> q<span class="op">)</span></a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="kw">local</span> d <span class="op">=</span> <span class="op">(</span>p<span class="op">/</span><span class="dv">2</span><span class="op">)^</span><span class="dv">2</span> <span class="op">-</span> q</a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="cf">if</span> d <span class="op">==</span> <span class="dv">0</span> <span class="cf">then</span> <span class="cf">return</span> <span class="op">-</span>p<span class="op">/</span><span class="dv">2</span> <span class="cf">end</span></a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="cf">if</span> d <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">then</span> <span class="cf">return</span> <span class="cf">end</span></a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="cf">if</span> d <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">then</span> <span class="cf">return</span> <span class="op">-</span>p<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> <span class="fu">math.sqrt</span><span class="op">(</span>d<span class="op">),</span> <span class="op">-</span>p<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> <span class="fu">math.sqrt</span><span class="op">(</span>d<span class="op">)</span> <span class="cf">end</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="cf">end</span></a></code></pre></div>
+</body>
+</html>
