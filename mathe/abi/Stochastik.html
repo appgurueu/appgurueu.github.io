@@ -158,7 +158,7 @@ die <strong>Standardabweichung</strong> als <span class="math inline">\sigma = \
 </ul>
 <p>Die nötige Verschiebung der Intervallgrenzen um <span class="math inline">0,5</span> (um in der “Mitte der Balken” anzusetzen) nennt man <strong>Stetigkeitskorrektur</strong>.</p>
 <p>Die Binomialverteilung (auf Schule) darf dennoch nicht mit der Normalverteilung verwechselt werden: Erstere ist eine Verteilung einer <strong>diskreten</strong> Zufallsgröße und kann also nur ganzzahlige Werte annehmen - letztere ist eine Verteilung einer <strong>stetigen</strong> Zufallsgröße und kann also beliebige reelle Zahlen als Werte annehmen.</p>
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Binomial_Distribution.svg/1024px-Binomial_Distribution.svg.png">Veraunschaulichung der Qualität der Näherungsformeln</a></p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Binomial_Distribution.svg/1024px-Binomial_Distribution.svg.png">Veranschaulichung der Qualität der Näherungsformeln</a></p>
 <h4 id="sigma-umgebungen">Sigma-Umgebungen</h4>
 <p><em>Sicherheitswahrscheinlichkeit</em>: Wahrscheinlichkeit, dass ein zufälliger Wert - gemäß der Verteilung - in der Umgebung (im Intervall) liegt</p>
 <p>Für normalverteilte Zufallsgrößen gelten die folgenden Regeln für Sicherheitswahrscheinlichkeiten:</p>
@@ -206,7 +206,7 @@ die <strong>Standardabweichung</strong> als <span class="math inline">\sigma = \
 </tr>
 </tbody>
 </table>
-<p>Die Wahrscheinlichkeiten und Koeffizienten für Sigma sind hier nur ungefähr angegeben.</p>
+<p>Die Wahrscheinlichkeiten und Koeffizienten für Sigma sind hier nur ungefähr angegeben und finden sich alle auch in der Formelsammlung.</p>
 <p>Aufgrund der <a href="#moivre-laplace-näherungsformeln">Moivre-Laplace-Näherungsformeln</a> lassen sich die Sigmaregeln - insofern die Laplace-Bedingung erfüllt ist - auch auf <strong>Binomialverteilungen</strong> anwenden; dann müssen die Intervallgrenzen allerdings gerundet werden. Hierfür gilt: Symmetrie - falls nicht explizit gefordert - <strong>nicht beachten</strong>, mit GTR ab-und aufgerundete Intervallgrenzen <strong>ausprobieren</strong>; sind die Wahrscheinlichkeiten Mindestwerte, wird normalerweise betraglich <em>aufgerundet</em>.</p>
 <h2 id="visualisierungen">Visualisierungen</h2>
 <ul>
@@ -265,6 +265,7 @@ die <strong>Standardabweichung</strong> als <span class="math inline">\sigma = \
 <li><span class="math inline">normpdf(x, \mu, \sigma)</span></li>
 <li><span class="math inline">normcdf(min, max, \mu, \sigma)</span>; <code>min</code> &amp; <code>max</code> sind nicht mehr zwingend ganzzahlig</li>
 </ul>
+<p>Ältere Modelle scheinen unendliche Intervallgrenzen bei <code>normcdf</code> nicht zu akzeptieren (Fehlermeldung erwähnt CAS). Hier sollten stattdessen beinahe unendlich kleine bzw. große Werte verwendet werden (<span class="math inline">\plusmn9e999</span>).</p>
 <h3 id="wörterbuch-zur-deutschen-rechtschreibung">Wörterbuch zur deutschen Rechtschreibung</h3>
 <p>Beinahe irrelevant.</p>
 </body>
