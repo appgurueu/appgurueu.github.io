@@ -123,7 +123,9 @@ n = log_q(1 - y)
 <li>Anwendung der Entscheidungsregel: Trivial.</li>
 </ol>
 <p>Zweiseitiger Hypothesentest für <span class="math inline">H_0: p = 0,5</span>, Ablehnungsbereich rot, Annahmebereich grau:</p>
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/BinomialTest.svg/1024px-BinomialTest.svg.png">Veranschaulichung</a></p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/BinomialTest.svg/1024px-BinomialTest.svg.png" alt="Veranschaulichung" /><figcaption>Veranschaulichung</figcaption>
+</figure>
 <p>Ist die Laplace-Bedingung nicht erfüllt, müssen die Annahme- und Ablehnungsbereiche ohne die Sigmaregeln bestimmt werden. Dies ist bspw. mit <code>nsolve</code> im GTR möglich:</p>
 <p>Für linksseitigen Ablehnungsbereich der Größe <span class="math inline">10\% = 0.1</span> mit <span class="math inline">n = 42</span> und <span class="math inline">p = 0,69</span>: <code>nsolve(binomcdf(42, 0.69, 0, x) = 0.1, x, 0, 42)</code>.</p>
 <p>Zusätzliche Überlegung im Anwendungskontext: Folgenschwerster Fehler soll der Fehler 1. Art sein, da dessen Wahrscheinlichkeit begrenzt werden kann.</p>
@@ -159,7 +161,9 @@ die <strong>Standardabweichung</strong> als <span class="math inline">\sigma = \
 </ul>
 <p>Die nötige Verschiebung der Intervallgrenzen um <span class="math inline">0,5</span> (um in der “Mitte der Balken” anzusetzen) nennt man <strong>Stetigkeitskorrektur</strong>.</p>
 <p>Die Binomialverteilung (auf Schule) darf dennoch nicht mit der Normalverteilung verwechselt werden: Erstere ist eine Verteilung einer <strong>diskreten</strong> Zufallsgröße und kann also nur ganzzahlige Werte annehmen - letztere ist eine Verteilung einer <strong>stetigen</strong> Zufallsgröße und kann also beliebige reelle Zahlen als Werte annehmen.</p>
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Binomial_Distribution.svg/1024px-Binomial_Distribution.svg.png">Veranschaulichung</a></p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Binomial_Distribution.svg/1024px-Binomial_Distribution.svg.png" alt="Veranschaulichung" /><figcaption>Veranschaulichung</figcaption>
+</figure>
 <h4 id="sigma-umgebungen">Sigma-Umgebungen</h4>
 <p><em>Sicherheitswahrscheinlichkeit</em>: Wahrscheinlichkeit, dass ein zufälliger Wert - gemäß der Verteilung - in der Umgebung (im Intervall) liegt</p>
 <p>Für normalverteilte Zufallsgrößen gelten die folgenden Regeln für Sicherheitswahrscheinlichkeiten:</p>
