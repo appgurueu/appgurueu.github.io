@@ -107,7 +107,7 @@ n = log_q(1 - y)
 </ul></li>
 <li>Die <em>Wahrscheinlichkeit <span class="math inline">\beta</span></em> gibt an, wie wahrscheinlich es ist, dass eine falsche Nullhypothese <em>fälschlicherwise <strong>nicht</strong> abgelehnt wird (Fehler 2. Art)</em>.
 <ul>
-<li>Berechnung über <em>tatsächliche Erfolgswahrscheinlichkeit <span class="math inline">p</span></em> und die <em>Größe des Annahmebereichs</em></li>
+<li>Berechnung über <em>tatsächliche Erfolgswahrscheinlichkeit <span class="math inline">p</span></em> und die <em>Größe des Annahmebereichs</em> als <em>Wahrscheinlichkeit, dass ein Wert im Annahmebereich liegt</em></li>
 </ul></li>
 </ul></li>
 <li>Bestimmung der Sigma-Umgebung zum Signifikanzniveau (<span class="math inline">95\%</span>-Umgebung für <span class="math inline">S=5\%</span>, <span class="math inline">99\%</span>-Umgebung für <span class="math inline">S=1\%</span>)
@@ -124,6 +124,10 @@ n = log_q(1 - y)
 </ol>
 <p>Zweiseitiger Hypothesentest für <span class="math inline">H_0: p = 0,5</span>, Ablehnungsbereich rot, Annahmebereich grau:</p>
 <p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/BinomialTest.svg/1024px-BinomialTest.svg.png">Veranschaulichung</a></p>
+<p>Ist die Laplace-Bedingung nicht erfüllt, müssen die Annahme- und Ablehnungsbereiche ohne die Sigmaregeln bestimmt werden. Dies ist bspw. mit <code>nsolve</code> im GTR möglich:</p>
+<p>Für linksseitigen Ablehnungsbereich der Größe <span class="math inline">10\% = 0.1</span> mit <span class="math inline">n = 42</span> und <span class="math inline">p = 0,69</span>: <code>nsolve(binomcdf(42, 0.69, 0, x) = 0.1, x, 0, 42)</code>.</p>
+<p>Zusätzliche Überlegung im Anwendungskontext: Folgenschwerster Fehler soll der Fehler 1. Art sein, da dessen Wahrscheinlichkeit begrenzt werden kann.</p>
+<p>Bspw.: Die Nebenwirkungen eines Medikaments sollen weniger wahrscheinlich sein als ein bestimmtes <span class="math inline">p</span>. Die Wahrscheinlichkeit zu gering anzugeben, wäre hier der folgenschwerste Fehler. Damit dies der Fehler 1. Art (fälschliches Ablehnen der Nullhypothese) ist, muss die Nullhypothese lauten, dass die Wahrscheinlichkeit <em>größer</em> als eine vermutete obere Grenze ist. Verwirft man dann die Nullhypothese, bietet einem das Signifikanzniveau eine relative hohe Sicherheitswahrscheinlichkeit für die Gültigkeit der Alternativhypothese, nämlich dass die Wahrscheinlichkeit für Nebenwirkungen <em>unter</em> der oberen Grenze liegt.</p>
 <h2 id="stetige-zufallsgrößen">Stetige Zufallsgrößen</h2>
 <p>Können alle Werte in einem reellen Intervall angenommen werden - existiert also zwischen zwei möglichen Werten immer ein weiterer - so spricht man von einer stetigen Zufallgröße.</p>
 <p>Demzufolge ist die Wahrscheinlichkeit für genau einen Wert geht gegen <span class="math inline">0</span>: Unter unendlich vielen möglichen anderen Werten ist es unendlich unwahrscheinlich, dass genau dieser Wert angenommen wird.</p>
