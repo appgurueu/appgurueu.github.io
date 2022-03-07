@@ -36,7 +36,7 @@
 <p><span class="math inline">\mu = x_1P(X = x_1) + x_2P(X = x_2) + ... + x_nP(X = x_n)</span></p>
 <p>und</p>
 <p><span class="math inline">\sigma = \sqrt{(x_1 - \mu)^2P(X = x_1) + (x_2 - \mu)^2P(X = x_2) + ... + (x_n - \mu)^2P(X = x_n)}</span></p>
-<p>als Standardabweichung</p>
+<p>als Standardabweichung.</p>
 <h3 id="fakultät">Fakultät</h3>
 <p>Die Fakultät <span class="math inline">n! = \prod_{i=1}^n{i} = 1 \cdot 2 \cdot ... \cdot n</span> einer Zahl gibt die Anzahl der möglichen Permutationen (verschiedenen Anordnungen) eines “Tupels” mit <span class="math inline">n</span> verschiedenen Elementen an. So ist bspw. <span class="math inline">3! = 6</span>, da jedes 3-er-Tupel (Tripel) <span class="math inline">(a, b, c)</span> 6 mögliche Reihenfolgen besitzt:</p>
 <ul>
@@ -49,10 +49,13 @@
 </ul>
 <p>Intuitiv ist die Begründung der Formel klar: Es gibt <span class="math inline">n</span> Möglichkeiten, das erste Element auszuwählen. Es bleiben dann <span class="math inline">n - 1</span> Möglichkeiten, das zweite Element auszuwählen. Beim vorletzten Element schließlich bleiben nur noch zwei Wahlmöglichkeiten, beim letzten gar nur noch eine, also <span class="math inline">n! = n \cdot (n - 1) \cdot ... \cdot 2 \cdot 1</span>. Diese “Wahlmöglichkeiten” werden nun multipliziert. Nach dieser Intuition ist auch klar, warum die Fakultät häufig bei Zufallsexperimenten ohne Zurücklegen zur Anwendung kommt.</p>
 <h3 id="binomialkoeffizient">Binomialkoeffizient</h3>
-<p>${nk} = <span class="math inline">\frac{n!}{k!(n-k)!}</span></p>
+<p><span class="math display">
+{n \choose k} = \frac{n!}{k!(n-k)!}
+</span></p>
 <p>Gesprochen “<span class="math inline">n</span> über <span class="math inline">k</span>” oder <strong>“wähle <span class="math inline">k</span> aus <span class="math inline">n</span>”</strong>.</p>
-<p>Intuitiv: Gibt an, auf wieviele Arten <span class="math inline">k</span> Elemente in <span class="math inline">n</span> Elementen verteilt werden können, wenn die Reihenfolge der <span class="math inline">k</span> Elemente untereinander ebenso egal ist wie die der übrigen <span class="math inline">n-k</span> Elemente.</p>
+<p>Intuitiv: Gibt an, auf wieviele Arten man aus <span class="math inline">n</span> Elementen <span class="math inline">k</span> auswählen kann, ohne Beachtung der Reihenfolge der <span class="math inline">k</span> Elemente untereinander oder der übrigen <span class="math inline">n-k</span> Elemente untereinander.</p>
 <p>Im Baumdiagramm einer binomialverteilten Zufallsgröße mit zwei Ereignissen, Erfolg und Misserfolg: <span class="math inline">{n \choose k}</span> gibt die Anzahl der Pfade an, bei denen eines der beiden Ereignisse bei <span class="math inline">n</span>-facher Wiederholung genau <span class="math inline">k</span>-mal auftritt.</p>
+<p>Beispiel: <span class="math inline">{3 \choose 2} = \frac{3!}{2!(3-2)!} = \frac{6}{3} = 2</span>, da es drei Möglichkeiten gibt, zwei Elemente aus drei zu wählen (<code>110</code>, <code>011</code>, <code>101</code>).</p>
 <h3 id="baumdiagramm">Baumdiagramm</h3>
 <p>Pfadregeln:</p>
 <ul>
@@ -62,66 +65,169 @@
 <h2 id="bernoulli-experimente-binomialverteilung">Bernoulli-Experimente / Binomialverteilung</h2>
 <p>Definition: Ein Zufallsexperiment mit nur zwei möglichen Ergebnissen: “Erfolg” oder “Misserfolg”. Dabei gilt <span class="math inline">P(Erfolg) = p</span> und <span class="math inline">P(Misserfolg) = q</span> mit <span class="math inline">p + q = 1</span>.</p>
 <p>Wird ein Bernoulli-Experiment <span class="math inline">n</span>-Mal durchgeführt und ändert sich die Wahrscheinlichkeit von Stufe zu Stufe nicht, so spricht man von einem <span class="math inline">n</span>-stufigen Bernoulli-Experiment (= Bernoulli-Kette).</p>
-<p><span class="math inline">P(k Erfolge)</span> lässt sich als <span class="math inline">(n über k)p^kq^{n-k}</span> berechnen (entsprechend den Pfadregeln im Baumdiagramm: Die Wahrscheinlichkeiten aller Pfade mit genau <span class="math inline">k</span> Erfolgen sind gleich - nämlich <span class="math inline">p^kq^{n-k}</span>. Mithilfe des Binomialkoeffizienten bestimmt man die Anzahl dieser Pfade, mit der noch multipliziert wird).</p>
+<p><span class="math inline">P(X = k)</span> mit <span class="math inline">k</span> Anzahl der Erfolge lässt sich als <span class="math inline">{n \choose k}p^kq^{n-k}</span> berechnen (entsprechend den Pfadregeln im Baumdiagramm: Die Wahrscheinlichkeiten aller Pfade mit genau <span class="math inline">k</span> Erfolgen sind gleich - nämlich <span class="math inline">p^kq^{n-k}</span>. Mithilfe des Binomialkoeffizienten bestimmt man die Anzahl dieser Pfade, mit der noch multipliziert wird).</p>
 <ul>
 <li>Erwartungswert: <span class="math inline">\mu = p \cdot n</span></li>
 <li>Standardabweichung: <span class="math inline">\sigma = \sqrt{p \cdot q \cdot n}</span></li>
 </ul>
-<p>Bei gegebenen Wahrscheinlichkeiten <span class="math inline">p</span> (bzw. <span class="math inline">q</span>) sowie <span class="math inline">k</span> lässt sich ein notwendiger “Stichprobenumfang” <span class="math inline">n</span> berechnen, damit ein gewisses Ereignis eine gewisse Wahrscheinlichkeit <span class="math inline">y</span> besitzt. Bsp.:</p>
+<p>Bei gegebenen Wahrscheinlichkeiten <span class="math inline">p</span> (bzw. <span class="math inline">q</span>) sowie <span class="math inline">k</span> lässt sich ein notwendiger “Stichprobenumfang” <span class="math inline">n</span> berechnen, damit ein gewisses Ereignis eine gewisse Wahrscheinlichkeit <span class="math inline">y</span> besitzt. Bspw. für mindestens einen Erfolg:</p>
 <p><span class="math display">
 P(x \geq 1) = y \\
-1 - P(x = 0) = y \\
+1 - P(X = 0) = y \\
 1 - q^n = y \\
 q^n = 1 - y \\
 n = log_q(1 - y)
 </span></p>
-<p>Der erhaltene Wert für den Stichprobenumfang <span class="math inline">n</span> muss <em>aufgerundet</em> werden, wenn mit der Wahrscheinlichkeit <span class="math inline">y</span> <em>mindestens</em> <span class="math inline">x</span> Erfolge erreicht werden sollen.</p>
+<p>Der erhaltene Wert für den Stichprobenumfang <span class="math inline">n</span> muss <em>aufgerundet</em> werden, da <em>mindestens</em> ein Erfolg erreicht werden soll.</p>
 <p><strong>Kumulierte Wahrscheinlichkeiten</strong>, d.h. die Wahrscheinlichkeit, dass die Anzahl der Erfolge in einem bestimmten Bereich liegt, können auf zwei Arten ausgerechnet werden:</p>
 <ul>
 <li>Falls möglich mit dem <a href="#gtr">GTR</a> und <code>binomcdf</code></li>
 <li>Alternativ als Summe der Einzelwahrscheinlichkeiten für genau <span class="math inline">k</span> Erfolge für alle <span class="math inline">k</span> aus dem Bereich</li>
-<li>In einigen Sonderfällen lässt sich mit der Gegenwahrscheinlichkeit rechnen, wenn der Gegenbereich wesentlich kleiner ist. Bsp.: Bis zu 9 Erfolge bei 10 Durchführungen =&gt; Gegenereignis: Genau 10 Erfolge =&gt; <span class="math inline">P(x \leq 9) = 1 - P(x = 10)</span> für <span class="math inline">x</span> Anzahl der Erfolge; <span class="math inline">P(x = 10)</span> lässt sich mit der bekannten Formel berechnen.</li>
+<li>In einigen Sonderfällen lässt sich mit der Gegenwahrscheinlichkeit rechnen, wenn der Gegenbereich wesentlich kleiner ist. Bsp.: Bis zu 9 Erfolge bei 10 Durchführungen ⇒ Gegenereignis: Genau 10 Erfolge ⇒ <span class="math inline">P(X \leq 9) = 1 - P(X = 10)</span> für <span class="math inline">x</span> Anzahl der Erfolge; <span class="math inline">P(X = 10)</span> lässt sich mit der bekannten Formel berechnen.</li>
 </ul>
-<h2 id="hypothesen">Hypothesen</h2>
-<p>Hypothesen sollen mit hohem Signifikanzniveau <em>verworfen</em> werden, da dann eine extrem hohe Signifikanz besteht; entsprechend ist die Nullhypothese das Gegenteil der zu beweisenden Hypothese.</p>
-<p><span class="math inline">H_0</span> Nullhypothese, <span class="math inline">H_1</span> Alternativhypothese</p>
-<h2 id="hypothesentests">Hypothesentests</h2>
+<h2 id="beurteilende-statistik">Beurteilende Statistik</h2>
+<p>In der beurteilenden Statistik ist das Ziel, mit möglichst hoher Sicherheit von einer kleinen <em>Stichprobe</em> auf die <em>Gesamtheit</em> zu schließen.</p>
+<p>Voraussetzung: Binomialverteilte Zufallsgröße <span class="math inline">X</span>.</p>
+<p>Vorgehensweise bei <em>Signifikanztests / Hypothesentests</em>:</p>
+<ol type="1">
+<li>Hypothesen formulieren: Die zu überprüfende Hypothese <span class="math inline">H_0</span> nennt man Nullhypothese, das Gegenteil <span class="math inline">H_1</span> Alternativhypothese. Die Nullhypothese zu verwerfen bestätigt die Alternativhypothese.
 <ul>
-<li>Fehler 1. Art: Nullhypothese wird fälschlicherweise verworfen</li>
-<li>Fehler 2. Art: Nullhypothese wird fälschlicherweise angenommen</li>
-</ul>
-<h2 id="zweiseitiger-signifikanztest">Zweiseitiger Signifikanztest</h2>
-<p>Def. signifikant, hochsignifikant</p>
-<p>Verwerfungsbereich, Annahmebereich</p>
+<li>Hypothesen treffen auf Schule immer eine Aussage über die Wahrscheinlichkeit <span class="math inline">p</span>
+<ul>
+<li>Beim zweiseitigen Test “gleich”, bspw. <span class="math inline">p = 0,5</span> als Hypothese für die Erfolgswahrscheinlichkeit beim Münzwurf</li>
+<li>Beim einseitigen Test größer/kleiner, bspw. <span class="math inline">p \leq 0,5</span> oder <span class="math inline">p \geq 0,5</span></li>
+</ul></li>
+<li>Da man mit relativer Sicherheit nur Hypothesen <em>verwerfen</em> kann, wählt man die Hypothese, die gestützt werden soll, als Nullhypothese und entsprechend das Gegenteil als Alternativhypothese.</li>
+</ul></li>
+<li>Festlegung des <em>Signifikanzniveaus <span class="math inline">S</span></em>, üblicherweise <span class="math inline">5\%</span> oder <span class="math inline">1\%</span>. Die <em>maximale Irrtumswahrscheinlichkeit <span class="math inline">\alpha</span></em> darf höchstens so groß wie <span class="math inline">S</span> sein, es gilt <span class="math inline">\alpha \leq S</span>.
+<ul>
+<li>Als <em>Irrtumswahrscheinlichkeit</em> bezeichnet man die Wahrscheinlichkeit, dass eine Hypothese <em>fälschlicherweise abgelehnt/verworfen wird (Fehler 1. Art)</em>.
+<ul>
+<li>Berechnung über <em>Größe des Ablehnungsbereiches</em>: Kumulierte Wahrscheinlichkeit, dass ein Wert - unter der Annahme, dass die Nullhypothese gilt - im Ablehnungsbereich liegt.</li>
+</ul></li>
+<li>Die <em>Wahrscheinlichkeit <span class="math inline">\beta</span></em> gibt an, wie wahrscheinlich es ist, dass eine falsche Nullhypothese <em>fälschlicherwise <strong>nicht</strong> abgelehnt wird (Fehler 2. Art)</em>.
+<ul>
+<li>Berechnung über <em>tatsächliche Erfolgswahrscheinlichkeit <span class="math inline">p</span></em> und die <em>Größe des Annahmebereichs</em></li>
+</ul></li>
+</ul></li>
+<li>Bestimmung der Sigma-Umgebung zum Signifikanzniveau (<span class="math inline">95\%</span>-Umgebung für <span class="math inline">S=5\%</span>, <span class="math inline">99\%</span>-Umgebung für <span class="math inline">S=1\%</span>)
+<ul>
+<li>Dabei muss so gerundet werden, dass <span class="math inline">\alpha \leq S</span> nicht verletzt wird; in der Umgebung müssen also <em>mindestens</em> <span class="math inline">95\%</span> bzw. <span class="math inline">99\%</span> der Werte liegen.</li>
+<li>Man erhält als <em>Annahmebereich</em> (bzw. eher “Nicht-Ablehnungsbereich”) die Sigma-Umgebung und als <em>Ablehnungs- / Verwerfungsbereich</em> alles jenseits der Sigma-Umgebung.
+<ul>
+<li>Beim zweiseitigen Hypothesentest finden sich Ablehnungsbereiche auf beiden Seiten, beim einseitigen nur auf einer.</li>
+<li>Beim <em>rechtsseitigen</em> Test liegt der Ablehnungsbereich <em>rechts</em>, beim <em>linksseitigen</em> Tests analog <em>links</em></li>
+</ul></li>
+</ul></li>
+<li>Formulierung der <em>Entscheidungsregel</em>: Liegt der tatsächliche Wert für <span class="math inline">X</span> in der Stichprobe im <em>Ablehnungsbereich</em> wird die Nullhypothese verworfen und stattdessen die Alternativhypothese bestätigt. Falls der Wert im <em>Annahmebereich</em> liegt, reicht dies nicht, um die Nullhypothese zu bestätigen; die Nullhypothese wird dann lediglich <em>(noch) nicht abgelehnt</em>.</li>
+<li>Anwendung der Entscheidungsregel: Trivial.</li>
+</ol>
+<p>Zweiseitiger Hypothesentest für <span class="math inline">H_0: p = 0,5</span>, Ablehnungsbereich rot, Annahmebereich grau:</p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/BinomialTest.svg/1024px-BinomialTest.svg.png">Veranschaulichung</a></p>
 <h2 id="stetige-zufallsgrößen">Stetige Zufallsgrößen</h2>
-<p>Können alle Werte in einem reellen Intervall angenommen werden, spricht man von einer stetigen Zufallgröße.</p>
-<p>Eine <strong>Dichtefunktion</strong> - gibt ähnlich wie ein Histogramm - für einen Wert .</p>
-<p>Für eine Dichtefunktion gilt:</p>
+<p>Können alle Werte in einem reellen Intervall angenommen werden - existiert also zwischen zwei möglichen Werten immer ein weiterer - so spricht man von einer stetigen Zufallgröße.</p>
+<p>Demzufolge ist die Wahrscheinlichkeit für genau einen Wert geht gegen <span class="math inline">0</span>: Unter unendlich vielen möglichen anderen Werten ist es unendlich unwahrscheinlich, dass genau dieser Wert angenommen wird.</p>
+<p>Es ist nur sinnvoll, die Wahrscheinlichkeit dafür anzugeben, dass die stetige Zufallsgröße in einem gewissen <strong>Bereich <span class="math inline">[a; b]</span></strong> liegt.</p>
+<p>Eine <strong>Dichtefunktion</strong> gibt - ähnlich wie ein Histogramm - für einen Wert <span class="math inline">x</span> die Wahrscheinlichkeitsdichte an; anders als beim Histogramm sind die Klassen hier allerdings “unendlich klein”.</p>
+<p>Für eine solche Dichtefunktion <span class="math inline">f</span> gilt:</p>
 <ul>
 <li><span class="math inline">f(x) \geq 0 \forall x \in R</span> (Dichten müssen offensichtlich positiv sein - negative Dichten wären sinnlos) und</li>
-<li><span class="math inline">\int_a^b f(x)dx</span> ist die Wahrscheinlichkeit für <span class="math inline">x \in [a, b]</span>; somit ist f(x)dx = 1$ (Gesamtwahrscheinlichkeit 1)</li>
+<li><span class="math inline">\int_a^b f(x)dx</span> ist die Wahrscheinlichkeit für <span class="math inline">x \in [a; b]</span>; somit ist <span class="math inline">\int_{-\infty}^{+\infty} f(x) dx = 1</span> (Gesamtwahrscheinlichkeit 1)</li>
 </ul>
+<p>Der <strong>Erwartungswert</strong> ist dann als <span class="math inline">\mu = \int_{-\infty}^{+\infty} x f(x) dx</span> definiert,<br />
+die <strong>Standardabweichung</strong> als <span class="math inline">\sigma = \sqrt{\int_{-\infty}^{+\infty} (x - \mu)^2 f(x) dx}</span>.</p>
+<p>(Generalisierung der Formeln von diskreten Summen hin zu Integralen auf stetigen Funktionen)</p>
+<p>Tatsächlich sind die hier angegebenen unendlichen Integrale meist endlich, da <span class="math inline">f</span> für alle <span class="math inline">x</span> außerhalb eines bestimmten Bereiches <span class="math inline">[a; b]</span> meist als <span class="math inline">0</span> definiert wird. Dann ist das Integral von <span class="math inline">-\infty</span> zu <span class="math inline">+\infty</span> gleich dem Integral von <span class="math inline">a</span> bis <span class="math inline">b</span>, welches nun mit dem GTR berechnet werden kann.</p>
 <h3 id="normalverteilung">Normalverteilung</h3>
 <p>Stetige, normalverteilte Zufallsgrößen besitzen die “Gaußsche Glockenfunktion” <span class="math inline">\psi_{\mu; \sigma}(x) = \frac{1}{\sigma\sqrt{2\pi}} \cdot e^\frac{(x - \mu)^2}{2\sigma^2}</span> als Dichtefunktion.</p>
-<h4 id="moivre-laplace-näherungsformeln">Moivre-Laplace-Näherungsformeln</h4>
-<p>Ist die <strong>Laplace-Bedingung</strong> <span class="math inline">\sigma &gt; 3</span> erfüllt, so gilt:</p>
+<p>Es folgt aus dem Funktionsterm:</p>
 <ul>
-<li><span class="math inline">P(x = k) \approx \psi_{\mu; \sigma}(k)</span></li>
-<li><span class="math inline">P(a \leq x \leq b) \approx \int_a^b \psi_{\mu; \sigma}(x) dx</span></li>
+<li>Höhepunkt beim Erwartungswert <span class="math inline">\mu</span>, symmetrisch zur Geraden <span class="math inline">x = \mu</span></li>
+<li>Wendepunkte bei <span class="math inline">x = \mu \plusmn \sigma</span></li>
+<li>Je größer die Standardabweichung, desto “flacher” die Glockenfunktion</li>
+<li>Im Unendlichen (positiv und negativ) geht die Glockenfunktion gegen <span class="math inline">0</span></li>
 </ul>
+<h4 id="moivre-laplace-näherungsformeln">Moivre-Laplace-Näherungsformeln</h4>
+<p>Ist die <strong>Laplace-Bedingung</strong> <span class="math inline">\sigma &gt; 3</span> erfüllt, so lässt sich eine Binomialverteilung mit einer Normalverteilung approximieren (und umgekehrt):</p>
+<ul>
+<li><span class="math inline">P(X = k) \approx \psi_{\mu; \sigma}(k)</span></li>
+<li><span class="math inline">P(a \leq X \leq b) \approx \int_{a-0,5}^{b+0,5} \psi_{\mu; \sigma}(x) dx</span></li>
+</ul>
+<p>Die nötige Verschiebung der Intervallgrenzen um <span class="math inline">0,5</span> (um in der “Mitte der Balken” anzusetzen) nennt man <strong>Stetigkeitskorrektur</strong>.</p>
+<p>Die Binomialverteilung (auf Schule) darf dennoch nicht mit der Normalverteilung verwechselt werden: Erstere ist eine Verteilung einer <strong>diskreten</strong> Zufallsgröße und kann also nur ganzzahlige Werte annehmen - letztere ist eine Verteilung einer <strong>stetigen</strong> Zufallsgröße und kann also beliebige reelle Zahlen als Werte annehmen.</p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Binomial_Distribution.svg/1024px-Binomial_Distribution.svg.png">Veranschaulichung</a></p>
 <h4 id="sigma-umgebungen">Sigma-Umgebungen</h4>
-<p>Für normalverteilte Zufallsgrößen gilt (alle Wahrscheinlichkeiten bzw. <span class="math inline">\sigma</span>-Umgebungen nur ungefähr und nicht exakt):</p>
-<div class="line-block"><span class="math inline">\sigma</span>-Umgebung | Wahrscheinlichkeit |</div>
-<p>|===================|====================| |<span class="math inline">[\mu - \sigma; \mu + \sigma]</span>|<span class="math inline">68,3%</span>| |<span class="math inline">[\mu - 2\sigma; \mu + 2\sigma]</span>|<span class="math inline">95,5%</span>| |<span class="math inline">[\mu - 3\sigma; \mu + 3\sigma]</span>|<span class="math inline">99,7%</span>|</p>
-<div class="line-block">Wahrscheinlichkeit | <span class="math inline">\sigma</span>-Umgebung |</div>
-<p>|===================|====================| |<span class="math inline">90%</span>|<span class="math inline">[\mu - 1,64\sigma; \mu + 1,64\sigma]</span>| |<span class="math inline">95%</span>|<span class="math inline">[\mu - 1,94\sigma; \mu + 1,94\sigma]</span>| |<span class="math inline">99%</span>|<span class="math inline">[\mu - 2,58\sigma; \mu + 2,58\sigma]</span>|</p>
-<p>Aufgrund der <a href="#moivre-laplace-näherungsformeln">Moivre-Laplace-Näherungsformeln</a> lassen sich die Sigmaregeln - insofern die Laplace-Bedingung erfüllt ist - auch auf <strong>Binomialverteilungen</strong> anwenden.</p>
-<p>Fürs Runden gilt: Symmetrie nicht beachten, mit GTR ab-und aufgerundete Intervallgrenzen ausprobieren; sind die Wahrscheinlichkeiten Mindestwerte, wird normalerweise betraglich <em>aufgerundet</em>.</p>
+<p><em>Sicherheitswahrscheinlichkeit</em>: Wahrscheinlichkeit, dass ein zufälliger Wert - gemäß der Verteilung - in der Umgebung (im Intervall) liegt</p>
+<p>Für normalverteilte Zufallsgrößen gelten die folgenden Regeln für Sicherheitswahrscheinlichkeiten:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\sigma</span>-Umgebung</th>
+<th>Wahrscheinlichkeit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">[\mu - \sigma; \mu + \sigma]</span></td>
+<td><span class="math inline">68,3\%</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">[\mu - 2\sigma; \mu + 2\sigma]</span></td>
+<td><span class="math inline">95,5\%</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">[\mu - 3\sigma; \mu + 3\sigma]</span></td>
+<td><span class="math inline">99,7\%</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>Wahrscheinlichkeit</th>
+<th><span class="math inline">\sigma</span>-Umgebung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">90\%</span></td>
+<td><span class="math inline">[\mu - 1,64\sigma; \mu + 1,64\sigma]</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">95\%</span></td>
+<td><span class="math inline">[\mu - 1,94\sigma; \mu + 1,94\sigma]</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">99\%</span></td>
+<td><span class="math inline">[\mu - 2,58\sigma; \mu + 2,58\sigma]</span></td>
+</tr>
+</tbody>
+</table>
+<p>Die Wahrscheinlichkeiten und Koeffizienten für Sigma sind hier nur ungefähr angegeben.</p>
+<p>Aufgrund der <a href="#moivre-laplace-näherungsformeln">Moivre-Laplace-Näherungsformeln</a> lassen sich die Sigmaregeln - insofern die Laplace-Bedingung erfüllt ist - auch auf <strong>Binomialverteilungen</strong> anwenden; dann müssen die Intervallgrenzen allerdings gerundet werden. Hierfür gilt: Symmetrie - falls nicht explizit gefordert - <strong>nicht beachten</strong>, mit GTR ab-und aufgerundete Intervallgrenzen <strong>ausprobieren</strong>; sind die Wahrscheinlichkeiten Mindestwerte, wird normalerweise betraglich <em>aufgerundet</em>.</p>
 <h2 id="visualisierungen">Visualisierungen</h2>
 <ul>
 <li>Strich- und Balkendiagramme: Zeigen relative Häufigkeiten von Ereignissen oder Ereignisklassen.</li>
 <li>Kreisdiagramme: Anteilige Darstellung relativer Häufigkeiten.</li>
-<li>Histogramme: Für Intervalle als Ereignisklassen: Breite der Balken entspricht der Breite der Ereignisklasse; Fläche der Balken entspricht der Wahrscheinlichkeit bzw. relativen Häufigkeit, s.d. Histogramme - anders als Strich-, Balken- und Kreisdiagramme nicht optisch irreführend sind. Höhe der Balken ist somit nicht mehr die Wahrscheinlichkeit sondern die Wahrscheinlichkeitsdichte. Klassen müssen weiterhin intelligent gewählt werden; zu kleine Klassen scheitern daran, Häufungen als erhöhte Wahrscheinlichkeitsdichte zu zeigen (Extremfall: Minimale Klassen, genau zwei verschiedene Dichten) - zu große Klassen dahingegen bieten nicht genügend Granularität (Extremfall: Eine Klasse).</li>
+<li>Histogramme: Für Intervalle als Ereignisklassen:
+<ul>
+<li>Breite der Balken entspricht der Breite der Ereignisklasse;</li>
+<li>Fläche der Balken entspricht der Wahrscheinlichkeit bzw. relativen Häufigkeit;</li>
+<li>Die Höhe der Balken ist somit nicht mehr die Wahrscheinlichkeit sondern die <em>Wahrscheinlichkeitsdichte</em>.</li>
+<li>Wahl der Klassen:
+<ul>
+<li>Klassen müssen weiterhin geschickt gewählt werden</li>
+<li>Zu kleine Klassen scheitern daran, Häufungen als erhöhte Wahrscheinlichkeitsdichte zu zeigen
+<ul>
+<li>Extremfall: Minimale Klassen, genau zwei verschiedene Dichten</li>
+</ul></li>
+<li>Zu große Klassen dahingegen bieten nicht genügend Granularität
+<ul>
+<li>Extremfall: Zwei Klassen lassen nur den Vergleich der beiden Klassen zu</li>
+</ul></li>
+</ul></li>
+<li>⇒ Histogramme sind - anders als Strich-, Balken- und Kreisdiagramme - <strong>nicht optisch irreführend</strong> (zumindest bei geeigneter Wahl der Klassen)</li>
+</ul></li>
 </ul>
 <h2 id="hilfsmittel">Hilfsmittel</h2>
 <h3 id="formelsammlung">Formelsammlung</h3>
@@ -136,7 +242,7 @@ n = log_q(1 - y)
 <li>S. 42: <strong>Normalverteilung</strong>, Näherungsformel für Binomialverteilungen</li>
 <li>S. 43: <strong>Testen von Hypothesen</strong></li>
 </ul>
-<p>Auf den übrigen Seiten 44 - 51 finden sich hauptsächlich durch den GTR obsolet gewordene Wertetabellen. Nur auf S. 50 findet sich noch etwas zur <strong>Standardnormalverteilung</strong> (allerdings weitestgehnd redundant mit S. 42).</p>
+<p>Auf den übrigen Seiten 44 - 51 finden sich hauptsächlich durch den GTR obsolet gewordene Wertetabellen. Nur auf S. 50 findet sich noch etwas zur <strong>Standardnormalverteilung</strong> (allerdings weitestgehend redundant mit S. 42).</p>
 <p>Es ist davon auszugehen, dass im hilfsmittelfreien Teil keine äußerst rechenintensiven Normalverteilungen oder Sigma-Umgebungen vorkommen, durchaus aber die Berechnung von binomialverteilten Zufallsgrößen für kleine Werte oder die Angabe von Termen; einfach zu integrierende Dichtefunktionen sind ebenfalls denkbar.</p>
 <h3 id="gtr">GTR</h3>
 <ul>
@@ -153,8 +259,10 @@ n = log_q(1 - y)
 <li><code>min</code>: Min. Anzahl Erfolge (inklusive)</li>
 <li><code>max</code>: Max. Anzahl Erfolge (inklusive), <strong>optional</strong></li>
 </ul></li>
-<li><code>normpdf</code>: Wie <code>binompdf</code></li>
-<li><code>normcdf</code>: Wie <code>binomcdf</code>; <code>min</code> &amp; <code>max</code> sind allerdings nicht mehr zwingend ganzzahlig</li>
+<li><span class="math inline">normpdf(x, \mu, \sigma)</span></li>
+<li><span class="math inline">normcdf(min, max, \mu, \sigma)</span>; <code>min</code> &amp; <code>max</code> sind nicht mehr zwingend ganzzahlig</li>
 </ul>
+<h3 id="wörterbuch-zur-deutschen-rechtschreibung">Wörterbuch zur deutschen Rechtschreibung</h3>
+<p>Beinahe irrelevant.</p>
 </body>
 </html>
