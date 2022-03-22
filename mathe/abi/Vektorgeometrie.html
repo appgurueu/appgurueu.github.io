@@ -119,6 +119,7 @@
 <h3 id="normalenform">Normalenform</h3>
 <p>Punktprodukt aus Punkt <span class="math inline">x</span> minus Stützvektor <span class="math inline">P</span> mit Normalenvektor <span class="math inline">n</span> muss null sein (siehe <a href="#orthogonalität">Orthogonalität</a>): <span class="math inline">E: n \cdot (x - P) = 0</span>. Lässt sich einfach umstellen:</p>
 <p><span class="math inline">E: n \cdot (x - P) = 0 \lrArr n \cdot x - n \cdot P = 0 \lrArr n \cdot x = n \cdot P</span>, wobei <span class="math inline">n \cdot P</span> als Skalar ausgerechnet werden kann (“vereinfachte” Normalenform).</p>
+<p>Ist zusätzlich <span class="math inline">|n| = 1</span>, der Normalenvektor also normiert, bezeichnet man die “vereinfachte” Normalenform als <strong>hessesche Normalenform</strong>. Dann kann die <strong>hessesche Abstandsformel</strong> angewandt werden.</p>
 <p>Bestimmung aus Parameterform: <span class="math inline">n = b \times c</span> (Normalenvektor als Kreuzprodukt der SPannvektoren), <span class="math inline">P = A</span> (Stützvektor / beliebiger Punkt auf Ebene).</p>
 <p>Bestimmung aus Koordinatenform: Trivial. Komponenten des Normalenvektors sind Koeffizienten von <span class="math inline">x_1, x_2, x_3</span>. Wenn <span class="math inline">P</span> bestimmt werden muss, lässt sich eine beliebige Lösung für <span class="math inline">x_1, x_2, x_3</span> nehmen (bspw. Spurpunkte).</p>
 <h4 id="koordinatenform">Koordinatenform</h4>
@@ -156,9 +157,15 @@
 </ul></li>
 </ul>
 <h2 id="abstand-punkt-ebene"><a href="https://appgurueu.github.io/mathe/abstand-punkt-ebene/">Abstand Punkt-Ebene</a></h2>
+<p>Alternativ kann die Ebene in die <strong>hessesche Normalenform</strong> übeführt werden; dann kann die <strong>hessesche Abstandsformel</strong> verwendet werden:</p>
+<p><span class="math inline">d = |np - b|</span> für Normalenvektor <span class="math inline">n</span> und Punkt <span class="math inline">p</span> und <span class="math inline">d</span> Skalar auf der anderen Seite (enthält Abstand zum Ursprung).</p>
+<!-- TODO reword -->
 <h1 id="shortcuts">Shortcuts</h1>
 <h2 id="kreuzprodukt-zur-dreiecksflächenbestimmung">Kreuzprodukt zur Dreiecksflächenbestimmung</h2>
 <p>Bestimme <span class="math inline">\frac{|A \times B|}{2}</span></p>
+<h2 id="rechtwinkligkeit-eines-dreiecks">Rechtwinkligkeit eines Dreiecks</h2>
+<p>Abstände <span class="math inline">a = |AB|</span>, <span class="math inline">b = |BC|</span>, und <span class="math inline">c = |CA|</span> ausrechnen, dann so sortieren, dass <span class="math inline">c &gt; a</span> und <span class="math inline">c &gt; b</span> gilt, und schließlich S.d.P <span class="math inline">a^2 + b^2 = c^2</span> überprüfen ist ineffizienter. Stattdessen:</p>
+<p>Gilt <span class="math inline">BA \cdot BC = 0</span> oder <span class="math inline">AB \cdot AC = 0</span> oder <span class="math inline">CA \cdot CA = 0</span>, dann ist das Dreieck rechtwinklig.</p>
 <h1 id="hilfsmittel">Hilfsmittel</h1>
 <h2 id="gtr">GTR</h2>
 <p>Unvollständige Liste:</p>
