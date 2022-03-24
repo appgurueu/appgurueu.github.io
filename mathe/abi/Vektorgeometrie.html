@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Vektorielle Geometrie</title>
+  <title>Vektorgeometrie</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -21,9 +21,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" />
 </head>
 <body>
-<header id="title-block-header">
-<h1 class="title">Vektorielle Geometrie</h1>
-</header>
+<p>#— title: Vektorielle Geometrie —</p>
 <h3 id="schulnotation">Schulnotation</h3>
 <p>Auf Schule:</p>
 <ul>
@@ -85,9 +83,11 @@
 <figure>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Parallelepiped-0.svg/220px-Parallelepiped-0.svg.png" alt="Spat" /><figcaption>Spat</figcaption>
 </figure>
-<h1 id="matrizen">Matrizen</h1>
+<h1 id="lösen-linearer-gleichungssysteme-lgs">Lösen linearer Gleichungssysteme (LGS)</h1>
 <!-- TODO elaborate -->
-<p>Darstellung linearer Gleichungssysteme (LGS) in Matrizenform. Lösen mit dem <strong>Gauss-Jordan-Verfahren</strong>: Erst Variablen eliminieren, dann resubstituieren.</p>
+<p>LGS löst man am effizientesten mit dem <a href="#gtr">GTR</a> und <code>linsolve</code>. Ist dies nicht möglich - entweder weil das LGS parametrisiert ist, oder im hilfsmittelfreien Teil - muss das LGS händisch gelöst werden. Hierfür ist theoretisch das <a href="#gauss-verfahren">Gauss-Verfahren</a> am besten geeignet. Tatsächlich ist as aber auch recht leicht, sich dabei zu verrechnen oder zu vertun; außerdem benötigt man zusätzliche Notationen. Insbesondere für einfache LGS ist es daher meist besser (und manchmal schneller) die aus der Unterstufe bekannten Einsetzungs-, Additions- oder Gleichsetzungsverfahren anzuwenden.</p>
+<h2 id="gauss-verfahren">Gauss-Verfahren</h2>
+<p>Darstellung des LGS in Matrizenform, dann durch Addition von Zeilen erst Variablen eliminieren (Matrix in Zeilenstufenform bringen), dann resubstituieren und Diagonalmatrix erhalten, von der die Lösungen direkt abgelesen werden können.</p>
 <h1 id="geraden">Geraden</h1>
 <h2 id="formen">Formen</h2>
 <p>Eindeutig gegeben durch zwei verschiedene Punkte <span class="math inline">A, B</span>. Der Richtungsvektor lässt sich dann wahlweise von <span class="math inline">A</span> nach <span class="math inline">B</span> oder <span class="math inline">B</span> nach <span class="math inline">A</span> bestimmen. Sowohl <span class="math inline">A</span> als auch <span class="math inline">B</span> können als Stützvektor verwendet werden.</p>
