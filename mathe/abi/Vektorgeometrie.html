@@ -58,20 +58,36 @@
 <h3 id="punktprodukt">Punktprodukt</h3>
 <p>Addition der Produkte der jeweiligen Komponenten. Ergebnis ist ein Skalar, weswegen das Punktprodukt auch als <em>Skalarprodukt</em> bekannt ist. Gleich dem Produkt der Längen mal dem Cosinus des Winkels <span class="math inline">\alpha</span> zwischen den Vektoren <span class="math inline">a, b</span>:</p>
 <p><span class="math inline">a \cdot b = cos(\alpha)|a||b| = a_1b_1 + a_2b_2 + a_3b_3</span></p>
+<!-- TODO Offensichtlich ist das Punktprodukt **kommutativ** ($a \cdot b = b \cdot a$), **assoziativ** und **distributiv** -->
 <h4 id="orthogonalität">Orthogonalität</h4>
 <p>Orthogonalität heißt, dass der Winkel zwischen den zwei Richtungsvektoren <span class="math inline">90°</span> beträgt. Dann ist der Cosinus und somit das Punktprodukt <span class="math inline">0</span>.</p>
 <p><span class="math inline">a \perp b \lrArr a \cdot b = 0</span></p>
 <h4 id="parallelität">Parallelität</h4>
 <p>Bei Parallelität der Richtungsvektoren beträgt der Winkel <span class="math inline">0°</span>, der Cosinus nimmt einen Wert von <span class="math inline">1</span> and und somit ist das Punktprodukt das Produkt der Längen der beiden Vektoren.</p>
 <p><span class="math inline">a \parallel b \lrArr a \cdot b = |a||b|</span>. Allerdings prüft man Parallelität am Besten über <a href="#kolinearität">Kolinearität</a>.</p>
+<h4 id="zerlegung-in-orthogonale-und-parallele-komponente">Zerlegung in orthogonale und parallele Komponente</h4>
+<!-- TODO elaborate -->
+<p>Einen Vektor normieren, dann Punktprodukt. Resultierende Zahl mit dem normierten Vektor multiplizieren (dies ist die parallele Komponente) und vom nicht-normierten Vektor abziehen. Es bleibt die orthogonale Komponente.</p>
 <h4 id="winkelbestimmung">Winkelbestimmung</h4>
-<p>Der Winkel zwischen zwei Richtungsvektoren entspricht dem Punktprodukt geteilt durch die Länge der Vektoren</p>
+<p>Der Winkel zwischen zwei Richtungsvektoren entspricht dem Punktprodukt geteilt durch die Länge der Vektoren (Herleitung über Umstellen des Punktprodukts nach <span class="math inline">\alpha</span>)</p>
 <p><span class="math inline">\alpha = acos(\frac{a \cdot b}{|a||b|})</span></p>
+<p>Der resultierende Winkel kann - falls <span class="math inline">a \cdot b &lt; 0</span> ist - größer als <span class="math inline">180°</span> sein. Nach unserer Definition sind Schnittwinkel aber immer Innenwinkel und dürfen also maximal <span class="math inline">180°</span> betragen. Hierzu kann man entweder:</p>
+<p><span class="math inline">360° - \alpha</span> nachher rechnen, oder statt <span class="math inline">a \cdot b</span> den Betrag <span class="math inline">|a \cdot b|</span> in der Rechnung verwenden.</p>
 <h3 id="kreuzprodukt">Kreuzprodukt</h3>
 <p>Für <span class="math inline">a</span>, <span class="math inline">b</span> Richtungsvektoren lässt sich aus <span class="math inline">a \perp c \lrArr a \cdot c = 0</span> und <span class="math inline">b \perp c \lrArr b \cdot c = 0</span> folgendes herleiten:</p>
 <p><span class="math inline">a \times b = c = (a_2 b_3 - a_2 b_3, a_3 b_2 - a_2 b_3, a_1 b_2 - a_2 b_1)</span></p>
 <p><span class="math inline">|a \times b| = |a||b| \cdot sin(\alpha)</span></p>
 <p>Ergebnis ist ein Richtungsvektor <span class="math inline">c</span> (weswegen das Kreuzprodukt häufig auch <em>Vektorprodukt</em> genannt wird), der orthogonal zu <span class="math inline">a, b</span> steht (außerdem entspricht die Länge <span class="math inline">|c|</span> dem Volumen des von <span class="math inline">a, b</span> aufgespannten Parallelogramms).</p>
+<p><span class="math inline">a \times b \neq b \times a</span>: <strong>Das Kreuzprodukt ist nicht kommutativ</strong>.</p>
+<h3 id="volumenbestimmung">Volumenbestimmung</h3>
+<p><strong><span class="math inline">V = a \cross b \cdot c</span> ist das Volumen eines von <span class="math inline">a, b, c</span> aufgespannten Spats (Parallelepiped).</strong></p>
+<p>Begründung: <span class="math inline">a \cross b</span> ist ein Vektor, dessen Länge die Grundfläche (Parallelogramm) und dessen Ausrichtung senkrecht zur Grundfläche ist. Das Punktprodukt dieses Vektors mit <span class="math inline">c</span> liefert also den zu <span class="math inline">c</span> parallelen Anteil (Höhe) als <span class="math inline">h=cos(\alpha)|c|</span> mal der Grundfläche <span class="math inline">G = |a \cross b|</span>.</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Parallelepiped-0.svg/220px-Parallelepiped-0.svg.png" alt="Spat" /><figcaption>Spat</figcaption>
+</figure>
+<h1 id="matrizen">Matrizen</h1>
+<!-- TODO elaborate -->
+<p>Darstellung linearer Gleichungssysteme (LGS) in Matrizenform. Lösen mit dem <strong>Gauss-Jordan-Verfahren</strong>: Erst Variablen eliminieren, dann resubstituieren.</p>
 <h1 id="geraden">Geraden</h1>
 <h2 id="formen">Formen</h2>
 <p>Eindeutig gegeben durch zwei verschiedene Punkte <span class="math inline">A, B</span>. Der Richtungsvektor lässt sich dann wahlweise von <span class="math inline">A</span> nach <span class="math inline">B</span> oder <span class="math inline">B</span> nach <span class="math inline">A</span> bestimmen. Sowohl <span class="math inline">A</span> als auch <span class="math inline">B</span> können als Stützvektor verwendet werden.</p>
@@ -119,7 +135,7 @@
 <h3 id="normalenform">Normalenform</h3>
 <p>Punktprodukt aus Punkt <span class="math inline">x</span> minus Stützvektor <span class="math inline">P</span> mit Normalenvektor <span class="math inline">n</span> muss null sein (siehe <a href="#orthogonalität">Orthogonalität</a>): <span class="math inline">E: n \cdot (x - P) = 0</span>. Lässt sich einfach umstellen:</p>
 <p><span class="math inline">E: n \cdot (x - P) = 0 \lrArr n \cdot x - n \cdot P = 0 \lrArr n \cdot x = n \cdot P</span>, wobei <span class="math inline">n \cdot P</span> als Skalar ausgerechnet werden kann (“vereinfachte” Normalenform).</p>
-<p>Ist zusätzlich <span class="math inline">|n| = 1</span>, der Normalenvektor also normiert, bezeichnet man die “vereinfachte” Normalenform als <strong>hessesche Normalenform</strong>. Dann kann die <strong>hessesche Abstandsformel</strong> angewandt werden.</p>
+<p>Ist zusätzlich <span class="math inline">|n| = 1</span>, der Normalenvektor also normiert, bezeichnet man die “vereinfachte” Normalenform als <strong>hessesche Normalenform</strong>. Dann kann die <strong>hessesche Abstandsformel</strong> angewendet werden.</p>
 <p>Bestimmung aus Parameterform: <span class="math inline">n = b \times c</span> (Normalenvektor als Kreuzprodukt der SPannvektoren), <span class="math inline">P = A</span> (Stützvektor / beliebiger Punkt auf Ebene).</p>
 <p>Bestimmung aus Koordinatenform: Trivial. Komponenten des Normalenvektors sind Koeffizienten von <span class="math inline">x_1, x_2, x_3</span>. Wenn <span class="math inline">P</span> bestimmt werden muss, lässt sich eine beliebige Lösung für <span class="math inline">x_1, x_2, x_3</span> nehmen (bspw. Spurpunkte).</p>
 <h4 id="koordinatenform">Koordinatenform</h4>
