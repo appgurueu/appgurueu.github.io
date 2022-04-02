@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Vektorgeometrie</title>
+  <title>Vektorielle Geometrie</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -21,7 +21,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" />
 </head>
 <body>
-<p>#— title: Vektorielle Geometrie —</p>
+<header id="title-block-header">
+<h1 class="title">Vektorielle Geometrie</h1>
+</header>
 <h3 id="schulnotation">Schulnotation</h3>
 <p>Auf Schule:</p>
 <ul>
@@ -72,9 +74,12 @@
 <p>Der resultierende Winkel kann - falls <span class="math inline">a \cdot b &lt; 0</span> ist - größer als <span class="math inline">180°</span> sein. Nach unserer Definition sind Schnittwinkel aber immer Innenwinkel und dürfen also maximal <span class="math inline">180°</span> betragen. Hierzu kann man entweder:</p>
 <p><span class="math inline">360° - \alpha</span> nachher rechnen, oder statt <span class="math inline">a \cdot b</span> den Betrag <span class="math inline">|a \cdot b|</span> in der Rechnung verwenden.</p>
 <h3 id="kreuzprodukt">Kreuzprodukt</h3>
-<p>Für <span class="math inline">a</span>, <span class="math inline">b</span> Richtungsvektoren lässt sich aus <span class="math inline">a \perp c \lrArr a \cdot c = 0</span> und <span class="math inline">b \perp c \lrArr b \cdot c = 0</span> folgendes herleiten:</p>
-<p><span class="math inline">a \times b = c = (a_2 b_3 - a_2 b_3, a_3 b_2 - a_2 b_3, a_1 b_2 - a_2 b_1)</span></p>
+<p>Für <span class="math inline">a</span>, <span class="math inline">b</span> Richtungsvektoren lässt sich aus <span class="math inline">a \perp c \lrArr a \cdot c = 0</span> und <span class="math inline">b \perp c \lrArr b \cdot c = 0</span> herleiten.</p>
+<p>Das resultierende LGS ist unterbestimmt: Eine Variable - die Länge des Vektors, inklusive des Vorzeichens, also der Ausrichtung - kann frei gewählt werden.</p>
+<p>Wählt man diese so, dass</p>
 <p><span class="math inline">|a \times b| = |a||b| \cdot sin(\alpha)</span></p>
+<p>gilt, ergibt sich die folgende Formel für’s Kreuzprodukt (wenn man zusätzlich eine Ausrichtung gemäß der Rechten-Hand-Regel wählt, aber dies ist meist irrelevant):</p>
+<p><span class="math inline">a \times b = c = (a_2 b_3 - a_2 b_3, a_3 b_2 - a_2 b_3, a_1 b_2 - a_2 b_1)</span></p>
 <p>Ergebnis ist ein Richtungsvektor <span class="math inline">c</span> (weswegen das Kreuzprodukt häufig auch <em>Vektorprodukt</em> genannt wird), der orthogonal zu <span class="math inline">a, b</span> steht (außerdem entspricht die Länge <span class="math inline">|c|</span> dem Volumen des von <span class="math inline">a, b</span> aufgespannten Parallelogramms).</p>
 <p><span class="math inline">a \times b \neq b \times a</span>: <strong>Das Kreuzprodukt ist nicht kommutativ</strong>.</p>
 <h3 id="volumenbestimmung">Volumenbestimmung</h3>
@@ -83,11 +88,59 @@
 <figure>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Parallelepiped-0.svg/220px-Parallelepiped-0.svg.png" alt="Spat" /><figcaption>Spat</figcaption>
 </figure>
-<h1 id="lösen-linearer-gleichungssysteme-lgs">Lösen linearer Gleichungssysteme (LGS)</h1>
+<h1 id="lineare-gleichungssysteme-lgs">Lineare Gleichungssysteme (LGS)</h1>
+<h2 id="vektorform">Vektorform</h2>
+<p>Bspw. <span class="math inline">v * x + p = q</span> um zu prüfen, ob <span class="math inline">q</span> auf Gerade liegt mit <span class="math inline">x</span> “Laufvariable” (Stelle auf) der Gerade</p>
+<p>Entspricht eigentlich drei Gleichungen (eine Gleichung pro Komponente).</p>
+<h2 id="matrixform">Matrixform</h2>
+<p>LGS:</p>
+<ol type="1">
+<li><span class="math inline">1x + 2y + 3z = 4</span></li>
+<li><span class="math inline">5x + 6y + 7z = 8</span></li>
+<li><span class="math inline">9x + 10y + 11z = 12</span></li>
+</ol>
+<p>entspricht der Matrix:</p>
+<p><span class="math display">
+\begin{pmatrix}
+1 &amp; 2 &amp; 3 || 4\\
+5 &amp; 6 &amp; 7 | 8\\
+9 &amp; 10 &amp; 11 | 12
+\end{pmatrix}
+</span></p>
+<h2 id="mögliche-eigenschaften">Mögliche Eigenschaften</h2>
+<ul>
+<li>Unterbestimmt: Nach Vereinfachung <em>mehr Variablen als Gleichungen</em> =&gt; freie Variablen</li>
+<li>Überbestimmt: Nach Vereinfachung <em>mehr Gleichungen als Variablen</em> =&gt; evtl. keine Lsg.</li>
+</ul>
+<h2 id="lösungen">Lösungen</h2>
+<p>Für 3-dimensionales-LGS (3 Variablen):</p>
+<ul>
+<li>0 Lösungen: Widersprüchliche Gleichungen</li>
+<li>1 Lösung: Punkt, Werte für Variablen</li>
+<li>Unendlich viele Lösungen: Unterbestimmt:
+<ul>
+<li>Eine freie Variable, andere 2 Variablen in Abhängigkeit davon (zwei Gleichungen, Gerade)</li>
+<li>2 freie Variablen, andere Variable in Abhängigkeit davon (eine Gleichung, Ebene)</li>
+</ul></li>
+</ul>
+<h4 id="lösen">Lösen</h4>
 <!-- TODO elaborate -->
 <p>LGS löst man am effizientesten mit dem <a href="#gtr">GTR</a> und <code>linsolve</code>. Ist dies nicht möglich - entweder weil das LGS parametrisiert ist, oder im hilfsmittelfreien Teil - muss das LGS händisch gelöst werden. Hierfür ist theoretisch das <a href="#gauss-verfahren">Gauss-Verfahren</a> am besten geeignet. Tatsächlich ist as aber auch recht leicht, sich dabei zu verrechnen oder zu vertun; außerdem benötigt man zusätzliche Notationen. Insbesondere für einfache LGS ist es daher meist besser (und manchmal schneller) die aus der Unterstufe bekannten Einsetzungs-, Additions- oder Gleichsetzungsverfahren anzuwenden.</p>
-<h2 id="gauss-verfahren">Gauss-Verfahren</h2>
+<h5 id="gauss-verfahren">Gauss-Verfahren</h5>
 <p>Darstellung des LGS in Matrizenform, dann durch Addition von Zeilen erst Variablen eliminieren (Matrix in Zeilenstufenform bringen), dann resubstituieren und Diagonalmatrix erhalten, von der die Lösungen direkt abgelesen werden können.</p>
+<p>Eliminieren:</p>
+<ol type="1">
+<li>Zum Eliminieren immer Zeile mit erstem Koeffizienten != 0 wählen</li>
+<li>Damit diesen Koeffizienten bei allen anderen Zeilen durch Subtraktion von multiplizierter Zeile eliminieren</li>
+<li>Wiederholen</li>
+</ol>
+<p>“Resubstituieren”:</p>
+<ol type="1">
+<li>Anfangend mit dem letzten Koeffizienten != 0 hintere Koeffizienten der Zeilenstufenform eliminieren</li>
+<li>Wiederholen</li>
+</ol>
+<p>Schließlich: Diagonalform genießen</p>
+<!-- TOOD Abstrakt ist dies schwer nachvollziehbar, daher hier eine [Beispielrechnung](gauss_beispiel.html). -->
 <h1 id="geraden">Geraden</h1>
 <h2 id="formen">Formen</h2>
 <p>Eindeutig gegeben durch zwei verschiedene Punkte <span class="math inline">A, B</span>. Der Richtungsvektor lässt sich dann wahlweise von <span class="math inline">A</span> nach <span class="math inline">B</span> oder <span class="math inline">B</span> nach <span class="math inline">A</span> bestimmen. Sowohl <span class="math inline">A</span> als auch <span class="math inline">B</span> können als Stützvektor verwendet werden.</p>
@@ -172,10 +225,40 @@
 <li>Keine Lösung: Parallel (Normalenvektoren kolinear)</li>
 </ul></li>
 </ul>
-<h2 id="abstand-punkt-ebene"><a href="https://appgurueu.github.io/mathe/abstand-punkt-ebene/">Abstand Punkt-Ebene</a></h2>
-<p>Alternativ kann die Ebene in die <strong>hessesche Normalenform</strong> übeführt werden; dann kann die <strong>hessesche Abstandsformel</strong> verwendet werden:</p>
+<h2 id="abstand-punkt-ebene">Abstand Punkt-Ebene</h2>
+<h3 id="lotgerade"><a href="https://appgurueu.github.io/mathe/abstand-punkt-ebene/">Lotgerade</a></h3>
+<ol type="1">
+<li>Geradengleichung Lotgerade aufstellen: <span class="math inline">g_l: x = p + t \cdot n</span></li>
+</ol>
+<ul>
+<li>Stützvektor ist der Ortsvektor des Punktes <span class="math inline">p</span></li>
+<li>Richtung ist Normalenvektor <span class="math inline">n</span> der Ebene <span class="math inline">E</span></li>
+</ul>
+<ol start="2" type="1">
+<li>Schnittpunkt (=“Lotfußpunkt”) zwischen Lotgerade und Ebene bestimmen</li>
+</ol>
+<ul>
+<li>Geradengleichung in Ebenengleichung einsetzen: <span class="math inline">n \cdot ((p + t \cdot n) - u) = 0</span></li>
+<li>Nach <span class="math inline">t</span> lösen</li>
+<li><span class="math inline">d = |t| \cdot |n|</span> (<span class="math inline">t</span> mal Länge des Normalenvektors)
+<ul>
+<li>Alternativ: <span class="math inline">t</span> in Geradengleichung einsetzen <span class="math inline">=</span> Lotfußpunkt <span class="math inline">p_l</span></li>
+</ul></li>
+</ul>
+<ol start="3" type="1">
+<li>Abstand vom Punkt <span class="math inline">p</span> zum Lotfußpunkt <span class="math inline">p_l</span> bestimmen <span class="math inline">=d</span>.</li>
+</ol>
+<ul>
+<li>Abstand: <span class="math inline">d = |p_l - p|</span>
+<ul>
+<li>Zur Erinnerung: Betrag eines Vektors: <span class="math inline">|x| = \sqrt{x_1^2 + x_2^2 + x_3^2}</span></li>
+</ul></li>
+</ul>
+<h3 id="hessesche-abstandsformel">Hessesche Abstandsformel</h3>
+<p>Alternativ kann die Ebene in die <strong>hessesche Normalenform</strong> überführt werden; dann kann die <strong>hessesche Abstandsformel</strong> verwendet werden:</p>
 <p><span class="math inline">d = |np - b|</span> für Normalenvektor <span class="math inline">n</span> und Punkt <span class="math inline">p</span> und <span class="math inline">d</span> Skalar auf der anderen Seite (enthält Abstand zum Ursprung).</p>
-<!-- TODO reword -->
+<p>Dies ist häufig schneller.</p>
+<!-- TODO reword & fix -->
 <h1 id="shortcuts">Shortcuts</h1>
 <h2 id="kreuzprodukt-zur-dreiecksflächenbestimmung">Kreuzprodukt zur Dreiecksflächenbestimmung</h2>
 <p>Bestimme <span class="math inline">\frac{|A \times B|}{2}</span></p>
@@ -191,6 +274,13 @@
 <li>Kreuzprodukt (<code>crossp</code>) &amp; Skalarprodukt (<code>dotp</code>)</li>
 </ul>
 <h2 id="formelsammlung">Formelsammlung</h2>
-<p>Siehe S. 62 - 76</p>
+<ul>
+<li>S. 62: Definition Vektor</li>
+<li>S. 63: Länge eines Vektors, Addition (Verschiebung), skalare Multiplikation (Skalierung)</li>
+<li>S. 66: Ebenenformen (allerdings Abweichende Bezeichnungen), Schnittwinkel</li>
+<li>S. 67: Lagebeziehungen Gerade-Gerade, Abstände</li>
+<li>S. 75: Gauß’sches Eliminationsverfahren</li>
+</ul>
+<p>S. 63 “Basis von Vektoren / Vektorraum” sowie S. 68 - 69 (Kugeln &amp; Kegel) und weite Teile der linearen Algebra (Matrizen) sind irrelevant.</p>
 </body>
 </html>
