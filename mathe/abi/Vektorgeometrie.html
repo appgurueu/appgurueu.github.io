@@ -185,6 +185,8 @@
 <h3 id="parameterform">Parameterform</h3>
 <p><span class="math inline">E: x = A + sb + tc</span> mit <span class="math inline">x</span> Punkt auf Ebene, <span class="math inline">A</span> Stützvektor, <span class="math inline">s, t</span> Skalaren und <span class="math inline">b, c</span> Spannvektoren.</p>
 <p>Bestimmung aus Koordinatenform: Drei Punkte <span class="math inline">A, B, C</span> durch Einsetzen in die Koordinatenform bestimmen (bspw. Spurpunkte).</p>
+<p>Wenn die Spannvektoren Dreiecksseiten sind und die Parameter <span class="math inline">s</span> und <span class="math inline">t</span> auf valide Punkte der Dreiecksfläche beschränkt sein sollen, müssen zusätzlich die folgenden Ungleichungen gelten:</p>
+<p><span class="math inline">0 \leq s, t</span> und <span class="math inline">s + t \leq 1</span>; für ein Parallelogram (Sonderfall Rechteck/Quadrat) wird Letztere zu <span class="math inline">s \leq 1</span> und <span class="math inline">t \leq 1</span>.</p>
 <h3 id="normalenform">Normalenform</h3>
 <p>Punktprodukt aus Punkt <span class="math inline">x</span> minus Stützvektor <span class="math inline">P</span> mit Normalenvektor <span class="math inline">n</span> muss null sein (siehe <a href="#orthogonalität">Orthogonalität</a>): <span class="math inline">E: n \cdot (x - P) = 0</span>. Lässt sich einfach umstellen:</p>
 <p><span class="math inline">E: n \cdot (x - P) = 0 \lrArr n \cdot x - n \cdot P = 0 \lrArr n \cdot x = n \cdot P</span>, wobei <span class="math inline">n \cdot P</span> als Skalar ausgerechnet werden kann (“vereinfachte” Normalenform).</p>
