@@ -24,7 +24,7 @@
 <header id="title-block-header">
 <h1 class="title">Vektorielle Geometrie</h1>
 </header>
-<h3 id="schulnotation">Schulnotation</h3>
+<h3 id="notation">Notation</h3>
 <p>Auf Schule:</p>
 <ul>
 <li>Richtungsvektoren mit einem Pfeil versehen und als Spaltenvektoren notieren</li>
@@ -39,7 +39,8 @@
 <h4 id="terminologie">Terminologie</h4>
 <p>Komponenten = Einträge.</p>
 <h3 id="punkte">Punkte</h3>
-<p>Einfach Vektoren. Werden häufig als Zeilenvektoren notiert: <span class="math inline">(x/y/z)</span>.</p>
+<p>Eigentlich einfach Vektoren, werden häufig als Zeilenvektoren notiert: <span class="math inline">P(x|y|z)</span>.</p>
+<p>Auf Schule aber Unterscheidung zwischen Punkt und dazugehörigem Ortsvektor von <span class="math inline">0</span> nach <span class="math inline">P</span> bzw. <span class="math inline">p</span>-Vektor.</p>
 <h3 id="richtungsvektoren">Richtungsvektoren</h3>
 <p>Richtungsvektor von Punkt <span class="math inline">A</span> nach <span class="math inline">B</span>: <span class="math inline">A</span> von <span class="math inline">B</span> abziehen: <span class="math inline">\overline{AB} = B - A</span>.</p>
 <h4 id="kolinearität">Kolinearität</h4>
@@ -58,7 +59,7 @@
 <h3 id="punktprodukt">Punktprodukt</h3>
 <p>Addition der Produkte der jeweiligen Komponenten. Ergebnis ist ein Skalar, weswegen das Punktprodukt auch als <em>Skalarprodukt</em> bekannt ist. Gleich dem Produkt der Längen mal dem Cosinus des Winkels <span class="math inline">\alpha</span> zwischen den Vektoren <span class="math inline">a, b</span>:</p>
 <p><span class="math inline">a \cdot b = cos(\alpha)|a||b| = a_1b_1 + a_2b_2 + a_3b_3</span></p>
-<!-- TODO Offensichtlich ist das Punktprodukt **kommutativ** ($a \cdot b = b \cdot a$), **assoziativ** und **distributiv** -->
+<!-- TODO Offensichtlich ist das Punktprodukt **kommutativ** ($a \cdot b = b \cdot a$), **assoziativ** und **distributiv**. -->
 <h4 id="orthogonalität">Orthogonalität</h4>
 <p>Orthogonalität heißt, dass der Winkel zwischen den zwei Richtungsvektoren <span class="math inline">90°</span> beträgt. Dann ist der Cosinus und somit das Punktprodukt <span class="math inline">0</span>.</p>
 <p><span class="math inline">a \perp b \lrArr a \cdot b = 0</span></p>
@@ -88,11 +89,11 @@
 <figure>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Parallelepiped-0.svg/220px-Parallelepiped-0.svg.png" alt="Spat" /><figcaption>Spat</figcaption>
 </figure>
-<h1 id="lineare-gleichungssysteme-lgs">Lineare Gleichungssysteme (LGS)</h1>
-<h2 id="vektorform">Vektorform</h2>
+<h2 id="lineare-gleichungssysteme-lgs">Lineare Gleichungssysteme (LGS)</h2>
+<h3 id="vektorform">Vektorform</h3>
 <p>Bspw. <span class="math inline">v * x + p = q</span> um zu prüfen, ob <span class="math inline">q</span> auf Gerade liegt mit <span class="math inline">x</span> “Laufvariable” (Stelle auf) der Gerade</p>
 <p>Entspricht eigentlich drei Gleichungen (eine Gleichung pro Komponente).</p>
-<h2 id="matrixform">Matrixform</h2>
+<h3 id="matrixform">Matrixform</h3>
 <p>LGS:</p>
 <ol type="1">
 <li><span class="math inline">1x + 2y + 3z = 4</span></li>
@@ -102,17 +103,17 @@
 <p>entspricht der Matrix:</p>
 <p><span class="math display">
 \begin{pmatrix}
-1 &amp; 2 &amp; 3 || 4\\
+1 &amp; 2 &amp; 3 | 4\\
 5 &amp; 6 &amp; 7 | 8\\
 9 &amp; 10 &amp; 11 | 12
 \end{pmatrix}
 </span></p>
-<h2 id="mögliche-eigenschaften">Mögliche Eigenschaften</h2>
+<h3 id="mögliche-eigenschaften">Mögliche Eigenschaften</h3>
 <ul>
 <li>Unterbestimmt: Nach Vereinfachung <em>mehr Variablen als Gleichungen</em> =&gt; freie Variablen</li>
 <li>Überbestimmt: Nach Vereinfachung <em>mehr Gleichungen als Variablen</em> =&gt; evtl. keine Lsg.</li>
 </ul>
-<h2 id="lösungen">Lösungen</h2>
+<h3 id="lösungen">Lösungen</h3>
 <p>Für 3-dimensionales-LGS (3 Variablen):</p>
 <ul>
 <li>0 Lösungen: Widersprüchliche Gleichungen</li>
@@ -141,11 +142,11 @@
 </ol>
 <p>Schließlich: Diagonalform genießen</p>
 <!-- TOOD Abstrakt ist dies schwer nachvollziehbar, daher hier eine [Beispielrechnung](gauss_beispiel.html). -->
-<h1 id="geraden">Geraden</h1>
-<h2 id="formen">Formen</h2>
+<h2 id="geraden">Geraden</h2>
+<h3 id="formen">Formen</h3>
 <p>Eindeutig gegeben durch zwei verschiedene Punkte <span class="math inline">A, B</span>. Der Richtungsvektor lässt sich dann wahlweise von <span class="math inline">A</span> nach <span class="math inline">B</span> oder <span class="math inline">B</span> nach <span class="math inline">A</span> bestimmen. Sowohl <span class="math inline">A</span> als auch <span class="math inline">B</span> können als Stützvektor verwendet werden.</p>
 <p>Stützvektor (= beliebiger Punkt auf Gerade) plus Skalar <span class="math inline">s</span> mal Richtungsvektor <span class="math inline">b</span> der Geraden: <span class="math inline">g: x = A + sb</span>.</p>
-<h2 id="schnitte">Schnitte</h2>
+<h3 id="schnitte">Schnitte</h3>
 <p>Einfach Gleichungen gleichsetzen: Punkt-Gerade-Schnitt (Probe, ob Punkt enthalten), Gerade-Gerade-Schnitt, Punkt-Ebene-Schnitt. Fallunterscheidung im Dreidimensionalen.</p>
 <ul>
 <li>Punkt-Gerade-Schnitt
@@ -170,24 +171,24 @@
 </ul></li>
 </ul>
 <!-- TODO refine -->
-<h2 id="abstand-punkt-gerade">Abstand Punkt-Gerade</h2>
+<h3 id="abstand-punkt-gerade">Abstand Punkt-Gerade</h3>
 <p>Gegeben: Ein Punkt <span class="math inline">p</span> und eine Gerade <span class="math inline">g</span>. Gesucht: Der Abstand <span class="math inline">d</span> zwischen <span class="math inline">p</span> und <span class="math inline">g</span>.</p>
 <p>Finde den zu <span class="math inline">p</span> am nächsten liegenden Punkt <span class="math inline">x</span> auf der Geraden. Es muss gelten <span class="math inline">(p - x) \perp b</span>. Wir erhalten als Gleichung:</p>
 <p><span class="math inline">(p - (A + sb)) \cdot b = 0 \lrArr (p - A - sb) \cdot b = 0 \lrArr p \cdot b - A \cdot b - s(b \cdot b)</span>. Man erhält eine Lösung für <span class="math inline">s</span>. Einsetzen in die Geradengleichung liefert den Punkt <span class="math inline">x</span>. Schließlich muss der Abstand berechnet werden; siehe dafür <a href="#abstand">Abstand</a>.</p>
-<h2 id="abstand-zweier-windschiefer-geraden">Abstand zweier windschiefer Geraden</h2>
+<h3 id="abstand-zweier-windschiefer-geraden">Abstand zweier windschiefer Geraden</h3>
 <p>Normalenvektor der Hilfsebene als Kreuzprodukt der Richtungsvektoren, Stützvektor ein Punkt von Gerade A. Abstand von beliebigem Punkt der Geraden B zur Hilfsebene bestimmen.</p>
 <h3 id="alternativ-punktprodukt">Alternativ: Punktprodukt</h3>
 <p>Ziehe von <span class="math inline">p</span> <span class="math inline">A</span> ab (verschiebe <span class="math inline">p</span>). Verschiebe ebenfalls <span class="math inline">g</span>, sodass <span class="math inline">g</span> durch den Ursprung geht; an der relativen Lage von Punkt und Gerade ändert sich dabei nichts. Berechne nun <span class="math inline">\frac{(p - A) \cdot b}{|b|} = s}</span>: Das Punktprodukt liefert die Länge der Projektion auf die Gerade, diese muss nur noch durch die Länge des Richtungsvektors geteilt werden, da wir in der Geradengleichung ja damit multiplizieren (und der Richtungsvektor nicht normiert ist).</p>
-<h1 id="ebenen">Ebenen</h1>
+<h2 id="ebenen">Ebenen</h2>
 <p>Eindeutig gegeben durch drei verschiedene Punkte. Parameterform konstruierbar, indem man einen Punkt als Stützvektor wählt und von diesem aus die beiden Spannvektoren bestimmt:</p>
 <p>Gegeben Punkte <span class="math inline">A, B, C</span>, wähle <span class="math inline">A</span> als Stützvektor. Dann ergeben sich Spannvektoren <span class="math inline">b, c</span> als <span class="math inline">b = B - A</span>, <span class="math inline">c = C - A</span>. Somit ist die Parameterform: <span class="math inline">E: x = A + sb + tc</span> mit <span class="math inline">s, t</span> Skalaren.</p>
-<h2 id="formen-1">Formen</h2>
-<h3 id="parameterform">Parameterform</h3>
+<h3 id="formen-1">Formen</h3>
+<h4 id="parameterform">Parameterform</h4>
 <p><span class="math inline">E: x = A + sb + tc</span> mit <span class="math inline">x</span> Punkt auf Ebene, <span class="math inline">A</span> Stützvektor, <span class="math inline">s, t</span> Skalaren und <span class="math inline">b, c</span> Spannvektoren.</p>
 <p>Bestimmung aus Koordinatenform: Drei Punkte <span class="math inline">A, B, C</span> durch Einsetzen in die Koordinatenform bestimmen (bspw. Spurpunkte).</p>
 <p>Wenn die Spannvektoren Dreiecksseiten sind und die Parameter <span class="math inline">s</span> und <span class="math inline">t</span> auf valide Punkte der Dreiecksfläche beschränkt sein sollen, müssen zusätzlich die folgenden Ungleichungen gelten:</p>
 <p><span class="math inline">0 \leq s, t</span> und <span class="math inline">s + t \leq 1</span>; für ein Parallelogram (Sonderfall Rechteck/Quadrat) wird Letztere zu <span class="math inline">s \leq 1</span> und <span class="math inline">t \leq 1</span>.</p>
-<h3 id="normalenform">Normalenform</h3>
+<h4 id="normalenform">Normalenform</h4>
 <p>Punktprodukt aus Punkt <span class="math inline">x</span> minus Stützvektor <span class="math inline">P</span> mit Normalenvektor <span class="math inline">n</span> muss null sein (siehe <a href="#orthogonalität">Orthogonalität</a>): <span class="math inline">E: n \cdot (x - P) = 0</span>. Lässt sich einfach umstellen:</p>
 <p><span class="math inline">E: n \cdot (x - P) = 0 \lrArr n \cdot x - n \cdot P = 0 \lrArr n \cdot x = n \cdot P</span>, wobei <span class="math inline">n \cdot P</span> als Skalar ausgerechnet werden kann (“vereinfachte” Normalenform).</p>
 <p>Ist zusätzlich <span class="math inline">|n| = 1</span>, der Normalenvektor also normiert, bezeichnet man die “vereinfachte” Normalenform als <strong>hessesche Normalenform</strong>. Dann kann die <strong>hessesche Abstandsformel</strong> angewendet werden.</p>
@@ -208,7 +209,7 @@
 <li>Zwei Koeffizienten <span class="math inline">0</span>: Schnitt mit einer Koordinatenachse (Normalenvektor ist parallel zu einer Koordinatenachse)</li>
 </ul>
 <p>Wenn außerdem <span class="math inline">d = 0</span> ist, geht die Ebene durch den Ursprung. In diesem Fall sind unendlich viele Spurpunkte auf allen Achsen, die Koeffizient <span class="math inline">0</span> haben möglich; bei der Spurpunktebestimmung erhält man dann Gleichungen <span class="math inline">0 = 0</span>.</p>
-<h2 id="schnitte-1">Schnitte</h2>
+<h3 id="schnitte-1">Schnitte</h3>
 <p>Einfach gleichsetzen: Punkt-Ebene-Schnitt (Probe, ob Punkt enthalten), Gerade-Ebene-Schnitt, Ebene-Ebene-Schnitt.</p>
 <ul>
 <li>Gerade-Ebene-Schnitt
@@ -227,8 +228,8 @@
 <li>Keine Lösung: Parallel (Normalenvektoren kolinear)</li>
 </ul></li>
 </ul>
-<h2 id="abstand-punkt-ebene">Abstand Punkt-Ebene</h2>
-<h3 id="lotgerade"><a href="https://appgurueu.github.io/mathe/abstand-punkt-ebene/">Lotgerade</a></h3>
+<h3 id="abstand-punkt-ebene">Abstand Punkt-Ebene</h3>
+<h4 id="lotgerade"><a href="https://appgurueu.github.io/mathe/abstand-punkt-ebene/">Lotgerade</a></h4>
 <ol type="1">
 <li>Geradengleichung Lotgerade aufstellen: <span class="math inline">g_l: x = p + t \cdot n</span></li>
 </ol>
@@ -256,26 +257,26 @@
 <li>Zur Erinnerung: Betrag eines Vektors: <span class="math inline">|x| = \sqrt{x_1^2 + x_2^2 + x_3^2}</span></li>
 </ul></li>
 </ul>
-<h3 id="hessesche-abstandsformel">Hessesche Abstandsformel</h3>
+<h4 id="hessesche-abstandsformel">Hessesche Abstandsformel</h4>
 <p>Alternativ kann die Ebene in die <strong>hessesche Normalenform</strong> überführt werden; dann kann die <strong>hessesche Abstandsformel</strong> verwendet werden:</p>
 <p><span class="math inline">d = |np - b|</span> für Normalenvektor <span class="math inline">n</span> und Punkt <span class="math inline">p</span> und <span class="math inline">d</span> Skalar auf der anderen Seite (enthält Abstand zum Ursprung).</p>
 <p>Dies ist häufig schneller.</p>
 <!-- TODO reword & fix -->
-<h1 id="shortcuts">Shortcuts</h1>
-<h2 id="kreuzprodukt-zur-dreiecksflächenbestimmung">Kreuzprodukt zur Dreiecksflächenbestimmung</h2>
+<h2 id="shortcuts">Shortcuts</h2>
+<h3 id="kreuzprodukt-zur-dreiecksflächenbestimmung">Kreuzprodukt zur Dreiecksflächenbestimmung</h3>
 <p>Bestimme <span class="math inline">\frac{|A \times B|}{2}</span></p>
-<h2 id="rechtwinkligkeit-eines-dreiecks">Rechtwinkligkeit eines Dreiecks</h2>
+<h3 id="rechtwinkligkeit-eines-dreiecks">Rechtwinkligkeit eines Dreiecks</h3>
 <p>Abstände <span class="math inline">a = |AB|</span>, <span class="math inline">b = |BC|</span>, und <span class="math inline">c = |CA|</span> ausrechnen, dann so sortieren, dass <span class="math inline">c &gt; a</span> und <span class="math inline">c &gt; b</span> gilt, und schließlich S.d.P <span class="math inline">a^2 + b^2 = c^2</span> überprüfen. Alternativ:</p>
 <p>Gilt <span class="math inline">BA \cdot BC = 0</span> oder <span class="math inline">AB \cdot AC = 0</span> oder <span class="math inline">CA \cdot CA = 0</span>, dann ist das Dreieck rechtwinklig.</p>
-<h1 id="hilfsmittel">Hilfsmittel</h1>
-<h2 id="gtr">GTR</h2>
+<h2 id="hilfsmittel">Hilfsmittel</h2>
+<h3 id="gtr">GTR</h3>
 <p>Unvollständige Liste:</p>
 <ul>
-<li>Lösen linearer Gleichungssystem mittels <code>linsolve</code></li>
+<li>Lösen linearer Gleichungssystem mittels <code>linSolve</code></li>
 <li>Bestimmen von Vektorlängen mit <code>norm</code></li>
-<li>Kreuzprodukt (<code>crossp</code>) &amp; Skalarprodukt (<code>dotp</code>)</li>
+<li>Kreuzprodukt (<code>crossP</code>) &amp; Skalarprodukt (<code>dotP</code>)</li>
 </ul>
-<h2 id="formelsammlung">Formelsammlung</h2>
+<h3 id="formelsammlung">Formelsammlung</h3>
 <ul>
 <li>S. 62: Definition Vektor</li>
 <li>S. 63: Länge eines Vektors, Addition (Verschiebung), skalare Multiplikation (Skalierung)</li>
