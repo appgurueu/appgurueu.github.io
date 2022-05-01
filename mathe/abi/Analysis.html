@@ -25,20 +25,17 @@
 <h1 class="title">Analysis</h1>
 </header>
 <h2 id="notation">Notation</h2>
-<ul>
-<li>Intervalle:
+<h3 id="intervalle">Intervalle</h3>
 <ul>
 <li>Runde Klammern für exklusive, eckige Klammern für inklusive Intervallgrenzen</li>
 <li>Offen: <span class="math inline">(-1, 1)</span> - alle Zahlen von <span class="math inline">-1</span> bis <span class="math inline">1</span>, Intervallgrenzen exklusive</li>
 <li>Halboffen: <span class="math inline">(-1, 1]</span> oder <span class="math inline">[-1, 1)</span></li>
 <li>Geschlossen: <span class="math inline">[-1, 1]</span> - beide Intervallgrenzen sind enthalten</li>
-</ul></li>
 </ul>
 <p>Bei Intervallen mit Unendlichkeiten müssen auf Seiten der Unendlichkeit immer runde Klammern verwendet werden, da unendlich kein erreichbarer Wert ist:</p>
 <p><span class="math inline">(-\infty, +\infty)</span>, <span class="math inline">(-\infty, b]</span>, <span class="math inline">[a, +\infty)</span></p>
-<h2 id="terminologie">Terminologie</h2>
-<p>Stelle: X-Wert</p>
-<p>Punkt: Paar <span class="math inline">(X, Y)</span></p>
+<h3 id="punkte">Punkte</h3>
+<p><span class="math inline">P(X|Y)</span></p>
 <h2 id="funktionen">Funktionen</h2>
 <h3 id="definitionen">Definitionen</h3>
 <ul>
@@ -46,16 +43,12 @@
 <li>Wertebereich: Bereich aller Werte <span class="math inline">y = f(x)</span>, die die Funktion annehmen kann</li>
 <li>Polynome: Summe von Termen <span class="math inline">a_nx^n</span>, bspw. <span class="math inline">f(x) = 1 + x + x^{42}</span></li>
 </ul>
-<p>Die in der Schule behandelten Funktionen bilden immer von Intervallen der reellen Zahlen als Definitionsbereiche auf Wertebereiche ab. Teilweise sind auch einzelne Werte ausgenommen.</p>
-<h4 id="beispiele">Beispiele</h4>
-<ul>
-<li><span class="math inline">x^2</span>: Wertebereich sind die nicht-negativen reellen Zahlen, d.h. <span class="math inline">[0, +\infty)</span></li>
-</ul>
+<p>Die in der Schule behandelten Funktionen bilden immer von Intervallen der reellen Zahlen als Definitionsbereiche auf Wertebereiche in den reellen Zahlen (Bsp.: <span class="math inline">x^2</span>: Wertebereich sind die nicht-negativen reellen Zahlen, d.h. <span class="math inline">[0, +\infty)</span>) ab; teilweise sind auch einzelne Werte ausgenommen (bspw. <span class="math inline">0</span> im Definitionsbereich von <span class="math inline">1/x</span>).</p>
 <h3 id="transformationen">Transformationen</h3>
 <ul>
 <li>Verschiebung um <span class="math inline">d</span>:
 <ul>
-<li>X-Richtung: <span class="math inline">g(x) = f(x - d)</span> (nach “rechts”).</li>
+<li>X-Richtung: <span class="math inline">g(x) = f(x - d)</span> (nach “rechts”)</li>
 <li>Y-Richtung: <span class="math inline">g(x) = f(x) + d</span> (nach “oben”)</li>
 </ul></li>
 <li>Skalierung um Faktor <span class="math inline">a</span>:
@@ -73,25 +66,26 @@
 <li>Skalierung: <span class="math inline">a &lt; 1</span> streckt, <span class="math inline">a &gt; 1</span> staucht</li>
 </ul>
 <h3 id="symmetrie">Symmetrie</h3>
-<p>Funktionen sind immer <em>entweder</em> achsen- oder punktsymmetrisch. Einzige Ausnahme ist hierbei <span class="math inline">f(x) = 0</span>.</p>
-<h4 id="achsensymmetrie">Achsensymmetrie</h4>
-<p>Achsensymmetrie zur y-Achse:</p>
+<p>Funktionen können nicht sowohl achsen- als auch punktsymmetrisch sein (mit Ausnahme von <span class="math inline">f(x) = 0</span>).</p>
+<h4 id="achsensymmetrie-zur-y-achse">Achsensymmetrie (zur Y-Achse)</h4>
 <p><span class="math inline">f(x) = f(-x)</span>.</p>
-<p>Ist nach Punktsymmetrie zu einer Gerade mit <span class="math inline">x = a</span> gefragt, so muss die Funktion um <span class="math inline">a</span> verschoben werden, sodass der Ursprung der Ausgangsfunktion an Stelle <span class="math inline">a</span> liegt:</p>
+<p>Ist nach Achsensymmetrie zu einer Gerade mit <span class="math inline">x = a</span> gefragt, so muss die Funktion um <span class="math inline">a</span> verschoben werden, sodass der Ursprung der Ausgangsfunktion an Stelle <span class="math inline">a</span> liegt:</p>
 <p><span class="math inline">g(x) = f(x - a)</span> und danach <span class="math inline">g(x) = g(-x) \lrArr f(x - a) = f(-(x - a)) \lrArr f(x - a) = f(a - x)</span></p>
-<p>Polynome mit geraden Exponenten (inklusive der <span class="math inline">0</span> und negativer Exponenten) sind immer achsensymmetrisch. Beispiele:</p>
+<p>Polynome mit geraden Exponenten (inklusive der <span class="math inline">0</span> und negativer Exponenten) sind immer achsensymmetrisch (da gerade Exponenten die Vorzeichen beseitigen). Beispiele:</p>
 <ul>
 <li><span class="math inline">f(x) = 42</span></li>
 <li><span class="math inline">f(x) = 42 + 3x^2</span></li>
 <li><span class="math inline">f(x) = 33x^{100} + x^{1000000}</span></li>
 <li><span class="math inline">f(x) = x^3 - x^3 + x^8 = x^8</span></li>
 </ul>
-<p>Polynome mit ungeraden Exponenten (inklusive der <span class="math inline">1</span> und negativer Exponenten) können nicht achsensymmetrisch sein. Beispiele:</p>
+<p>Polynome mit ungeraden Exponenten (inklusive der <span class="math inline">1</span> und negativer Exponenten) können nicht achsensymmetrisch sein, sind aber immer punktsymmetrisch (da die ungeraden Exponenten die Vorzeichen erhalten). Beispiele:</p>
 <ul>
 <li><span class="math inline">f(x) = \frac{1}{2}x</span></li>
 <li><span class="math inline">f(x) = x^3 + x^{2000}</span></li>
 <li><span class="math inline">f(x) = x^{99} + x^{100}</span></li>
 </ul>
+<p>Polynome mit gemischten Exponenten sind weder achsen- noch punktsymmetrisch.</p>
+<!-- TODO Beweis -->
 <h4 id="punktsymmetrie">Punktsymmetrie</h4>
 <p>Punktsymmetrie zum Ursprung:</p>
 <p><span class="math inline">-f(x) = f(-x)</span>.</p>
@@ -99,37 +93,33 @@
 <p><span class="math inline">g(x) = f(x - p_x) + p_y</span> und weiter <span class="math inline">-g(x) = g(-x)</span></p>
 <p>Polynome mit geraden Exponenten können nicht punktsymmetrisch sein; Polynome mit ungeraden Exponenten (inkl. negativer Exponenten) sind immer punktsymmetrisch.</p>
 <h3 id="inverse">Inverse</h3>
-<p>Für eine Inverse <span class="math inline">f^-1</span> zu <span class="math inline">f</span> gilt: Wenn <span class="math inline">f(x) = y</span>, dann ist <span class="math inline">f^-1(y) = x</span>. Somit heben sich <span class="math inline">f</span> und <span class="math inline">f^-1</span> auf: <span class="math inline">f(f^-1(x)) = x = f^-1(f(x))</span> (bspw.: auf positiven reellen Zahlen heben sich Wurzel &amp; Quadrat auf).</p>
-<p>Synonym: Umkehrabbildung.</p>
-<p>Inverse sind - insbesondere als Fkt. - nicht immer eindeutig/vollständig. Bsp. Wurzel (positiv/negativ) oder log als Inverse zur e-Fkt.</p>
+<p>Für eine Inverse (auch: Umkehrabbildung) <span class="math inline">f^-1</span> zu <span class="math inline">f</span> gilt: Wenn <span class="math inline">f(x) = y</span>, dann ist <span class="math inline">f^-1(y) = x</span>. Somit heben sich <span class="math inline">f</span> und <span class="math inline">f^-1</span> auf: <span class="math inline">f(f^-1(x)) = x = f^-1(f(x))</span> (bspw.: auf positiven reellen Zahlen heben sich Wurzel &amp; Quadrat auf).</p>
+<p>Inverse sind - insbesondere als Fkt. - nicht immer eindeutig &amp; “vollständig” (auf allen reellen Zahlen definiert). Bsp. <span class="math inline">\plusmn\sqrt{x}</span> als Inverse von <span class="math inline">x^2</span> oder <span class="math inline">ln</span> als Inverse zur e-Fkt (da <span class="math inline">e^x &gt; 0</span>, ist <span class="math inline">ln(x)</span> nur für <span class="math inline">x &gt; 0</span> definiert).</p>
 <h3 id="nullstellen">Nullstellen</h3>
 <ul>
 <li>Lineare Funktionen: Trivial</li>
-<li>Quadratische Funktionen: p-q-Formel</li>
-<li><span class="math inline">ax^4 + bx^2 + c</span>: <span class="math inline">z = x^2</span> substituieren</li>
-<li>Produkt ist 0, g.d.w. min. einer der Faktoren 0 ist
+<li>Quadratische Funktionen: p-q-Formel, bei einfacheren ausklammern</li>
+<li><span class="math inline">ax^3 + bx^2 + cx</span>: <span class="math inline">x</span> ausklammern ⇒ <span class="math inline">x_1 = 0</span>, quadratische Gleichung <span class="math inline">ax^2 + bx + c</span> lösen</li>
+<li><span class="math inline">ax^4 + bx^2 + c</span>: <span class="math inline">z = x^2</span> substituieren, quadratische Gleichung in <span class="math inline">z</span> lösen, Lösungen nach <span class="math inline">x</span> umformen</li>
+<li>Produkt ist <span class="math inline">0</span> g.d.w. min. einer der Faktoren <span class="math inline">0</span> ist:
 <ul>
-<li>Bei Exponentialfkt. mit einer Basis != 0 (insbesondere <span class="math inline">e^x</span>)</li>
-<li>Nullstellenform: <span class="math inline">(x - a)(x - b)(x - c)</span>, offensichtlich Nst. <span class="math inline">a, b, c</span></li>
+<li>Bei Exponentialfkt. mit einer Basis <span class="math inline">!= 0</span> (insbesondere <span class="math inline">e^x</span>)</li>
+<li>“Nullstellenform”: <span class="math inline">(x - a)(x - b)(x - c)</span>, offensichtlich Nst. <span class="math inline">a, b, c</span></li>
 </ul></li>
 </ul>
 <h3 id="grenzwerte-limes">Grenzwerte (Limes)</h3>
 <!-- TODO -->
-<p>Verhalten im Unendlichen. Regeln:</p>
+<p>Verhalten im Unendlichen. Einige Regeln:</p>
 <ul>
-<li>Bei einem Polynom bestimmt immer der höchstwertigste Teil das Verhalten im Unendlichen. <span class="math inline">x^n</span> geht für <span class="math inline">n &gt; 0</span> im Unendlichen immer gegen Unendlich.</li>
+<li>Bei einem Polynom bestimmt immer der höchste Exponent das Verhalten im Unendlichen. <span class="math inline">x^n</span> geht für <span class="math inline">n &gt; 0</span> im Unendlichen immer gegen Unendlich.</li>
 <li><span class="math inline">e^x</span> geht für <span class="math inline">x</span> gegen <span class="math inline">+\infty</span> gegen <span class="math inline">\infty</span>.</li>
-<li><span class="math inline">e^-x</span> und <span class="math inline">\frac{1}{x}</span> <span class="math inline">x</span> gegen <span class="math inline">+\infty</span> gegen <span class="math inline">0</span>.</li>
+<li><span class="math inline">e^-x</span> und <span class="math inline">\frac{1}{x}</span> gehen für <span class="math inline">x</span> gegen <span class="math inline">+\infty</span> gegen <span class="math inline">0</span>.</li>
+<li><span class="math inline">e^x</span> geht für <span class="math inline">x</span> gegen <span class="math inline">0</span> gegen <span class="math inline">1</span>.</li>
 </ul>
 <p>Weitere Regeln finden sich in der Formelsammlung.</p>
 <h3 id="trigonometrische-funktionen">Trigonometrische Funktionen</h3>
-<h4 id="ableitungen">Ableitungen</h4>
-<ul>
-<li><span class="math inline">cos&#39;(x) = -sin(x)</span></li>
-<li><span class="math inline">sin&#39;(x) = cos(x)</span></li>
-</ul>
-<h4 id="inverse-1">Inverse</h4>
-<p>Die Inversen zu den trigonometrischen Funktionen <span class="math inline">sin</span>, <span class="math inline">cos</span> und <span class="math inline">tan</span> heißen <span class="math inline">arcsin</span>, <span class="math inline">arccos</span> und <span class="math inline">arctan</span> (“arc” ist dabei kurz for “arcus”). Bei Taschenrechnern findet man meist als Notation für Inverse <span class="math inline">sin^{-1}</span>, <span class="math inline">cos^{-1}</span> und <span class="math inline">tan^{-1}</span>.</p>
+<h4 id="inversen">Inversen</h4>
+<p>Die Inversen zu den trigonometrischen Funktionen <span class="math inline">sin</span>, <span class="math inline">cos</span> und <span class="math inline">tan</span> heißen <span class="math inline">arcsin</span>, <span class="math inline">arccos</span> und <span class="math inline">arctan</span> (“arc” ist dabei kurz for “arcus”). Bei Taschenrechnern findet man meist als Notation für die Inversen <span class="math inline">sin^{-1}</span>, <span class="math inline">cos^{-1}</span> und <span class="math inline">tan^{-1}</span>.</p>
 <h3 id="änderungsrate-steigung-über-zeitraum">Änderungsrate / Steigung über Zeitraum</h3>
 <p>Berechnung des Steigungsdreiecks durch:</p>
 <p><span class="math inline">\frac{\Delta x}{\Delta y} = \frac{f(x_2) - f(x_1)}{x_2 - x_1}</span></p>
@@ -139,10 +129,10 @@
 <p>Setze nun <span class="math inline">x_1 = x</span> und <span class="math inline">x_2 = x_1 + h = x + h</span>:</p>
 <p><span class="math inline">\frac{f(x + h) - f(x)}{(x + h) - x} = \frac{f(x + h) - f(x)}{h}</span></p>
 <p><span class="math inline">h</span> gehe gegen <span class="math inline">0</span>, sodass man unendlich kleine Steigungsdreiecke erhält. Die berechnete Steigung nähert sich immer weiter einer <em>momentanen</em> Änderungsrate <em>für die Stelle <span class="math inline">x_1</span></em> an. Als Grenzwert:</p>
-<p><span class="math inline">lim_{x \rarr 0} \frac{f(x + h) - f(x)}{h}</span></p>
-<h3 id="ableitungen-1">Ableitungen</h3>
+<p><span class="math inline">lim_{h \rarr 0} \frac{f(x + h) - f(x)}{h}</span></p>
+<h3 id="ableitungen">Ableitungen</h3>
 <p>Die Ableitung einer Funktion <span class="math inline">f(x)</span> heißt <span class="math inline">f&#39;(x)</span> und liefert die momentane Änderungsrate. Es gilt also:</p>
-<p><span class="math inline">f&#39;(x) = lim_{x \rarr 0} \frac{f(x + h) - f(x)}{h}</span>.</p>
+<p><span class="math inline">f&#39;(x) = lim_{h \rarr 0} \frac{f(x + h) - f(x)}{h}</span>.</p>
 <h3 id="ableitungsregeln">Ableitungsregeln</h3>
 <h4 id="faktorregel">Faktorregel</h4>
 <p>Konstante Vorfaktoren (alles, was keinen Parameter der Fkt. - also kein <span class="math inline">x</span> - enthält) bleiben unverändert:</p>
@@ -152,7 +142,7 @@
 <p><span class="math inline">f(x) = g(x) + h(x)</span>, dann ist <span class="math inline">f&#39;(x) = g&#39;(x) + h&#39;(x)</span>.</p>
 <h4 id="potenzregel">Potenzregel</h4>
 <p>Konstante Potenzen werden um <span class="math inline">1</span> reduziert und kommen “herunter” (werden also zu Vorfaktoren):</p>
-<p><span class="math inline">f(x) = x^n</span>, dann ist <span class="math inline">f&#39;(x) = (n-1)x^n</span>.</p>
+<p><span class="math inline">f(x) = x^n</span>, dann ist <span class="math inline">f&#39;(x) = nx^{n-1}</span>.</p>
 <p>Zur Erinnerung:</p>
 <ul>
 <li><span class="math inline">x^{-n} = \frac{1}{x^n}</span></li>
@@ -160,20 +150,24 @@
 <li>Und somit auch: <span class="math inline">x^{-\frac{1}{n}} = \frac{1}{\sqrt[n]{x}}</span></li>
 </ul>
 <p>Über die Potenzregel ist es also möglich, <span class="math inline">n</span>-te Wurzeln, einfache Brüche und Brüche mit Wurzeln abzuleiten.</p>
-<h4 id="polynome-ableiten">Polynome ableiten</h4>
+<h4 id="polynome">Polynome</h4>
 <p>Faktorregel, Summenregel und Potenzregel reichen, um beliebige Polynome abzuleiten.</p>
 <h4 id="produktregel">Produktregel</h4>
 <p>Summe der beiden abgeleitet-unabgeleitet-Produkte:</p>
 <p><span class="math inline">f(x) = g(x) \cdot h(x)</span>, dann ist <span class="math inline">f&#39;(x) = g&#39;(x)h(x) + g(x)h&#39;(x)</span></p>
 <h4 id="kettenregel">Kettenregel</h4>
 <p><span class="math inline">f(x) = g(h(x))</span>, dann ist <span class="math inline">f&#39;(x) = h&#39;(x) \cdot g&#39;(h(x))</span></p>
-<p>Spezialfall: <span class="math inline">e</span>-Funktion mit Faktor im Exponenten: <span class="math inline">f(x) = e^{nx}</span> wird nach der Kettenregel zu <span class="math inline">ne^{nx}</span></p>
+<p>Spezialfall: <span class="math inline">e</span>-Funktion mit Faktor im Exponenten: <span class="math inline">f(x) = e^{ax}</span> wird nach der Kettenregel zu <span class="math inline">ae^{ax}</span></p>
 <h4 id="spezielle-ableitungen">Spezielle Ableitungen</h4>
-<p><del>Siehe Formelsammlung.</del></p>
 <p><span class="math inline">e^x</span> ändert sich bei Ableitung nicht; bei <span class="math inline">e^{ax}</span> ist abgeleitet gemäß Kettenregel <span class="math inline">ae^{ax}</span>.</p>
 <p><span class="math inline">ln(x)</span> ist abgeleitet <span class="math inline">1/x</span>.</p>
 <p><span class="math inline">a^x</span> lässt sich als <span class="math inline">c \cdot e^x</span> schreiben und mit <span class="math inline">e&#39;(x) = e(x)</span> bequem ableiten:</p>
 <p>Mit <span class="math inline">a^x</span> = <span class="math inline">e^{ln(x)}</span> ergibt sich <span class="math inline">a^x = (e^{ln(x)})^x = e^{ln(x)x}</span>.</p>
+<p>Trigonometrische Funktionen:</p>
+<ul>
+<li><span class="math inline">cos&#39;(x) = -sin(x)</span></li>
+<li><span class="math inline">sin&#39;(x) = cos(x)</span></li>
+</ul>
 <h4 id="zusammenfassung">Zusammenfassung</h4>
 <table>
 <thead>
@@ -223,10 +217,10 @@
 </table>
 <h3 id="kurvendiskussion">Kurvendiskussion</h3>
 <p>Als erstes wird die Funktion abgeleitet, um Aussagen über das Steigungsverhalten treffen zu können.</p>
-<p>An Extremstellen (lokalen Minima, Maxima, oder Sattelpunkten) nimmt die momentane Änderungsrate den Wert 0 an. Demnach sind die Extremstellen die Nullstellen der ersten Ableitung.</p>
+<p>An Extremstellen (lokalen Minima, Maxima, oder Sattelpunkten) nimmt die momentane Änderungsrate den Wert <span class="math inline">0</span> an. Demnach sind die Extremstellen die Nullstellen der ersten Ableitung.</p>
 <p>Da wir hier von stetigen Funktionen ausgehen, können die Steigung unmittelbar vor- und nach der Extremstelle betrachtet werden, um eine Aussage über die Art treffen zu können:</p>
 <p>Bei Maxima wechselt eine vorher positive Steigung zu einer negativen - bei Minima ist dies genau umgekehrt; bei Sattelpunkten dahingegen wechselt das Vorzeichen der Steigung nicht.</p>
-<p>Dies lässt sich als Tabelle der Vorzeichen der Werte der Ableitung eintragen. Hierzu werden zwischen den Nullstellen freie Spalten gelassen, für die beliebige Werte zwischen den beiden Nullstellen in die erste Ableitung eingesetzt werden können; dann werden die Vorzeichen eingetragen. An den beiden Rändern kommen zwei weitere Spalten. Als Hilfestellung kann man sich noch das Steigungsverhalten von f dazuschreiben:</p>
+<p>Dies lässt sich als Tabelle der Vorzeichen der Werte der Ableitung eintragen. Hierzu werden zwischen den Nullstellen freie Spalten gelassen, für die beliebige Werte zwischen den beiden Nullstellen in die erste Ableitung eingesetzt werden können; dann werden die Vorzeichen eingetragen. An den beiden Rändern kommen zwei weitere Spalten. Als Hilfestellung kann man sich noch das Steigungsverhalten von <span class="math inline">f</span> dazuschreiben:</p>
 <h4 id="beispiel">Beispiel</h4>
 <table>
 <thead>
@@ -265,7 +259,7 @@
 </tbody>
 </table>
 <p>Die <span class="math inline">-1000</span>, <span class="math inline">0</span> und <span class="math inline">20</span> (alle Werte zwischen den Nullstellen) sind dabei willkürlich aus dem Bereich gewählt.</p>
-<p>Schlussfolgerung:</p>
+<p>Schlussfolgerungen:</p>
 <ul>
 <li>Die Fkt. geht im Negativen gegen <span class="math inline">-\infty</span></li>
 <li>Maximum bei x=-10 (VZW <span class="math inline">+ \rarr -</span>)</li>
@@ -273,8 +267,8 @@
 <li>Minimum bei x=100 (VZW <span class="math inline">- \rarr +</span>)</li>
 <li>Im Positiven gegen <span class="math inline">+\infty</span></li>
 </ul>
-<p>Bildet man nun die <strong>zweite Ableitung</strong>, so kann man Aussagen über die Extremstellen der <strong>ersten Ableitung fällen</strong> und somit das <strong>Krümmungsverhalten</strong> - die Änderung der Änderung:</p>
-<p>Analogie aus der Physik: der Ort sei die Funktion <span class="math inline">s(t)</span>. Dann ist die Geschwindigkeit <span class="math inline">v(t)</span> als Änderung des Ortes die erste Ableitung und die Beschleunigung <span class="math inline">a(t)</span> als Änderung der Geschwindigkeit die erste Ableitung von <span class="math inline">v(t)</span> und die zweite Ableitung der ursprünglichen Ortsfunktion <span class="math inline">s(t)</span>: <span class="math inline">v(t) = s&#39;(t); a(t) = v&#39;(t) = s&#39;&#39;(t)</span></p>
+<p>Bildet man nun die <strong>zweite Ableitung</strong>, so kann man Aussagen über die Extremstellen der <strong>ersten Ableitung</strong> und somit über das <strong>Krümmungsverhalten</strong> - die Änderung der Änderung - fällen:</p>
+<p>Einfaches Beispiel aus der Physik: Der Ort sei die Funktion <span class="math inline">s(t)</span>. Dann ist die Geschwindigkeit <span class="math inline">v(t)</span> als Änderung des Ortes die erste Ableitung und die Beschleunigung <span class="math inline">a(t)</span> als Änderung der Geschwindigkeit die erste Ableitung von <span class="math inline">v(t)</span> und die zweite Ableitung der ursprünglichen Ortsfunktion <span class="math inline">s(t)</span>: <span class="math inline">v(t) = s&#39;(t); a(t) = v&#39;(t) = s&#39;&#39;(t)</span>.</p>
 <ul>
 <li><strong>Minima</strong> der 1. Ableitung sind Wendepunkte mit lokal <strong>minimaler Steigung</strong>;</li>
 <li><strong>Maxima</strong> sind analog Wendepunkte mit lokal <strong>maximaler Steigung</strong>;</li>
@@ -282,50 +276,57 @@
 </ul>
 <p>Minima &amp; Maxima der ursprünglichen Funktion können nach der Bestimmung des Krümmungsverhaltens als Vorzeichen der 2. Ableitung an der Stelle von Sattelpunkten (mit 2. Ableitung = 0) unterschieden werden:</p>
 <ul>
-<li>In lokalen Maxima ist die Funktion <em>linksgekrümmt</em> (?) mit negativem Vorzeichen der 2. Ableitung: Die Steigung ist anfangs positiv und wird dann immer negativer, erreicht im Maximum die 0 und geht nachher negativ weiter.</li>
+<li>In lokalen Maxima ist die Funktion <em>linksgekrümmt</em> mit negativem Vorzeichen der 2. Ableitung: Die Steigung ist anfangs positiv und wird dann immer negativer, erreicht im Maximum die <span class="math inline">0</span> und geht nachher negativ weiter.</li>
 <li>Exakt umgekehrt im lokalen Minimum: Dort ist die Funktion <em>rechtsgekrümmt</em> mit positivem Vorzeichen der 2. Ableitung</li>
 </ul>
 <p>Dazu die Merkhilfe für die “umgekehrte” Zuordnung positiv - Minimum, negativ - Maximum:</p>
 <blockquote>
-<p>Negative 2. Ableitung ⇒ Trauriger Smiley ☹️ ⇒ Maximum<br />
-Positive 2. Ableitung ⇒ Glücklicher Smiley 🙂️ ⇒ Minimum</p>
+<p>Negative 2. Ableitung ⇒ Trauriger Smiley ☹️ ⇒ Maximum, linksgekrümmt<br />
+Positive 2. Ableitung ⇒ Glücklicher Smiley 🙂️ ⇒ Minimum, rechtsgekrümmt</p>
 </blockquote>
 <p>Dies muss analog mit der dritten Ableitung für Minima und Maxima als Wendepunkte geschehen.</p>
 <h3 id="monotonieverhalten">Monotonieverhalten</h3>
 <p>Zwischen zwei Extremstellen ist eine Fkt. immer monoton steigend/fallend.</p>
 <h3 id="globales-maximum-minimum">Globales Maximum / Minimum</h3>
-<p>Immer Maximum / Minimum aller lok. Maxima bzw. Minimum mit evtl. Randwerten bzw. Verhalten im Unendlichen.</p>
+<p>Immer Maximum / Minimum aller lokalen Maxima bzw. Minima unter evtl. Berücksichtigung von Randwerten bzw. des Verhaltens im Unendlichen.</p>
 <h3 id="ortskurve-der-extrempunkte">Ortskurve der Extrempunkte</h3>
 <p>Gegeben: Funktionenschar <span class="math inline">f_k</span> mit Extrempunkten <span class="math inline">(x, y)</span> mit <span class="math inline">x</span> abhängig von Parameter <span class="math inline">k</span>.</p>
 <p>Einfach nach <span class="math inline">k</span> die erste Gleichung auflösen (<span class="math inline">k</span> in Abhängigkeiten von <span class="math inline">x</span>) und in <span class="math inline">y</span> einsetzen.</p>
 <h2 id="asymptote-von-e-fkt.">Asymptote von E-Fkt.</h2>
-<p>Additiver Restterm wenn E-Fkt gegen 0 geht (negativer Exponent), ansonsten gegen Unendlich</p>
+<p>Additiver Restterm wenn E-Fkt gegen <span class="math inline">0</span> geht - Faktor vor E-Fkt. wenn E-Fkt. gegen <span class="math inline">1</span> geht - ansonsten gegen Unendlich.</p>
 <h3 id="integrieren">Integrieren</h3>
 <p>Prinzipiell können alle Ableitungsregeln “rückwärts” angewandt werden. Insbesondere bei der Potenzregel ist dies noch intuitiv. Produkt- und Kettenregeln sind allerdings komplizierter und müssen teils mehrfach hintereinander angewendet werden.</p>
 <h4 id="partielle-integration">Partielle Integration</h4>
 <p>Auch “Produktintegration” genannt; Produktregel “rückwärts”. Herleitung:</p>
 <p><span class="math inline">F(x) = u(x)v(x) \Rarr F&#39;(x) = f(x) = u&#39;(x)v(x) + u(x)v&#39;(x)</span> nach Produktregel</p>
-<p><span class="math inline">\int{F&#39;(x)}dx = \int{f(x)}dx = F(x)</span> <span class="math inline">\int{u&#39;(x)v(x) + u(x)v&#39;(x)}dx = u(x)v(x)</span> <span class="math inline">\int{u&#39;(x)v(x)}dx + \int{u(x)v&#39;(x)}dx = u(x)v(x)</span> <strong>Partielle Integration:</strong> <span class="math inline">\int{u(x)v&#39;(x)}dx = u(x)v(x) - \int{u&#39;(x)v(x)}dx</span></p>
+<p><span class="math inline">\int{F&#39;(x)}dx = \int{f(x)}dx = F(x)</span><br />
+<span class="math inline">\int{u&#39;(x)v(x) + u(x)v&#39;(x)}dx = u(x)v(x)</span><br />
+<span class="math inline">\int{u&#39;(x)v(x)}dx + \int{u(x)v&#39;(x)}dx = u(x)v(x)</span></p>
+<p><strong>Partielle Integration:</strong> <span class="math inline">\int{u(x)v&#39;(x)}dx = u(x)v(x) - \int{u&#39;(x)v(x)}dx</span></p>
 <p><span class="math inline">u(x)</span> und <span class="math inline">v&#39;(x)</span> so wählen, dass die abzuleitende Fkt. <span class="math inline">u(x)</span> einfacher wird und zumindest die aufzuleitende Fkt. <span class="math inline">v&#39;(x)</span> nicht schwieriger wird (Ausnahme: Das aufzuleitende Produkt <span class="math inline">u&#39;(x)v(x)</span> wird einfacher, indem sich mit <span class="math inline">u(x) = ln(x)</span> und <span class="math inline">v&#39;(x) = x</span> bspw. ein <span class="math inline">x</span> kürzt)</p>
 <p>Polynome oder Logarithmen ableiten, bei trig. Fkt. meist trig. Fkt. aufleiten.</p>
 <p>Bei E-Funktionen: Immer <span class="math inline">e^x</span> als aufzuleitende Fkt. <span class="math inline">v&#39;(x)</span> wählen, da E-Fkt. meist trivial aufzuleiten sind (und ein polynomieller Vorfaktor trivial abzuleiten ist).</p>
 <h4 id="integration-durch-substitution">Integration durch Substitution</h4>
 <p>Kettenregel “rückwärts”.</p>
-<p>Innere Funktion so wählen, dass Ableitung Faktor ist</p>
+<p>Idealwerweise Innere Funktion so wählen, dass deren Ableitung ein Faktor ist.</p>
 <p><span class="math inline">\int{u(v(x))v&#39;(x)}dx = u(v(x))</span></p>
-<!-- TODO Herleitung -->
 <h3 id="integrale-über-bereich">Integrale über Bereich</h3>
 <h4 id="rotationskörper">Rotationskörper</h4>
-<p>Formel für die Kreisfläche ist <span class="math inline">\pi r^2</span>. Liefer nun eine Funktion <span class="math inline">f(x)</span> den Radius <span class="math inline">r</span> an der Stelle <span class="math inline">x</span>, so lässt sich über Integration bequem das Volumen des Rotationskörpers bestimmen:</p>
+<p>Formel für die Kreisfläche ist <span class="math inline">\pi r^2</span>. Liefert nun eine Funktion <span class="math inline">f(x)</span> den Radius <span class="math inline">r</span> an der Stelle <span class="math inline">x</span>, so lässt sich über Integration bequem das Volumen des Rotationskörpers bestimmen:</p>
 <p><span class="math inline">V = \int_a^b \pi f(x)^2</span></p>
+<h4 id="fläche-zwischen-graph-und-x-achse">Fläche zwischen Graph und X-Achse</h4>
+<p>Integrale sind <em>bestimmt</em>, d.h. Flächen unterhalb der X-Achse haben ein negatives Vorzeichen. Mathematisch gesehen ist ein unbestimmtes Integral einfach ein Integral über den Betrag der Funktion: <span class="math inline">\int_a^b{ |f(x)| }</span>. Dies ist händisch schwierig zu berechnen; mit GTR aber ist es trivial (<code>abs(x)</code> für Betrag von <span class="math inline">x</span>).</p>
+<p>Für eine händische Berechnung müssen im gegebenen Bereich zunächst die Nullstellen bestimmt werden, um dann immer das Integral zwischen zwei benachbarten Nullstellen bzw. ggf. Randwerten zu bestimmen; die Beträge aller so bestimmten Flächen werden dann addiert, um auf den unbestimmten Flächeninhalt zu kommen.</p>
+<h5 id="fläche-zwischen-zwei-graphen">Fläche zwischen zwei Graphen</h5>
+<p>Fläche der Differenzfunktion <span class="math inline">d(x) = f(x) - g(x)</span>.</p>
 <h3 id="hauptsatz-der-differential--und-integralrechnung">Hauptsatz der Differential- und Integralrechnung</h3>
 <!-- TODO Herleitung -->
 <ol type="1">
-<li><p>Die Stammfunktion <span class="math inline">F(x)</span> ist definiert als Funktion, die abgeleitet <span class="math inline">f(x)</span> ist. Demnach gibt es unendlich viele Stammfunktionen <span class="math inline">F(x) + c</span> mit <span class="math inline">c</span> reell, die alle abgeleitet <span class="math inline">f(x)</span> ergeben.</p></li>
-<li><p>Das Integral über ein Intervall / einen Bereich einer Funktion lässt sich als Differenz der Werte der Stammfunktion bei den Intervallgrenzen berechnen: <span class="math inline">\int_a^b f(x) = F(b) - F(a)</span>.</p></li>
+<li><p>Die Stammfunktion <span class="math inline">F(x)</span> ist definiert als <em>eine</em> Funktion, die abgeleitet <span class="math inline">f(x)</span> ist. Demnach gibt es unendlich viele Stammfunktionen <span class="math inline">F(x) + c</span> mit <span class="math inline">c</span> reell, die alle abgeleitet <span class="math inline">f(x)</span> ergeben.</p></li>
+<li><p>Das Integral über ein Intervall / einen Bereich einer Funktion lässt sich als Differenz der Werte der Stammfunktion bei den Intervallgrenzen berechnen: <span class="math inline">\int_a^b{f(x)} = F(b) - F(a)</span>.</p></li>
 </ol>
-<h1 id="hilfsmittel">Hilfsmittel</h1>
-<h2 id="formelsammlung">Formelsammlung</h2>
+<h2 id="hilfsmittel">Hilfsmittel</h2>
+<h3 id="formelsammlung">Formelsammlung</h3>
 <ul>
 <li>S. 20: Gleichungen und Fkt.</li>
 </ul>
@@ -348,19 +349,20 @@ Positive 2. Ableitung ⇒ Glücklicher Smiley 🙂️ ⇒ Minimum</p>
 </ul>
 <p>Eventuell können sich auch Seiten außerhalb des Analysis-Kapitels als nützlich erweisen (bspw. Notationen, grundlegende Termumformungsregeln, Rechenregeln für trig. &amp; exp. Fkt., Potenzgesetze, Logarithmengesetze usw.).</p>
 <!-- TODO -->
-<h2 id="grafikfähiger-taschenrechner-gtr">Grafikfähiger Taschenrechner (GTR)</h2>
+<h3 id="grafikfähiger-taschenrechner-gtr">Grafikfähiger Taschenrechner (GTR)</h3>
 <p>Unter Menu &gt; Analysis (4):</p>
 <ul>
-<li>Numerische Ableitung an einer Stelle</li>
+<li>Numerische Ableitung (an einer Stelle)</li>
 <li>Numerisches Integral</li>
 <li>Numerisches Funktionsminimum (<code>nfMin</code>)</li>
 <li>Numerisches Funktionsmaximum (<code>nfMax</code>)</li>
 </ul>
 <p>Zusätzlich unter Menu &gt; Algebra (3):</p>
 <ul>
-<li>Finden <em>einer</em> Lösung in einem Intervall <span class="math inline">[a; b]</span>: <code>nsolve(x = ..., x, a, b)</code></li>
-<li>Finden <em>aller</em> Lösungen eines Polynoms (<code>polyroots</code> unter Polynomwerkzeuge &gt; Reele Polynomwurzeln)</li>
+<li>Finden <em>einer</em> Lösung in einem Intervall <span class="math inline">[a; b]</span>: <code>nSolve(x = ..., x, a, b)</code>; Intervallgrenzen können auch weggelassen werden.</li>
+<li>Finden <em>aller</em> Nullstellen eines Polynoms (<code>polyRoots</code> unter Polynomwerkzeuge &gt; Reele Polynomwurzeln)</li>
 </ul>
+<p>Außerdem nützlich: <span class="math inline">abs</span>-Funktion für Beträge sowie Menu &gt; Zahl &gt; In Dezimalzahl konvertieren.</p>
 <h2 id="wörterbuch-zur-deutschen-rechtschreibung">Wörterbuch zur deutschen Rechtschreibung</h2>
 <p>In 99% der Fälle nutzlos.</p>
 </body>

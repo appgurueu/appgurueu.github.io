@@ -249,13 +249,13 @@ die <strong>Standardabweichung</strong> als <span class="math inline">\sigma = \
 <p>Es ist davon auszugehen, dass im hilfsmittelfreien Teil keine äußerst rechenintensiven Normalverteilungen oder Sigma-Umgebungen vorkommen, durchaus aber die Berechnung von binomialverteilten Zufallsgrößen für kleine Werte oder die Angabe von Termen; einfach zu integrierende Dichtefunktionen sind ebenfalls denkbar.</p>
 <h3 id="gtr">GTR</h3>
 <ul>
-<li><code>binompdf(n, p, x)</code>
+<li><code>binomPdf(n, p, x)</code>
 <ul>
 <li><code>n</code>: Anzahl Versuche</li>
 <li><code>p</code>: Erfolgswahrscheinlichkeit</li>
 <li><code>x</code>: Anzahl Erfolge</li>
 </ul></li>
-<li><code>binomcdf(n, p, min, max)</code>
+<li><code>binomCdf(n, p, min, max)</code>
 <ul>
 <li><code>n</code>: Anzahl Versuche</li>
 <li><code>p</code>: Erfolgswahrscheinlichkeit</li>
@@ -265,7 +265,7 @@ die <strong>Standardabweichung</strong> als <span class="math inline">\sigma = \
 <li><span class="math inline">normpdf(x, \mu, \sigma)</span></li>
 <li><span class="math inline">normcdf(min, max, \mu, \sigma)</span>; <code>min</code> &amp; <code>max</code> sind nicht mehr zwingend ganzzahlig</li>
 </ul>
-<p>Ältere Modelle scheinen unendliche Intervallgrenzen bei <code>normcdf</code> nicht zu akzeptieren (Fehlermeldung erwähnt CAS). Hier sollten stattdessen beinahe unendlich kleine bzw. große Werte verwendet werden (<span class="math inline">\plusmn9e999</span>).</p>
+<p>Ältere Modelle scheinen unendliche Intervallgrenzen bei <code>normCdf</code> nicht zu akzeptieren (Fehlermeldung erwähnt CAS). Hier sollten stattdessen beinahe unendlich kleine bzw. große Werte verwendet werden (<span class="math inline">\plusmn9e999</span>).</p>
 <h3 id="wörterbuch-zur-deutschen-rechtschreibung">Wörterbuch zur deutschen Rechtschreibung</h3>
 <p>Beinahe irrelevant.</p>
 </body>
