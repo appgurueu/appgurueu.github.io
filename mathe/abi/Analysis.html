@@ -313,9 +313,9 @@ Positive 2. Ableitung ⇒ Glücklicher Smiley 🙂️ ⇒ Minimum, rechtsgekrüm
 <h3 id="integrale-über-bereich">Integrale über Bereich</h3>
 <h4 id="rotationskörper">Rotationskörper</h4>
 <p>Formel für die Kreisfläche ist <span class="math inline">\pi r^2</span>. Liefert nun eine Funktion <span class="math inline">f(x)</span> den Radius <span class="math inline">r</span> an der Stelle <span class="math inline">x</span>, so lässt sich über Integration bequem das Volumen des Rotationskörpers bestimmen:</p>
-<p><span class="math inline">V = \int_a^b \pi f(x)^2</span></p>
+<p><span class="math inline">V = \int_a^b {\pi f(x)^2} dx</span></p>
 <h4 id="fläche-zwischen-graph-und-x-achse">Fläche zwischen Graph und X-Achse</h4>
-<p>Integrale sind <em>bestimmt</em>, d.h. Flächen unterhalb der X-Achse haben ein negatives Vorzeichen. Mathematisch gesehen ist ein unbestimmtes Integral einfach ein Integral über den Betrag der Funktion: <span class="math inline">\int_a^b{ |f(x)| }</span>. Dies ist händisch schwierig zu berechnen; mit GTR aber ist es trivial (<code>abs(x)</code> für Betrag von <span class="math inline">x</span>).</p>
+<p>Integrale sind <em>bestimmt</em>, d.h. Flächen unterhalb der X-Achse haben ein negatives Vorzeichen. Mathematisch gesehen ist ein unbestimmtes Integral einfach ein Integral über den Betrag der Funktion: <span class="math inline">\int_a^b{ |f(x)| }dx</span>. Dies ist händisch schwierig zu berechnen; mit GTR aber ist es trivial (<code>abs(x)</code> für Betrag von <span class="math inline">x</span>).</p>
 <p>Für eine händische Berechnung müssen im gegebenen Bereich zunächst die Nullstellen bestimmt werden, um dann immer das Integral zwischen zwei benachbarten Nullstellen bzw. ggf. Randwerten zu bestimmen; die Beträge aller so bestimmten Flächen werden dann addiert, um auf den unbestimmten Flächeninhalt zu kommen.</p>
 <h5 id="fläche-zwischen-zwei-graphen">Fläche zwischen zwei Graphen</h5>
 <p>Fläche der Differenzfunktion <span class="math inline">d(x) = f(x) - g(x)</span>.</p>
@@ -323,7 +323,7 @@ Positive 2. Ableitung ⇒ Glücklicher Smiley 🙂️ ⇒ Minimum, rechtsgekrüm
 <!-- TODO Herleitung -->
 <ol type="1">
 <li><p>Die Stammfunktion <span class="math inline">F(x)</span> ist definiert als <em>eine</em> Funktion, die abgeleitet <span class="math inline">f(x)</span> ist. Demnach gibt es unendlich viele Stammfunktionen <span class="math inline">F(x) + c</span> mit <span class="math inline">c</span> reell, die alle abgeleitet <span class="math inline">f(x)</span> ergeben.</p></li>
-<li><p>Das Integral über ein Intervall / einen Bereich einer Funktion lässt sich als Differenz der Werte der Stammfunktion bei den Intervallgrenzen berechnen: <span class="math inline">\int_a^b{f(x)} = F(b) - F(a)</span>.</p></li>
+<li><p>Das Integral über ein Intervall / einen Bereich einer Funktion lässt sich als Differenz der Werte der Stammfunktion bei den Intervallgrenzen berechnen: <span class="math inline">\int_a^b{f(x)}dx = F(b) - F(a)</span>.</p></li>
 </ol>
 <h2 id="hilfsmittel">Hilfsmittel</h2>
 <h3 id="formelsammlung">Formelsammlung</h3>
