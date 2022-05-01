@@ -97,7 +97,7 @@ n = log_q(1 - y)
 <li>Beim zweiseitigen Test “gleich”, bspw. <span class="math inline">p = 0,5</span> als Hypothese für die Erfolgswahrscheinlichkeit beim Münzwurf</li>
 <li>Beim einseitigen Test größer/kleiner, bspw. <span class="math inline">p \leq 0,5</span> oder <span class="math inline">p \geq 0,5</span></li>
 </ul></li>
-<li>Da man mit relativer Sicherheit nur Hypothesen <em>verwerfen</em> kann, wählt man die Hypothese, die gestützt werden soll, als Nullhypothese und entsprechend das Gegenteil als Alternativhypothese.</li>
+<li>Da man mit relativer Sicherheit nur Hypothesen <em>verwerfen</em> kann, <strong>wählt man die Hypothese, die gestützt werden soll, als Nullhypothese</strong> und entsprechend das Gegenteil als Alternativhypothese.</li>
 </ul></li>
 <li>Festlegung des <em>Signifikanzniveaus <span class="math inline">S</span></em>, üblicherweise <span class="math inline">5\%</span> oder <span class="math inline">1\%</span>. Die <em>maximale Irrtumswahrscheinlichkeit <span class="math inline">\alpha</span></em> darf höchstens so groß wie <span class="math inline">S</span> sein, es gilt <span class="math inline">\alpha \leq S</span>.
 <ul>
@@ -122,14 +122,14 @@ n = log_q(1 - y)
 <li>Formulierung der <em>Entscheidungsregel</em>: Liegt der tatsächliche Wert für <span class="math inline">X</span> in der Stichprobe im <em>Ablehnungsbereich</em> wird die Nullhypothese verworfen und stattdessen die Alternativhypothese bestätigt. Falls der Wert im <em>Annahmebereich</em> liegt, reicht dies nicht, um die Nullhypothese zu bestätigen; die Nullhypothese wird dann lediglich <em>(noch) nicht abgelehnt</em>.</li>
 <li>Anwendung der Entscheidungsregel: Trivial.</li>
 </ol>
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/BinomialTest.svg/1024px-BinomialTest.svg.png">Zweiseitiger Hypothesentest für <span class="math inline">H_0: p = 0,5</span>, Ablehnungsbereich rot, Annahmebereich grau</a></p>
-<p>Ist die Laplace-Bedingung nicht erfüllt, müssen die Annahme- und Ablehnungsbereiche ohne die Sigmaregeln bestimmt werden. Dies ist bspw. mit <code>nsolve</code> im GTR möglich:</p>
-<p>Für linksseitigen Ablehnungsbereich der Größe <span class="math inline">10\% = 0.1</span> mit <span class="math inline">n = 42</span> und <span class="math inline">p = 0,69</span>: <code>nsolve(binomcdf(42, 0.69, 0, x) = 0.1, x, 0, 42)</code>.</p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/BinomialTest.svg/1024px-BinomialTest.svg.png">Bsp.: Zweiseitiger Hypothesentest für <span class="math inline">H_0: p = 0,5</span>, Ablehnungsbereich rot, Annahmebereich grau</a></p>
+<p>Ist die Laplace-Bedingung nicht erfüllt, müssen die Annahme- und Ablehnungsbereiche ohne die Sigmaregeln bestimmt werden. Dies ist bspw. mit <code>nSolve</code> im GTR möglich:</p>
+<p>Für linksseitigen Ablehnungsbereich der Größe <span class="math inline">10\% = 0,1</span> mit <span class="math inline">n = 42</span> und <span class="math inline">p = 0,69</span>: <code>nSolve(binomCdf(42, 0.69, 0, x) = 0.1, x, 0, 42)</code>.</p>
 <p>Zusätzliche Überlegung im Anwendungskontext: Folgenschwerster Fehler soll der Fehler 1. Art sein, da dessen Wahrscheinlichkeit begrenzt werden kann.</p>
 <p>Bspw.: Die Nebenwirkungen eines Medikaments sollen weniger wahrscheinlich sein als ein bestimmtes <span class="math inline">p</span>. Die Wahrscheinlichkeit zu gering anzugeben, wäre hier der folgenschwerste Fehler. Damit dies der Fehler 1. Art (fälschliches Ablehnen der Nullhypothese) ist, muss die Nullhypothese lauten, dass die Wahrscheinlichkeit <em>größer</em> als eine vermutete obere Grenze ist. Verwirft man dann die Nullhypothese, bietet einem das Signifikanzniveau eine relative hohe Sicherheitswahrscheinlichkeit für die Gültigkeit der Alternativhypothese, nämlich dass die Wahrscheinlichkeit für Nebenwirkungen <em>unter</em> der oberen Grenze liegt.</p>
 <h2 id="stetige-zufallsgrößen">Stetige Zufallsgrößen</h2>
 <p>Können alle Werte in einem reellen Intervall angenommen werden - existiert also zwischen zwei möglichen Werten immer ein weiterer - so spricht man von einer stetigen Zufallgröße.</p>
-<p>Demzufolge ist die Wahrscheinlichkeit für genau einen Wert geht gegen <span class="math inline">0</span>: Unter unendlich vielen möglichen anderen Werten ist es unendlich unwahrscheinlich, dass genau dieser Wert angenommen wird.</p>
+<p>Demzufolge geht die Wahrscheinlichkeit für genau einen Wert gegen <span class="math inline">0</span>: Unter unendlich vielen möglichen anderen Werten ist es unendlich unwahrscheinlich, dass genau dieser Wert angenommen wird.</p>
 <p>Es ist nur sinnvoll, die Wahrscheinlichkeit dafür anzugeben, dass die stetige Zufallsgröße in einem gewissen <strong>Bereich <span class="math inline">[a; b]</span></strong> liegt.</p>
 <p>Eine <strong>Dichtefunktion</strong> gibt - ähnlich wie ein Histogramm - für einen Wert <span class="math inline">x</span> die Wahrscheinlichkeitsdichte an; anders als beim Histogramm sind die Klassen hier allerdings “unendlich klein”.</p>
 <p>Für eine solche Dichtefunktion <span class="math inline">f</span> gilt:</p>
@@ -154,8 +154,9 @@ die <strong>Standardabweichung</strong> als <span class="math inline">\sigma = \
 <p>Ist die <strong>Laplace-Bedingung</strong> <span class="math inline">\sigma &gt; 3</span> erfüllt, so lässt sich eine Binomialverteilung mit einer Normalverteilung approximieren (und umgekehrt):</p>
 <ul>
 <li><span class="math inline">P(a \leq X \leq b) \approx \int_{a-0,5}^{b+0,5} \psi_{\mu; \sigma}(x) dx</span></li>
-<li><span class="math inline">P(X = k) \approx \psi_{\mu; \sigma}(k) \approx \int_{k-0,5}^{k+0,5} \psi_{\mu; \sigma}(x) dx</span>. Dass letztere Annäherung gilt, ist eine spezielle Eigenschaft der Normalverteilung und gilt im Allgemeinen nicht für Wahrscheinlichkeitsdichtefunktionen.</li>
+<li><span class="math inline">P(X = k) \approx \psi_{\mu; \sigma}(k) \approx \int_{k-0,5}^{k+0,5} \psi_{\mu; \sigma}(x) dx</span>.</li>
 </ul>
+<p>Dass letztere Annäherung gilt, ist eine spezielle Eigenschaft der Normalverteilung und gilt im Allgemeinen nicht für Wahrscheinlichkeitsdichtefunktionen.</p>
 <p>Die nötige Verschiebung der Intervallgrenzen um <span class="math inline">0,5</span> (um in der “Mitte der Balken” anzusetzen) nennt man <strong>Stetigkeitskorrektur</strong>.</p>
 <p>Die Binomialverteilung (auf Schule) darf dennoch nicht mit der Normalverteilung verwechselt werden: Erstere ist eine Verteilung einer <strong>diskreten</strong> Zufallsgröße und kann also nur ganzzahlige Werte annehmen - letztere ist eine Verteilung einer <strong>stetigen</strong> Zufallsgröße und kann also beliebige reelle Zahlen als Werte annehmen.</p>
 <p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Binomial_Distribution.svg/1024px-Binomial_Distribution.svg.png">Veranschaulichung der Qualität der Näherungsformeln</a></p>
@@ -262,8 +263,8 @@ die <strong>Standardabweichung</strong> als <span class="math inline">\sigma = \
 <li><code>min</code>: Min. Anzahl Erfolge (inklusive)</li>
 <li><code>max</code>: Max. Anzahl Erfolge (inklusive), <strong>optional</strong></li>
 </ul></li>
-<li><span class="math inline">normpdf(x, \mu, \sigma)</span></li>
-<li><span class="math inline">normcdf(min, max, \mu, \sigma)</span>; <code>min</code> &amp; <code>max</code> sind nicht mehr zwingend ganzzahlig</li>
+<li><code>normPdf(x, μ, σ)</code></li>
+<li><code>normCdf(min, max, μ, σ)</code>; <code>min</code> &amp; <code>max</code> sind nicht mehr zwingend ganzzahlig</li>
 </ul>
 <p>Ältere Modelle scheinen unendliche Intervallgrenzen bei <code>normCdf</code> nicht zu akzeptieren (Fehlermeldung erwähnt CAS). Hier sollten stattdessen beinahe unendlich kleine bzw. große Werte verwendet werden (<span class="math inline">\plusmn9e999</span>).</p>
 <h3 id="wörterbuch-zur-deutschen-rechtschreibung">Wörterbuch zur deutschen Rechtschreibung</h3>
