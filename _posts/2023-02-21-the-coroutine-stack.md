@@ -15,7 +15,7 @@ could be implemented, but this is not for practical purposes
 and `table.remove` instead, unless your problem lends itself well
 to a recursive solution; keep stack overflows in mind though).
 
-```
+```lua
 local function new_entry(...)
 	local cmd_
 	local function process_cmd(cmd, ...)
