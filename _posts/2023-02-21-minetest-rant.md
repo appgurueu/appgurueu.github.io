@@ -74,18 +74,18 @@ This is probably the only part that isn't quite janky.
 
 ### Acceleration
 
-Just like every entity in the game arrows must be affected by gravity.
+~~Just like every entity in the game arrows must be affected by gravity.
 Unfortunately Minetest approximates gravity wrong such that it is highly dependant
 on client/server step sizes. What the client sees at 60 FPS is thus unlikely to match
 what the server sees at 10 steps per second; the error can be rather significant:
 Arrows will fall faster the lower the steps per second.
-This is particularly problematic if lag rises, even if only temporarily.
+This is particularly problematic if lag rises, even if only temporarily.~~
 
-[A fix exists](https://github.com/minetest/minetest/pull/12353) but hasn't made its way into the engine yet.
+[The fix has made its way into the engine!](https://github.com/minetest/minetest/pull/12353).
 
-A workaround might be to correct the position every step,
+~~A workaround might be to correct the position every step,
 but this would suffer from being very janky on clients
-(and again taking a huge toll on network traffic).
+(and again taking a huge toll on network traffic).~~
 
 ### Collisions
 
