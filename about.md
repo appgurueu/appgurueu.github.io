@@ -12,6 +12,12 @@ I'm also on [StackOverflow](https://stackoverflow.com/users/7185318/lmd).
 
 ---
 
+No, the name is not a typo (or rather an intentional one).
+
+It is a portmanteau of blog, blag and blarg (and bloat if you wish).
+
+---
+
 This blog was made using Jekyll since it allows me to focus on the contents
 rather than going down the rabbit hole of reinventing the wheel
 both in terms of static site generators and Markdown parsers.
