@@ -2,7 +2,10 @@
 layout: post
 title:  "The coroutine stack"
 date:   2023-02-21 15:23:00 +0100
-categories: lua, coroutines, stack
+tags:
+  - lua
+  - coroutines
+  - stack
 ---
 
 A coroutine + callstack-based stack of varargs in pure Lua.

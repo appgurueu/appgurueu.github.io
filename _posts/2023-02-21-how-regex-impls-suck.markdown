@@ -2,7 +2,11 @@
 layout: post
 title:  "How RegEx implementations suck"
 date:   2023-02-21 14:49:42 +0100
-categories: regular languages, regex, parsing, 
+tags:
+  - regular languages
+  - regex
+  - parsing
+  - lua
 ---
 
 Regular languages are a powerful and beautiful formal tool to validate or parse strings.

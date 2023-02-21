@@ -2,7 +2,12 @@
 layout: post
 title:  "Why bows are bound to be janky in Minetest"
 date:   2023-02-21 17:24:00 +0100
-categories: minetest, gamedev, modding, jank, lua
+tags:
+  - minetest
+  - gamedev
+  - modding
+  - jank
+  - lua
 ---
 
 So, you want(ed) to write a bow mod. It's time to confront you with the harsh reality of just how limited the Minetest engine is.
