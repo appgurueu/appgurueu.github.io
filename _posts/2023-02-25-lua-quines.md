@@ -30,10 +30,10 @@ It could however be combined with `load`:
 
 ## A `load` Quine
 
-Works in Lua 5.1 and later.
+Works on Lua 5.1 and later (`loadstring or load` rather than just `load`).
 
 ```lua
-s="print(('s=%qt=%q%s'):format(s,t,t))"t="load(s)()"load(s)()
+s="print(('s=%qt=%q%s'):format(s,t,t))"t="(loadstring or load)(s)()"(loadstring or load)(s)()
 ```
 
 ## A Proper "Constructive" Quine
