@@ -29,8 +29,8 @@ print(source:match"^@" and io.open(info:sub(2)):read"*a") or source)
 Works in Lua 5.1 and later.
 
 ```lua
-function f(s) print(s) (loadstring or load)(s) print(("f%q"):format(s)) end
-f"function f(s) print(s) (loadstring or load)(s) print((\"f%q\"):format(s)) end"
+function f(s) print(s); (loadstring or load)(s) print(("f%q"):format(s)) end
+f"function f(s) print(s); (loadstring or load)(s) print((\"f%q\"):format(s)) end"
 ```
 
 ## A Proper "Constructive" Quine
