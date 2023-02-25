@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lua Quines"
-date:   2022-07-31 22:35:00 +0100
+date:   2023-02-25 22:12:00 +0100
 tags:
   - lua
   - quine
@@ -17,20 +17,23 @@ The empty string `` technically is a quine in most scripting languages since it 
 
 Reads its own source. May not work if the source file has been moved.
 
-Also works if the quine is not loaded from a file.
+Also works if the quine is not loaded from a file
+(i.e. loaded from a string), as long as no "name" has been passed
+(doesn't work in the Lua REPL, since there the source will be `=stdin`).
 
 ```lua
 local source = debug.getinfo(1).source
-print(source:match"^@" and io.open(info:sub(2)):read"*a") or source)
+print(source:match"^@" and io.open(source:sub(2)):read"*a" or source)
 ```
 
-## A `load`(string) Quine
+It could however be combined with `load`:
+
+## A `load` Quine
 
 Works in Lua 5.1 and later.
 
 ```lua
-function f(s) print(s); (loadstring or load)(s) print(("f%q"):format(s)) end
-f"function f(s) print(s); (loadstring or load)(s) print((\"f%q\"):format(s)) end"
+s="print(('s=%qt=%q%s'):format(s,t,t))"t="load(s)()"load(s)()
 ```
 
 ## A Proper "Constructive" Quine
@@ -40,3 +43,7 @@ Simply uses a format string to construct itself.
 ```lua
 s="s=%q;print(s:format(s))";print(s:format(s))
 ```
+
+---
+
+Thanks to [luk3yx](https://github.com/luk3yx) for pointing out broken quines & suggesting fixes.
