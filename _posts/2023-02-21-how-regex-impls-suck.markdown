@@ -55,7 +55,9 @@ and disallowing grouping entirely - quantifiers like `*` can only be applied to 
 While this greatly simplifies the implementation, it also greatly restricts the expressive power.
 This would be fine if it was left at this, since most of the time patterns suffice to get the job done (although they may invite ugly, overly permissive workarounds).
 
-However patterns soon start adding other "useful" "more than just RegEx" features, running into the same issues. The odd thing 
+However patterns soon start adding other "useful" "more than just RegEx" features, running into the same issues.
+
+<!-- TODO "The odd thing" is what? -->
 
 ## Poor syntax & Language support
 
