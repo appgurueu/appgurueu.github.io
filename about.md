@@ -31,7 +31,6 @@ You might also like the homepages of a few friends of mine (in no particular ord
 * [kimapr](https://kimapr.net/)
 * [roller](https://voxelmanip.se/)
 * [lizzy](https://lizzy.rs/)
-* [flamore](https://krisbug.xyz/)
 * [j45](https://j45.dev/)
 
 ---
