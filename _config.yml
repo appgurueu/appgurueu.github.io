@@ -22,7 +22,7 @@ url: "https://appgurueu.github.io"
 github_username:  appgurueu
 
 # Build settings
-markdown: kramdown
+markdown: GFM
 theme: minima
 plugins:
   - jekyll-feed
