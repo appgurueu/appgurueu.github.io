@@ -5,12 +5,6 @@ date: 2023-06-26
 tags: math, computer science, pi
 ---
 
-<!-- TODO find a cleaner solution than putting this here -->
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>
-MathJax = {tex: {inlineMath: [['$', '$']]}};
-</script>
-
 Toying with a few intuitive (and less intuitive but more efficient) ways to approximate $\pi$.
 
 ## Throwing darts

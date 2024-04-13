@@ -5,12 +5,6 @@ date: 2023-07-15
 tags: computer science, algorithms, quicksort, sorting
 ---
 
-<!-- TODO find a cleaner solution than putting this here -->
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>
-MathJax = {tex: {inlineMath: [['$', '$']]}};
-</script>
-
 Quicksort is a rather popular sorting algorithm implemented by most standard libraries.
 Yet it has its shortcomings and special care needs to be taken to implement it properly.
 It is not uncommon for standard libraries to use a mix of sorting algorithms for the best performance,
