@@ -2,7 +2,12 @@
 layout: post
 title: "Sticks and stones won't break my bones"
 date: 2025-02-20
-tags: luanti, irrlicht, gamedev, foss, math
+tags:
+  - luanti
+  - irrlicht
+  - gamedev
+  - foss
+  - math
 ---
 
 ... but [Irrlicht](https://irrlicht.sourceforge.net/) will.
@@ -359,6 +364,9 @@ entirely (rather than fixing it) for a couple reasons:
 
 Of course, now that `getScale()` was fixed, I also simplified
 `getRotationDegrees()`.
+
+This rendered the aforementioned old engine-side workaround of looking for and
+attempting to correct broken bone rotations obsolete as well, allowing me to throw it out entirely.
 
 ## The aftermath
 
