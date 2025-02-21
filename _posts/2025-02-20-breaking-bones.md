@@ -598,12 +598,13 @@ this problem:
     pending](https://github.com/minetest-mods/playeranim/pull/6).
 -   [ ]
     [VoxeLibre](https://content.luanti.org/packages/Wuzzy/mineclone2/):
-    Affected, [PR using the negative scale workaround
+    Affected, [PR using the negative scale workaround to fix player visuals is
     pending](https://git.minetest.land/VoxeLibre/VoxeLibre/pulls/4932).
--   [x]
+-   [ ]
     [Mineclonia](https://content.luanti.org/packages/ryvnf/mineclonia/):
-    Affected, [fixed using the negative scale
+    Affected, [fixed for the player model using the negative scale
     workaround](https://codeberg.org/mineclonia/mineclonia/pulls/2918).
+    A number of mobs still remain affected.
 
 ## Afterthoughts
 
