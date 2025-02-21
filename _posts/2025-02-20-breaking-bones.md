@@ -592,10 +592,9 @@ this problem:
     -   As said: Possibly overengineered workaround. But: This means it
         works in a couple more constellations, and we can use the
         correct rotations right away.
--   [ ]
+-   [x]
     [`playeranim`](https://content.luanti.org/packages/Rui/playeranim/):
-    Affected, [PR using the negative scale workaround
-    pending](https://github.com/minetest-mods/playeranim/pull/6).
+    Affected, [fixed using the negative scale workaround](https://github.com/minetest-mods/playeranim/pull/6).
 -   [ ]
     [VoxeLibre](https://content.luanti.org/packages/Wuzzy/mineclone2/):
     Affected, [PR using the negative scale workaround to fix player visuals is
