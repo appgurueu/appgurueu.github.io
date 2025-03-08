@@ -580,11 +580,9 @@ Voilà!
 A quick summary of the status of some popular mods and games regarding
 this problem:
 
--   [x]
-    [`headanim`](https://content.luanti.org/packages/Lone_Wolf/headanim/):
+-   [`headanim`](https://content.luanti.org/packages/Lone_Wolf/headanim/):
     Unaffected. KISS paid off. Chapeau.
--   [x]
-    [`character_anim`](https://content.luanti.org/packages/LMD/character_anim/):
+-   [`character_anim`](https://content.luanti.org/packages/LMD/character_anim/):
     Affected, [fixed using the rotation wiggling (model editing)
     workaround](https://github.com/appgurueu/character_anim/commit/61b62ae2c71518bf6363736a63f54010f969c78a).
     -   Note that this also requires [a `modlib`
@@ -592,18 +590,12 @@ this problem:
     -   As said: Possibly overengineered workaround. But: This means it
         works in a couple more constellations, and we can use the
         correct rotations right away.
--   [x]
-    [`playeranim`](https://content.luanti.org/packages/Rui/playeranim/):
+-   [`playeranim`](https://content.luanti.org/packages/Rui/playeranim/):
     Affected, [fixed using the negative scale workaround](https://github.com/minetest-mods/playeranim/pull/6).
--   [ ]
-    [VoxeLibre](https://content.luanti.org/packages/Wuzzy/mineclone2/):
-    Affected, [PR using the negative scale workaround to fix player visuals is
-    pending](https://git.minetest.land/VoxeLibre/VoxeLibre/pulls/4932).
--   [ ]
-    [Mineclonia](https://content.luanti.org/packages/ryvnf/mineclonia/):
-    Affected, [fixed for the player model using the negative scale
-    workaround](https://codeberg.org/mineclonia/mineclonia/pulls/2918).
-    A number of mobs still remain affected.
+-   [VoxeLibre](https://content.luanti.org/packages/Wuzzy/mineclone2/) and [Mineclonia](https://content.luanti.org/packages/ryvnf/mineclonia/):
+    Affected, player visuals fixed using the negative scale workaround
+    ([VoxeLibre](https://git.minetest.land/VoxeLibre/VoxeLibre/pulls/4944), [Mineclonia](https://codeberg.org/mineclonia/mineclonia/pulls/2918)).
+    Some mobs still remain affected. The maintainers are aware and working on fixes.
 
 ## Afterthoughts
 
