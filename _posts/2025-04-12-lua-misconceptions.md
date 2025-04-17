@@ -302,7 +302,7 @@ It doesn't. The only guarantees are that it visits all entries in some order; an
 In PUC Lua and LuaJIT, `pairs` just goes through the array and hash part.
 The sequential entries (keys `1, 2, ...`) are usually traversed in order (`pairs` "degrades" to `ipairs`), but you may not rely on this. [^ctrex]
 
-To traverse a sequence inorder, use `ipairs` rather than `pairs`. Only use `pairs` if order does not matter.
+To traverse a sequence in order, use `ipairs` rather than `pairs`. Only use `pairs` if order does not matter.
 All other entries are traversed in whatever order the hashes are in, which may also depend on insertion order.
 Newer PUC Lua versions also seed the hashing with each run (to prevent hash collision attacks), so it won't even be consistent across runs.
 
