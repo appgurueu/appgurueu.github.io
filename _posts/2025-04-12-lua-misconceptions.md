@@ -364,15 +364,48 @@ but the unused table slot may remain. [^impl]
 In the hash part, it may be used again by any other key later on;
 in the array part, it will only be used again for the same key.
 
-Note that LuaJIT and PUC Lua never shrink tables: The memory a table uses will only ever grow, never shrink.
+Note that LuaJIT and PUC Lua never shrink tables when you're just setting entries to `nil`.
+Consider the following code:
 
-This has two nasty consequences for asymptotics: Neither memory usage nor the time required for the iteration
-of tables are necessarily proportional to the number of currently live entries.
+```lua
+local t = {}
+for i = 1, 2^20 do
+	t[i] = i
+end
+for i = 1, 2^20 - 1 do
+	t[i] = nil
+end
+```
 
-This is surprisingly not all that problematic in practice,
-but this might conceivably lead to denial-of-service vulnerabilities in some scenarios;
+Slots `1`, `2`, ..., `2^20 - 1` will still taking up memory as long as `t` lives.
+
+Now suppose you were to iterate this table:
+
+```lua
+for _, v in pairs(t) do
+	print(v)
+end
+```
+
+This will run rather slowly: It has to iterate over all 999999 empty slots
+in the array part to find the one live slot!
+
+In a nutshell, there are two nasty consequences for asymptotics to be aware of:
+Neither memory usage nor the time required for the iteration
+of tables is necessarily proportional to the number of currently live entries.
+
+This surprisingly seems to be not all that problematic in practice,
+but it might conceivably lead to denial-of-service vulnerabilities in some scenarios;
 an attacker could simply populate a table with "dead" entries which the program logic doesn't care about,
 then exploit the unexpectedly large memory usage or runtime.
+
+In order to allow Lua to rehash a table, you must *insert* something new:
+
+```lua
+local not_in_table = {} -- can't be in the table, because table equality is by reference
+rawset(t, not_in_table, 42) -- at this point, lua may rehash t
+rawset(t, not_in_table, nil) -- restore t to its original state
+```
 
 [^impl]: (PUC) Lua is simply not allowed to mess with the structure of the table, because iterating tables while removing entries is allowed;
 thus the order of keys must be preserved. All Lua can do is mark entries as deleted.
