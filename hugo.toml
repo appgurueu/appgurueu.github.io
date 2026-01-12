@@ -1,0 +1,23 @@
+baseURL = 'https://luatic.dev/'
+languageCode = 'en-us'
+title = "Luatic's Bloarg"
+[markup]
+  [markup.highlight]
+    style = 'vs'
+
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]']]
+          inline = [['\(', '\)']]
+
+[params]
+  math = true
+
+[outputs]
+  home = ['html', 'rss']
+  section = ['html', 'rss']
+  taxonomy = ['html']
+  term = ['html']

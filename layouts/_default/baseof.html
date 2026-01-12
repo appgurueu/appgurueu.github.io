@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ .Title }} | Luatic's Bloarg</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ with resources.Get "styles.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ end }}
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256.png">
+
+    {{ with .OutputFormats.Get "rss" }}
+    {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
+    {{ end }}
+    {{ if .Param "math" }}
+        {{ partialCached "math.html" . }}
+    {{ end }}
+</head>
+<body>
+    <div class="centerer">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+        </nav>
+    </div>
+    <hr class="section-separator">
+    <div class="centerer">
+        <div class="content">
+            {{ block "main" . }}{{ end }}
+        </div>
+    </div>
+    <hr class="section-separator">
+    <div class="centerer">
+        <footer>
+            <p>A place for the things I happen to write about. Mostly programming and computer science.</p>
+            <br>
+            <a href="#">Back to top</a> | <a href="/">Home</a> |  <a href="/index.xml">RSS feed</a>
+        </footer>
+    </div>
+</body>
+</html>
