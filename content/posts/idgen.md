@@ -1,5 +1,5 @@
 ---
-date: '2026-01-12'
+date: 2026-01-12
 title: 'On ID generation'
 ---
 
@@ -45,7 +45,7 @@ is so close to zero that the chance of a technical defect - or, you know, a bug!
 bricking your application is orders of magnitude higher. [^bday]
 
 [^bday]: You have to be a bit careful with the math here: Due to the birthday paradox,
-the chance of a collision is not about one in \(2^n\); rather it's about one in \(2^(n/2)\). This is why 64 bits are generally not enough.
+the chance of a collision is not about one in \(2^n\); rather it's about one in \(2^{n/2}\). This is why 64 bits are generally not enough.
 You also have to ensure a good entropy source, but computers have had that for a long while for cryptography reasons alone.
 
 This is basically what a "Universally Unique Identifier" (UUID) v4, with almost 128 random bits, is.
