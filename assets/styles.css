@@ -75,3 +75,9 @@ hr.section-separator {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+
+blockquote {
+    border-left: 2px solid #98FB98;
+    margin-left: 0;
+    padding-left: 2em;
+}
