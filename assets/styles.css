@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-
+    line-height: 1.75;
 }
 
 .centerer {
@@ -45,7 +45,7 @@ a:visited {
 pre, code:not(pre > code) {
     border: 1px solid #ddd;
     border-radius: 3px;
-    padding: 0.15rem;
+    padding: 0.1rem;
     white-space: pre;
     font-size: 0.9rem;
 }
