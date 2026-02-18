@@ -1,8 +1,7 @@
 ---
-date: 2026-01-13
+date: 2026-02-18
 title: "On string concatenation"
 description: "A frequent culprit for bad performance and how to avoid it"
-draft: true
 ---
 
 When building strings, perhaps the first operation programmers learn,
