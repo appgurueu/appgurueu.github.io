@@ -6,9 +6,6 @@
             <div class="post-card">
                 <small class="date">{{ .Date.Format "2006-01-02" }}</small><br>
                 <a href="{{ .RelPermalink }}" class="post-title">{{ .Title }}</a>
-                {{ with .Params.description }}
-                <p>{{ . }}</p>
-                {{ end }}
             </div>
         {{ end }}
     </div>
