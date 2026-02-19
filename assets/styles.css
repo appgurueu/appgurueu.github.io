@@ -81,3 +81,13 @@ blockquote {
     margin-left: 0;
     padding-left: 2em;
 }
+
+.footnotes {
+    margin-top: 5rem;
+}
+
+.footnotes > hr {
+    border: 0;
+    height: 1px;
+    background-color: #7fc536;
+}
