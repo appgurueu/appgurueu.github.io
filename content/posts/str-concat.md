@@ -58,7 +58,7 @@ making the "append character" operation amortized constant time (vs. linear time
 
 In Lua and many other scripting languages, a list (table) of strings to be concatenated serves as a string builder:
 
-```
+```lua
 local t = {}
 for x in ... do
 	table.insert(t, x)
