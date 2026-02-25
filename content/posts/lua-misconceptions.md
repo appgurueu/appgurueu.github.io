@@ -433,39 +433,32 @@ You can use `table.new` or `table.create` respectively to preallocate hash and a
 This is even better, because it avoids a few temporary allocations and copies,
 avoids general loop overhead, and makes intent more clear.)
 
-If you do want space to be reclaimed, there are two possible solutions.
-
-#### Swapping the table
-
-After doing many deletions, you can replace the table with a fresh one, preserving only the live slots.
+If you do want space to be reclaimed, you need to construct a new table, keeping only live slots.
 That is, replacing a table with a shallow copy of itself can save memory.
-This often happens pretty naturally, e.g. when you write a "filter" method that
-populates a new table instead of removing key-value pairs from an existing one.
+This often happens pretty naturally with the right implementation preferences.
 
-#### Hack: Allowing a rehash
-
-Alternatively, if you do want or need to keep the same table reference,
-you can simply insert a key which can not possibly exist in the table with some value.
-Such an insertion permits Lua to do a rehash.
-After the (potential) rehash, you can immediately remove the bogus key-value pair again.
-As a little function:
+For example, when implementing a `filter` helper, you might prefer a "functional"-style interface
+which returns the filtered key-value pairs (as opposed to an "imperative"-style interface
+that shifts around values in the table).
+Note that this function is linear time either way, so we might as well spend some time on populating a fresh table.
 
 ```lua
-local allow_rehash
-do
-	local key = {} -- can't be in the table, because table equality is by reference
-	function allow_rehash(t)
-		rawset(t, key, true) -- following this, lua is allowed to rehash t
-		rawset(t, key, nil) -- restore t to original state
+local function filter(list, pred)
+	local keep = {}
+	for _, v in ipairs(list) do
+		if pred(v) then
+			table.insert(keep, v)
+		end
 	end
+	return keep
 end
 ```
 
-Just doing `rawset(t, key, nil)` should technically also be enough to allow a rehash based on the wording in the reference manual,
-but depending on the implementation it seems more likely that it might bail out early (since nothing needs to be done).
-
-(Note that this code can not guarantee that the table is shrunken either way:
-It depends on implementation details. An implementation might very well never shrink tables.)
+In theory, a hack where you add and subsequently remove a key that is guaranteed not to exist in the table
+would also permit a Lua implementation to carry out a rehash, which could shrink the table.
+In practice, neither PUC Lua nor LuaJIT reliably take advantage of this,
+even when only a small fraction of an enormously large capacity is being used.
+For the most part, you can pretend that these implementations never reduce table capacity.
 
 ### "Iterating tables is linear time"
 
