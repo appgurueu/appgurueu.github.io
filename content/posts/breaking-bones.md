@@ -425,7 +425,7 @@ just don't
 care!"](https://git.minetest.land/VoxeLibre/VoxeLibre/issues/4930)
 
 ![A VoxeLibre player is being held at
-gunpoint]({{ 'assets/breaking-bones/hands-up.png' | relative_url }})
+gunpoint](/posts/breaking-bones/hands-up.png)
 
 Luckily
 [`headanim`](https://content.luanti.org/packages/Lone_Wolf/headanim/) is
@@ -656,8 +656,8 @@ and engine developers alike, over a span of years.
     unique, hence it never worked to begin with.
 
 [^4]: In quaternions:
-    $ik \cong j, ij \cong k, jk \cong i$.
-    Note that the sign doesn't matter for half-turns $i, j, k$;
+    \(ik \cong j, ij \cong k, jk \cong i\).
+    Note that the sign doesn't matter for half-turns \(i, j, k\);
     as rotations, these are just diagonal matrices, they commute. The order of
     operations doesn't matter when only half-turns are involved.
 
