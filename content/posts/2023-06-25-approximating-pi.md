@@ -34,7 +34,7 @@ Thus after throwing \(n\) darts, the expected number of hits is \(\mu = \frac{\p
 If we take the number of hits times 4 (since there are 4 quadrants of the unit circle)
 and divide by \(n\), we obtain an expected result of exactly \(\pi\).
 
-![Visualization](/assets/approximating-pi/darts.svg)
+![Visualization](/posts/approximating-pi/darts.svg)
 
 In code, this is very straightforward:
 
@@ -91,7 +91,7 @@ in order to approximate the ratio of the area of the circle to the area of the s
 
 ### Simple iterative variant
 
-![Visualization](/assets/approximating-pi/pixels.svg)
+![Visualization](/posts/approximating-pi/pixels.svg)
 
 Again this translates straightforwardly into code:
 
@@ -114,7 +114,7 @@ The runtime obviously grows quadratically in the resolution \(m\) here.
 
 A picture says more than a thousand words:
 
-![Visualization](/assets/approximating-pi/pixels_recursive.svg)
+![Visualization](/posts/approximating-pi/pixels-recursive.svg)
 
 The idea of the recursive approach is simple:
 If we know that an entire square is entirely inside or outside of the circle,
