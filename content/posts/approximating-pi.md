@@ -1,12 +1,14 @@
 ---
 layout: post
 title: "Approximating π"
-date: 2023-06-26
+# we do a little cheating and pretend it was published at tau day for comedic purposes
+date: 2023-06-28
 tags:
 - math
 - algorithm
 - pi
 aliases:
+- "../2023/06/25/approximating-pi.html"
 - "../2023/06/26/approximating-pi.html"
 ---
 
