@@ -88,10 +88,8 @@ def rw_x():
     # now read the inner variable. should be 2.
     print(f"x inside rw_x: {x}")
 
-try:
-    rw_x()
-except UnboundLocalError as e:
-    print(f"Error running rw_x: {e}")
+rw_x() # UnboundLocalError: cannot access local variable 'x'
+       # where it is not associated with a value
 ```
 
 Wrong again! What we really have to keep in mind is some ridiculous tomfoolery:
@@ -169,10 +167,7 @@ But not if the path was not taken:
 if False:
     z = 1
 
-try:
-    print(f"z = {z}")
-except NameError as e:
-    print(f"Error trying to read z: {e}") # name 'z' is not defined
+print(f"z = {z}") # NameError: name 'z' is not defined
 ```
 
 So yes, variables just happily leak into their parent scopes,
@@ -222,13 +217,8 @@ def accumulator():
     return add
 
 acc = accumulator()
-try:
-    print(acc(42))
-except UnboundLocalError as e:
-    print(f"Error trying to increment accumulator: {e}")
-    # error!
-    # cannot access local variable 'state'
-    # where it is not associated with a value
+print(acc(42)) # UnboundLocalError: cannot access local variable 'state'
+               # where it is not associated with a value
 ```
 
 Similar to global variables, it's the same nonsense all over again. Just reading is fine:
@@ -282,13 +272,10 @@ Naturally. Yay, more rules to remember!
 
 ```python
 try:
-    try:
-        raise Exception("oops")
-    except Exception as e:
-        pass
-    print(f"Can we get e again? e = {e}")
-except NameError as e:
-    print(f"Error trying to get e: {e}") # name 'e' is not defined
+    raise Exception("oops")
+except Exception as e:
+    pass
+print(f"Can we get e again? e = {e}") # NameError: name 'e' is not defined
 ```
 
 And then there's also the walrus operator, and it doesn't work like `as`,
@@ -300,6 +287,24 @@ if w := 1:
     pass
 print(f"w = {w}") # 1
 ```
+
+Remember hoisting?
+One consequence of hoisting is that a function `def`inition can refer to itself, enabling recursion.
+Neat, huh?
+
+Well, then a `class` definition might be available within itself too.
+Will the following work?
+
+```python
+class Point:
+	ORIGIN = Point(0, 0) # this is mutable, but eh
+	def __init__(self, x, y):
+		self.x = x
+		self.y = y
+```
+
+The answer is no. You'll get, you guessed it, a `NameError`.
+Instead, you have to set `Point.ORIGIN = Point(0, 0)` after defining the class. Very pythonic!
 
 Finally, a classic which even languages that get scoping right tend to get wrong.
 Of course, Python also gets it wrong. How could it not?
@@ -320,7 +325,13 @@ After the loop has ended, we have `i = 2`.
 How would we work around this? The pythonic workaround is to introduce a default parameter that is stored with the lambda:
 `lambda: i` is replaced with `lambda i=i: i`. Ugh. [^iife]
 
-[^iife]: Alternatively and more verbosely, we could use an IIFE to get a new scope with an `i` variable in every iteration.
+Alternatively and more verbosely, we could use an IIFE to get a new scope with an `i` variable in every iteration.
+Semantically, this is the cleaner approach, as it avoids adding a fake argument
+which might end up being passed by accident.
+
+[^iife]: [This is historically grown](https://python-history.blogspot.com/2009/04/origins-of-pythons-functional-features.html):
+When `lambda` was first introduced, it was really just syntactic sugar for anonymous functions;
+no support for referencing local variables from enclosing scopes was implemented at all.
 
 Now where do all these "globals" go? It turns out they land in a so called "namespace" for a "module" (file).
 You can import that module, and then you can access these variables as `module.var`.
