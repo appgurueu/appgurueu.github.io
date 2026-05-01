@@ -92,7 +92,7 @@ more cache-friendly data structure you could use instead. Usually the answer wil
 ### Maps and sets
 
 Do not use sorted sets or maps *unless you have to*.
-These are implemented as balanced search trees (e.g. red-black trees [^btree]), meaning:
+These are implemented as balanced search trees (e.g. red-black trees), meaning:
 
 * All operations incur logarithmic factors;
 * Worse, logarithmically many (dependent) pointers are being chased;
@@ -106,8 +106,7 @@ If you use an ordered set, I will assume that you are doing so because the order
 **Rule**: Prefer hash maps (`std::unordered_set` and `std::unordered_map`) over sorted maps (`std::set` and `std::map`).
 
 Red-black trees are generally not ideal for minimizing the number of allocations, the memory overhead per item, or the number of cache misses.
-For these purposes, it is once again typically preferable to consider a "hybrid" data structure where each tree node stores multiple items contiguously,
-namely a B-tree, which is the standard sorted set / map data structure e.g. in Rust.
+For these purposes, it is once again typically preferable to consider a "hybrid" data structure where each tree node stores multiple items contiguously, namely a [B-tree](https://en.wikipedia.org/wiki/B-tree), which is the standard sorted set / map data structure e.g. in Rust.
 
 Unfortunately, the C++ STL has specification requirements that strongly suggest an "open hashing" implementation, meaning there typically still is an allocation per item.
 For proper "closed hashing" that is really just backed by a single array, [consider alternative hash map implementations](https://martin.ankerl.com/2022/08/27/hashmap-bench-01/).
