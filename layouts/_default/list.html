@@ -2,7 +2,7 @@
     {{ .Content }}
     <h1>Posts</h1>
     <div class="post-cards">
-        {{ range (where .Site.RegularPages "Type" "posts").ByDate.Reverse }}
+        {{ range (where (where .Site.RegularPages "Type" "posts") "Params.hidden" "!=" true).ByDate.Reverse }}
             <div class="post-card">
                 <small class="date">{{ .Date.Format "2006-01-02" }}</small><br>
                 <a href="{{ .RelPermalink }}" class="post-title">{{ .Title }}</a>
