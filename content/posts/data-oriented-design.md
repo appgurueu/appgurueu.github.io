@@ -1,6 +1,6 @@
 ---
 date: 2026-05-01
-title: "Introduction to data-oriented design"
+title: "A tour of data-oriented design"
 hidden: true
 ---
 
