@@ -181,7 +181,7 @@ whereas when `y` is increased by one, we jump a whole `width` positions.
 Now consider the following loop order:
 
 ```c++
-Grid2d<int> grid(42, 42);
+Grid2d<Cell> grid(42, 42);
 for (size_t x = 0; x < grid.width; ++x) {
 	for (size_t y = 0; y < grid.height; ++y) {
 		// do something with grid.at(x, y)
@@ -209,13 +209,13 @@ If we just need to look at every cell, we can iterate the underlying `data` arra
 For a slightly more elaborate example, consider matrix multiplication.
 
 ```c++
-int n = 42;
+size_t n = 42;
 Grid2d<float> A(n, n), B(n, n);
 Grid2d<float> C(n, n); // note: zero-initialized
 // populate A and B...
-for (int i = 0; i < n; ++i)
-	for (int j = 0; j < n; ++j)
-		for (int k = 0; k < n; ++k)
+for (size_t i = 0; i < n; ++i)
+	for (size_t j = 0; j < n; ++j)
+		for (size_t k = 0; k < n; ++k)
 			C.at(i, j) += A.at(i, k) * B.at(k, j);
 ```
 
@@ -223,9 +223,9 @@ This iterates `A` in the row-major order we want, but `B` is iterated in column-
 Again a simple loop interchange does the trick:
 
 ```c++
-for (int i = 0; i < n; ++i)
-	for (int k = 0; k < n; ++k) // swapped
-		for (int j = 0; j < n; ++j) // swapped
+for (size_t i = 0; i < n; ++i)
+	for (size_t k = 0; k < n; ++k) // swapped
+		for (size_t j = 0; j < n; ++j) // swapped
 			C.at(i, j) += A.at(i, k) * B.at(k, j);
 ```
 
@@ -356,7 +356,7 @@ struct String {
 			size_t cap;
 		} heap_chars;
 	};
-	std::size_t size;
+	size_t size;
 };
 ```
 
@@ -657,7 +657,7 @@ It looks something like this:
 ```c++
 struct Entities {
 	struct Chunk {
-		constexpr static int SIZE = 8;
+		constexpr static size_t SIZE = 8;
 		std::array<Collider, SIZE> colliders;
 		std::array<GameData, SIZE> game_datas;
 	};
@@ -688,8 +688,8 @@ each value is reused on the order of \(n\) times.
 A naive implementation would be a nested loop, something like
 
 ```c++
-for (int i = 0; i < n; ++i) {
-	for (int j = i + 1; j < n; ++j) {
+for (size_t i = 0; i < n; ++i) {
+	for (size_t j = i + 1; j < n; ++j) {
 		// do something with colliders[i] and colliders[j].
 		// assume that most of the time, there is no collision.
 		// so no need to populate a dense matrix or anything; this is all sparse.
@@ -710,10 +710,10 @@ And if \(B\) is large enough, we will still be using cache lines optimally, so t
 This means that for suitably chosen \(B\), by also exploring temporal locality, we do get a speedup of roughly \(B\) in memory access!
 
 ```c++
-for (int ib = 0; i < n; ib += B) {
-	for (int jb = ib; j < n; jb += B) {
-		for (int i = ib; i < std::min(ib + B, n); ++i) {
-			for (int j = jb; j < std::min(jb + B, n); ++j) {
+for (size_t ib = 0; i < n; ib += B) {
+	for (size_t jb = ib; j < n; jb += B) {
+		for (size_t i = ib; i < std::min(ib + B, n); ++i) {
+			for (size_t j = jb; j < std::min(jb + B, n); ++j) {
 				// do something if there is a collision between colliders[i] and colliders[j]
 			}
 		}
