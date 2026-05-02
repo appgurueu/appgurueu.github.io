@@ -1,7 +1,6 @@
 ---
-date: 2026-05-01
+date: 2026-05-02
 title: "A tour of data-oriented design"
-hidden: true
 ---
 
 Waiting for main memory access is on the order of a thousand times slower
