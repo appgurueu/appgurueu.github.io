@@ -21,7 +21,7 @@ Disclaimer: Some concepts for the "ideal bow mod" detailed below are not feasibl
 
 You probably don't want your arrows to be a bunch of sprites, so your only option
 is to use a heavyweight entity with a mesh visual.
-Spamming arrows may drag FPS down (due to lack of batching - one drawcall is issued for each entity);
+Spamming arrows may drag FPS down (due to lack of batching -- one drawcall is issued for each entity);
 additionally, each arrow will generate significant network traffic and increase the time
 required to find any entities since all entities reside in the same global set to be
 searched linearly for each and every query (see also poor collision performance and attempts to use spatial indexing).
@@ -53,10 +53,10 @@ A bow item is straightforward to register;
 a decent "loading" & "firing" however animation is not as easy:
 
 * Multiple items: Swapping the bow item to a "charged" bow; charging might use tool wear or other HUDs,
-  perhaps even multiple charging "steps" are implemented using multiple "(partially) charged" items
-  \- currently, changing the texture always requires changing the item
-  (there is an [issue](https://github.com/luanti-org/luanti/issues/5686) to change this, but PRs went nowhere so far);
-  after firing the bow is replaced with the original item.
+  perhaps even multiple charging "steps" are implemented using multiple "(partially) charged" items.
+  After firing the bow is replaced with the original item.
+  ~~Currently, changing the texture always requires changing the item.~~
+  You can now use metadata to change the wield and inventory image.
 * 3D models: Modders might want a decent bow model rather than just an (extruded) item image.
   They can abuse a node for this, disabling placement (serverside) & placement prediction (clientside).
   A "firing" / "digging" animation is still not customizable;
@@ -65,8 +65,8 @@ a decent "loading" & "firing" however animation is not as easy:
   It allows registering a "bow" entity with an appropriate animated model,
   attaching it to the player and properly animating it.
   It doesn't suffice to have it look well in first person though
-  \- it must look decent to you *and other players* both in first and third person
-  \- requiring decent modeling skills.
+  -- it must look decent to you *and other players* both in first and third person
+  -- requiring decent modeling skills.
 
 All of these approaches will, for lack of [server-sent client-side mod support](https://github.com/luanti-org/luanti/projects/1#card-87374775)
 (and for limitations of client-side mod capabilities), be rather janky:
@@ -123,7 +123,7 @@ which provide you with an exact point (and texture coordinates) of where the ray
 Attaching unfortunately only supports bones, so you have to be lucky with the model:
 All triangle vertices may only be affected by a single bone to which you could then attach the arrow
 in the appropriate relative position.
-This is the case e.g. for the default Luanti Game player model (Jordach's "Sam").
+This is the case e.g. for the default Minetest Game player model (Jordach's "Sam").
 
 In practice a demo of accurately determining texture coordinates from in-world ray-triangle intersections
 (without animation support however)
