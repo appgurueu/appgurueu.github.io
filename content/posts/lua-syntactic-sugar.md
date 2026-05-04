@@ -7,6 +7,7 @@ tags:
 - syntactic sugar
 - programming
 aliases:
+- "2023-07-26-lua-syntactic-sugar/"
 - "../2023/07/26/lua-syntactic-sugar.html"
 ---
 
@@ -192,12 +193,14 @@ This enables a neat hack to implement indented multiline strings:
 
 ```lua
 local lines = {__call = function(self, str)
-	if not str then return table.concat(self, "\n") end
+	if not str then
+		return table.concat(self, "\n")
+	end
 	table.insert(self, str)
 	return self
 end}
 local function L(str)
-	return setmetatable({}, lines)
+	return setmetatable({str}, lines)
 end
 ```
 
