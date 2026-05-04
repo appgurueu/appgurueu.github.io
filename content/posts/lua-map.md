@@ -21,7 +21,8 @@ when in fact it is a very deliberate design decision with considerable upsides.
 So let's look at why tables are a worthwhile abstraction:
 What motivates the concept of a table,
 which tricks go into an efficient implementation,
-and some concrete code examples where tables shine.
+some concrete code examples where tables shine,
+as well as some examples where tables may be harmful.
 
 ## Lists are redundant
 
@@ -473,9 +474,26 @@ though this could in principle also be optimized.
 
 Not separating lists and maps as abstract data types creates much (theoretical) potential for error.
 
-### Nonsense indices
+### Runtime type unsafety
 
-Does asking for the `3.14`th element of a list make sense? Not really.
+When you pass a table mapping string keys to values to a function expecting a list, that's almost certainly a bug;
+yet in most idiomatic Lua code, nothing will happen: The table will simply be treated like an empty list by `ipairs`.
+(In fact, on newer Lua versions, even `ipairs("blah")` iterates the string metatable as if it was a list!)
+
+This could be seen as a feature (look! I can treat a part of my table as a list, and still have some additional keys!),
+but in most cases you've effectively lost some runtime type safety, and then users may be left scratching their heads
+when `tiles = {texture = "foo.png"}` doesn't work as it should have been `tiles = {{texture = "foo.png"}}`.
+
+There is a somewhat neat trick with a modest performance cost:
+*After* a full `ipairs` iteration, call `next(t, i)` once with the *last* valid index `i` as key (`i = nil` if `t[1] == nil`).
+If this key is not a valid index, report a type error.
+For most normally constructed tables, this will give you a key stored in the hash part (if the hash part is not empty),
+or the next key in the array part (following a hole). In either case, the table is not a pure list.
+#### Nonsense indices
+
+A common indexing operation means that you lose runtime type safety there as well.
+
+Does asking for the `3.14`th element of a list make sense? Not really. A language like Python will throw an error for this.
 But, with maps, it won't throw an error.
 Since we do accept out of bounds indices by default, such otherwise clear mistakes can easily be hidden.
 (That said, Lua lets you set a metatable to make this error.)
