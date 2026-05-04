@@ -55,7 +55,7 @@ a decent "loading" & "firing" however animation is not as easy:
 * Multiple items: Swapping the bow item to a "charged" bow; charging might use tool wear or other HUDs,
   perhaps even multiple charging "steps" are implemented using multiple "(partially) charged" items
   \- currently, changing the texture always requires changing the item
-  (there is an [issue](https://github.com/Luanti/Luanti/issues/5686) to change this, but PRs went nowhere so far);
+  (there is an [issue](https://github.com/luanti-org/luanti/issues/5686) to change this, but PRs went nowhere so far);
   after firing the bow is replaced with the original item.
 * 3D models: Modders might want a decent bow model rather than just an (extruded) item image.
   They can abuse a node for this, disabling placement (serverside) & placement prediction (clientside).
@@ -68,7 +68,7 @@ a decent "loading" & "firing" however animation is not as easy:
   \- it must look decent to you *and other players* both in first and third person
   \- requiring decent modeling skills.
 
-All of these approaches will, for lack of [server-sent client-side mod support](https://github.com/Luanti/Luanti/projects/1#card-87374775)
+All of these approaches will, for lack of [server-sent client-side mod support](https://github.com/luanti-org/luanti/projects/1#card-87374775)
 (and for limitations of client-side mod capabilities), be rather janky:
 From the perspective of the client, every action will require one round-trip time to take effect.
 
@@ -104,7 +104,7 @@ This is particularly problematic if lag rises, even if only temporarily.~~
 but this would suffer from being very janky on clients
 (and again taking a huge toll on network traffic).~~
 
-[The fix has since made its way into the engine; the workaround is now obsolete.](https://github.com/Luanti/Luanti/pull/12353).
+[The fix has since made its way into the engine; the workaround is now obsolete.](https://github.com/luanti-org/luanti/pull/12353)
 
 ### Collisions
 
@@ -142,7 +142,7 @@ There are two straightforward ways to implement arrows *in practice*:
   usually performed every server step. The time complexity can trivially be seen to be quadratic in the number of arrows since
   the time complexity of raycasts is linear in the number of entities.
   Another downside is that raycasts currently operate only on selection- rather than collision boxes.
-  A [feature request](https://github.com/Luanti/Luanti/issues/12673) for the latter exists.
+  A [feature request](https://github.com/luanti-org/luanti/issues/12673) for the latter exists.
   It is theoretically possible to make raycasts work on collision boxes in pure Lua.
   In terms of clientside prediction the downside is that clients will first see the arrow "phase through" the entity it hit,
   then have its position be reset to where the arrow hit the entity.
