@@ -519,7 +519,7 @@ visiting the first key-value pair last.
 
 The vast majority of programming languages unfortunately do not unify lists and maps in this manner.
 This leads to some nasty interoperability problems,
-e.g. when converting between Lua data structures and C++ data structures,
+e.g. when converting between Lua data structures and C&#8288;+&#8288;+ data structures,
 when working with serialization formats like JSON, type systems, and so on.
 Often these problems are not solved properly which creates issues further down the line
 (e.g. serializers that force a mixed Lua table into either an array or a hash map representation, losing data,
@@ -562,8 +562,8 @@ If you do separate lists and maps, **maximize the common interface**.
 For example, (unordered) key-value iteration as done by `pairs`
 should be possible for lists and maps alike, with the same operation. [^cpp]
 
-[^cpp]: It still baffles me how awkward C++ has made the simple "iterate over index, value pairs in an array" operation,
+[^cpp]: It still baffles me how awkward C&#8288;+&#8288;+ has made the simple "iterate over index, value pairs in an array" operation,
 and how it is usually inconsistent with the patterns for iterating key-value pairs of a hash map.
-Unfortunately, C++ is not the exception here. Many languages slap some kind of general "iterator" interface on it
+Unfortunately, C&#8288;+&#8288;+ is not the exception here. Many languages slap some kind of general "iterator" interface on it
 and then pretend you only really care about the keys, or values, of a container, often applied inconsistently
 (e.g. in Python, hash map iteration iterates keys, whereas array iteration iterates values). Argh!
