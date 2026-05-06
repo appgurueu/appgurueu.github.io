@@ -1,7 +1,6 @@
 ---
-date: 2026-05-03
+date: 2026-05-06
 title: "In defense of the table"
-hidden: true
 ---
 
 Two data structures are essential to programming:
@@ -29,18 +28,10 @@ as well as some examples where tables may be harmful.
 Say we start with a hash map.
 We can simply use keys \(1, ..., n\) and assign to them some values.
 Such a hash map can be used very similarly to an array with \(n\) items.
-We still have constant time insertion, deletion, and random access. [^exp]
+We still have constant time [^runtime] insertion, deletion, and random access.
 Hash map access will have significant overhead,
 but this is the kind of performance concern scripting languages often tolerate:
 It's "just" a "modest" constant factor.
-
-[^exp]: We omit the term "amortized" here.
-The constant time access of a hash map is technically an expectation of a random variable
-depending on the set of keys and the order of insertion;
-in theory, a single access might take up to linear time if enough keys collide.
-But practically, this is almost never relevant.
-The adversarial scenarios where it might be are relatively easy to mitigate with high probability.
-And in any case, a half decent hash function should do well on the range \(1, ..., n\).
 
 Hash map iteration lets you visit all the items in an unspecified order;
 ordered iteration can be done simply by iterating keys \(1, 2, ...\)
@@ -54,11 +45,11 @@ The following just works and does exactly what you think it would:
 
 ```lua
 local function iota(n)
-	local t = {}
-	for i = 1, n do
-		t[i] = i
-	end
-	return t
+    local t = {}
+    for i = 1, n do
+        t[i] = i
+    end
+    return t
 end
 ```
 
@@ -97,14 +88,15 @@ or lazily when the length is queried.
 
 This is effectively what the length operator `#t` does in Lua.
 
-[^nit]: Except if you delete many key-value pairs,
-because Lua does not shrink tables if you only delete entries.
-Technically you do not even need this upper bound, as you can do a so-called "exponential search"
-where you keep doubling \(u\) until you get a key for which no corresponding value exists,
-but that gives you much worse bounds for pathological examples;
-in the end this is only upper bounded by the absolute maximum table size,
-which will be on the order of \(2^{30}\) or more, meaning up to about \(30\)
-steps for a single length query.
+[^nit]:
+    Except if you delete many key-value pairs,
+    because Lua does not shrink tables if you only delete entries.
+    Technically you do not even need this upper bound, as you can do a so-called "exponential search"
+    where you keep doubling \(u\) until you get a key for which no corresponding value exists,
+    but that gives you much worse bounds for pathological examples;
+    in the end this is only upper bounded by the absolute maximum table size,
+    which will be on the order of \(2^{30}\) or more, meaning up to about \(30\)
+    steps for a single length query.
 
 ## Fixing performance
 
@@ -142,9 +134,10 @@ But if we visit all key-value pairs anyways, we might as well look at the keys.
 We can count how many keys in a certain range we have in buckets of the form
 \([1, 1], [2, 3], [4, 7], [8, 15], ...\) -- that is, \([2^l, 2^{l+1} - 1]\) for \(l = 0, 1, ...\). [^clz]
 
-[^clz]: This can be done by looking at the bit pattern of \(k - 1\) and determining the highest set bit,
-which is a standard bit operation (known as "count leading zeros" (CLZ) in x86-64,
-abstracted as `std::bit_width` in the C++ standard library).
+[^clz]:
+    This can be done by looking at the bit pattern of \(k - 1\) and determining the highest set bit,
+    which is a standard bit operation (known as "count leading zeros" (CLZ) in x86-64,
+    abstracted as `std::bit_width` in the C++ standard library).
 
 This gives us a small histogram of logarithmically many counts.
 We can then compute all the prefix sums in this array, which gives us the counts for the ranges \([1, 2^k - 1]\) for \(k = 0, 1, ...\);
@@ -198,11 +191,11 @@ Consider a shallow copy:
 
 ```lua
 local function copy(t)
-	local t2 = {}
-	for k, v in pairs(t) do
-		t2[k] = v
-	end
-	return t2
+    local t2 = {}
+    for k, v in pairs(t) do
+        t2[k] = v
+    end
+    return t2
 end
 ```
 
@@ -218,11 +211,11 @@ Or for another example: Inverting a map.
 
 ```lua
 local function invert(t)
-	local inv = {}
-	for k, v in pairs(t) do
-		inv[v] = k
-	end
-	return inv
+    local inv = {}
+    for k, v in pairs(t) do
+        inv[v] = k
+    end
+    return inv
 end
 ```
 
@@ -274,11 +267,11 @@ Why would a separation of lists and maps be annoying here?
 <summary>Possible implementation</summary>
 ```lua
 local function compose(t2, t1)
-	local t3 = {}
-	for k, v in pairs(t1) do
-		t3[k] = t2[v]
-	end
-	return t3
+    local t3 = {}
+    for k, v in pairs(t1) do
+        t3[k] = t2[v]
+    end
+    return t3
 end
 ```
 </details>
@@ -293,11 +286,11 @@ The below helper function does upsertion in a segment tree storing sums of range
 
 ```lua
 local function upsert(layers, i, w)
-	layers[1][i] = w
-	for li = 2, #layers do
-		i = math.ceil(i / 2)
-		layers[li][i] = layers[li-1][i*2 - 1] + (layers[li-1][i*2] or 0)
-	end
+    layers[1][i] = w
+    for li = 2, #layers do
+        i = math.ceil(i / 2)
+        layers[li][i] = layers[li-1][i*2 - 1] + (layers[li-1][i*2] or 0)
+    end
 end
 ```
 
@@ -320,14 +313,14 @@ Implemented using tables in Lua, that looks as follows:
 
 ```lua
 local function transpose(mat)
-	local trans = {}
-	for row_key, row in pairs(mat) do
-		for col_key, val in pairs(row) do
-			trans[col_key] = trans[col_key] or {}
-			trans[col_key][row_key] = val
-		end
-	end
-	return trans
+    local trans = {}
+    for row_key, row in pairs(mat) do
+        for col_key, val in pairs(row) do
+            trans[col_key] = trans[col_key] or {}
+            trans[col_key][row_key] = val
+        end
+    end
+    return trans
 end
 ```
 
@@ -337,10 +330,10 @@ A reasonable way to store this is as a list of pairs:
 
 ```lua
 local points = {
-	{month = 1, money_burnt = 1e11},
-	{month = 2, money_burnt = 2e12},
-	{month = 3, money_burnt = 3e13},
-	-- stonks!
+    {month = 1, money_burnt = 1e11},
+    {month = 2, money_burnt = 2e12},
+    {month = 3, money_burnt = 3e13},
+    -- stonks!
 }
 ```
 
@@ -362,16 +355,16 @@ Now consider the following code for a general matrix multiplication:
 
 ```lua
 local function matmul(A, B)
-	local C = {}
-	for i, row in pairs(A) do
-		for k, va in pairs(row) do
-			for j, vb in pairs(B[k] or {}) do
-				C[i] = C[i] or {}
-				C[i][j] = (C[i][j] or 0) + va * vb
-			end
-		end
-	end
-	return C
+    local C = {}
+    for i, row in pairs(A) do
+        for k, va in pairs(row) do
+            for j, vb in pairs(B[k] or {}) do
+                C[i] = C[i] or {}
+                C[i][j] = (C[i][j] or 0) + va * vb
+            end
+        end
+    end
+    return C
 end
 ```
 
@@ -381,12 +374,12 @@ We can do a simple dense matrix multiplication this way, for example to repeated
 
 ```lua
 local f = {
-	{1, 1},
-	{1, 0},
+    {1, 1},
+    {1, 0},
 }
 fib = f
 for i = 1, 9 do
-	fib = matmul(fib, f)
+    fib = matmul(fib, f)
 end
 print(fib[2][1]) -- 55
 ```
@@ -399,18 +392,18 @@ But it is much more flexible. We also get sparse matrix multiplication, for exam
 ```lua
 -- scale the i-th coordinate by i
 local diag = {
-	{[1] = 1},
-	{[2] = 2},
-	{[3] = 3},
+    {[1] = 1},
+    {[2] = 2},
+    {[3] = 3},
 }
 local B = {
-	{1, 2, 3},
-	{4, 5, 6},
-	{7, 8, 9},
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9},
 }
 local C = matmul(diag, B)
 for _, row in ipairs(C) do
-	print(table.concat(row, " "))
+    print(table.concat(row, " "))
 end
 -- 1 2 3
 -- 8 10 12
@@ -421,22 +414,22 @@ We don't need to use indices either. We can use names just as well:
 
 ```lua
 local stats = {
-	apple = {cost = 1, sugar = 2},
-	banana = {cost = 3, sugar = 4},
-	elderberry = {cost = 5, sugar = 6},
+    apple = {cost = 1, sugar = 2},
+    banana = {cost = 3, sugar = 4},
+    elderberry = {cost = 5, sugar = 6},
 }
 local diets = {
-	arthur = {apple = 1, banana = 2, elderberry = 3},
-	tim = {apple = 4, banana = 5, elderberry = 6},
-	tom = {apple = 7, banana = 8, elderberry = 9},
+    arthur = {apple = 1, banana = 2, elderberry = 3},
+    tim = {apple = 4, banana = 5, elderberry = 6},
+    tom = {apple = 7, banana = 8, elderberry = 9},
 }
 local diet_stats = matmul(diets, stats)
 for name, diet_stat in pairs(diet_stats) do
-	io.write(name .. ":")
-	for stat, v in pairs(diet_stat) do
-		io.write(" " .. stat .. "=" .. v)
-	end
-	print()
+    io.write(name .. ":")
+    for stat, v in pairs(diet_stat) do
+        io.write(" " .. stat .. "=" .. v)
+    end
+    print()
 end
 -- arthur: cost=22 sugar=28
 -- tom: cost=76 sugar=100
@@ -467,8 +460,8 @@ No problem, you can simply replace the labels, and everything still works all th
 You need to accept some performance losses.
 But with the described optimizations, this tends to be very much tolerable for a scripting language.
 You have some complexity in rehashing, in the length operator.
-You need fatter tables, which practically results in considerably higher memory usage if many tables are small (e.g. pairs),
-though this could in principle also be optimized.
+You need fatter tables, which practically results in considerably higher memory usage if many tables are small (e.g. tuples),
+though this could in principle also be optimized, at the cost of some additional complexity.
 
 ## The ugly
 
@@ -482,13 +475,15 @@ yet in most idiomatic Lua code, nothing will happen: The table will simply be tr
 
 This could be seen as a feature (look! I can treat a part of my table as a list, and still have some additional keys!),
 but in most cases you've effectively lost some runtime type safety, and then users may be left scratching their heads
-when `tiles = {texture = "foo.png"}` doesn't work as it should have been `tiles = {{texture = "foo.png"}}`.
+when `tiles = {texture = "foo.png"}` doesn't work -- it should have been `tiles = {{texture = "foo.png"}}`,
+but `{texture = "foo.png"}` simply gets treated as an empty list and triggers no runtime error.
 
 There is a somewhat neat trick with a modest performance cost:
 *After* a full `ipairs` iteration, call `next(t, i)` once with the *last* valid index `i` as key (`i = nil` if `t[1] == nil`).
-If this key is not a valid index, report a type error.
+If this key is not a valid index for the list part, report a runtime type error.
 For most normally constructed tables, this will give you a key stored in the hash part (if the hash part is not empty),
 or the next key in the array part (following a hole). In either case, the table is not a pure list.
+
 #### Nonsense indices
 
 A common indexing operation means that you lose runtime type safety there as well.
@@ -496,7 +491,7 @@ A common indexing operation means that you lose runtime type safety there as wel
 Does asking for the `3.14`th element of a list make sense? Not really. A language like Python will throw an error for this.
 But, with maps, it won't throw an error.
 Since we do accept out of bounds indices by default, such otherwise clear mistakes can easily be hidden.
-(That said, Lua lets you set a metatable to make this error.)
+(That said, in Lua you can still set a metatable to make this an error.)
 
 ### Holes
 
@@ -514,16 +509,34 @@ which creates the potential for some really nasty bugs, especially as `pairs` wi
 *depending on how the table was constructed*.
 Code that relies on this can often be snuffed out by randomizing `pairs` to sometimes start at the second key,
 visiting the first key-value pair last.
+(The same problem occurs if you use `lua_next` in C code to iterate tables and expect ordered iteration.
+I've found a number of occurrences of this bug [in Luanti](https://github.com/luanti-org/luanti/pull/17106),
+which is why I [suggested this be warned about in the Lua reference manual](https://groups.google.com/g/lua-l/c/51G6vmm5zyE).)
 
 ### The rest of the world
 
 The vast majority of programming languages unfortunately do not unify lists and maps in this manner.
 This leads to some nasty interoperability problems,
-e.g. when converting between Lua data structures and C&#8288;+&#8288;+ data structures,
-when working with serialization formats like JSON, type systems, and so on.
-Often these problems are not solved properly which creates issues further down the line
-(e.g. serializers that force a mixed Lua table into either an array or a hash map representation, losing data,
-or the inability to properly type an API that expects a mixed table when using TypeScript to Lua).
+when converting between Lua data structures and their equivalents in a systems programming language like C&#8288;+&#8288;+ or Rust [^mlua],
+when working with serialization formats like JSON,
+when using a static type system that has no concept of mixing lists and maps, and so on.
+
+Often these problems are not solved properly. Examples include:
+
+* A JSON serializer that may turn a sparse table like `{[1] = "foo", [1e9] = "bar"}`
+  into a densely stored JSON list `["foo", null, ..., null, "bar"]`, blowing up the size.
+* Various serializers and converters that employ overly simple checks to decide that a table "is a list",
+  and then treat it as such, usually leading to bugs. For example, taking `t` to be a list if `t[1] ~= nil`
+  and then iterating it in an `ipairs`-like fashion [^mlua],
+  which will not visit all entries for mixed tables like `{[1] = "foo", bar = "baz"}`
+  or sparse tables like `{[1] = "foo", [2] = "bar", [42] = "baz"}`.
+* APIs that expect a table of the form `{a1, a2, ..., foo = "bar"}` can not be typed properly in TypeScript,
+  making them awkward to type when using [TypeScript to Lua](https://typescripttolua.github.io/).
+
+[^mlua]:
+    Consider [mlua](https://github.com/mlua-rs/mlua), a go-to library for integrating Lua in a Rust project.
+    Essentially, its serialization converts a table `t` to an array using `ipairs`-like iteration if `#t > 0` (equivalent to `t[1] ~= nil`).
+    This is very efficient to check, but fails for mixed or sparse tables, which was discussed [in an issue](https://github.com/mlua-rs/mlua/issues/640) and resolved by the maintainer adding a feature for correct preservation of such tables (yay!).
 
 ## Even more consolidation
 
@@ -542,28 +555,52 @@ You can hook getting and setting table fields later, if it becomes necessary.
 (Of course this can result in some surprises, as usually indexing is not expected to be overridden,
 except for installing a "prototype" when implementing OOP.)
 
-[^java]: Another reason Java encourages this are the limitations of interfaces:
-You can demand that a class "should implement methods `X getX()` and `void setX(X x)`",
-you can't demand that it "should have a readable and writable field `x` of type `X`".
+[^java]:
+    Another reason Java encourages this are the limitations of interfaces:
+    You can demand that a class "should implement methods `X getX()` and `void setX(X x)`",
+    you can't demand that it "should have a readable and writable field `x` of type `X`".
 
 ## So what?
 
-At the end of the day, if you're a pragmatist, there is nothing wrong with preferring a separation between lists and maps.
+At the end of the day, there is nothing wrong with preferring a separation between lists and maps.
+It is a fairly pragmatic choice for reasons of type safety, interoperability, and slightly better performance characteristics.
 
 But you should cherish some of the benefits a unification can bring; it is far from pointless.
 It is ultimately another tradeoff.
-A unified map data structure is a very convenient way for thinking about programs without substantially changing the (asymptotic) runtime characteristics.
+A unified map data structure is a very convenient way for thinking about programs without substantially changing the (asymptotic [^runtime]) runtime characteristics.
 Whether to specialize these maps as arrays, array lists, hash maps, tree-based maps or something else entirely is then just an implementation detail.
 
-The more specific your data structures, the more errors can be eliminated, the more optimizations can be implemented --
-but also the more minutiae you need to keep track of, the more work you need to do every time you use it.
+In general, the more specific your data structures, the more errors can be eliminated, the more optimizations can be implemented --
+but also the more minutiae you need to keep track of, the more work you need to do every time you use them.
 
-If you do separate lists and maps, **maximize the common interface**.
+If you do separate lists and maps in language design, **maximize the common interface**.
 For example, (unordered) key-value iteration as done by `pairs`
 should be possible for lists and maps alike, with the same operation. [^cpp]
 
-[^cpp]: It still baffles me how awkward C&#8288;+&#8288;+ has made the simple "iterate over index, value pairs in an array" operation,
-and how it is usually inconsistent with the patterns for iterating key-value pairs of a hash map.
-Unfortunately, C&#8288;+&#8288;+ is not the exception here. Many languages slap some kind of general "iterator" interface on it
-and then pretend you only really care about the keys, or values, of a container, often applied inconsistently
-(e.g. in Python, hash map iteration iterates keys, whereas array iteration iterates values). Argh!
+[^cpp]:
+    It still baffles me how awkward C&#8288;+&#8288;+ has made the simple "iterate over index, value pairs in an array" operation,
+    and how it is usually inconsistent with the patterns for iterating key-value pairs of a hash map.
+    Unfortunately, C&#8288;+&#8288;+ is not the exception here. Many languages slap some kind of general "iterator" interface on it
+    and then pretend you only really care about the keys, or values, of a container, often applied inconsistently
+    (e.g. in Python, hash map iteration iterates keys, whereas array iteration iterates values). Argh!
+
+[^runtime]:
+    We omit the terms "amortized" and "expected" here.
+    A hard worst-case constant runtime guarantee would require that the time it takes to execute one of these operations
+    is bounded by a constant every time.
+    This is not the case for two reasons:
+
+    1. If the array backing the hash table is full, a rehash needs to happen,
+       which takes linear time -- but we can pretend to share the cost among the linearly many insertions that led to this,
+       and the overall time spent in the rehash is typically so short that it doesn't matter even for real time applications.
+    2. The constant time access of a hash map is technically an expectation of a random variable
+       depending on the set of keys and the order of operations;
+       in theory, a single access might take up to linear time if enough keys collide.
+
+    Practically, this is almost never relevant.
+    The adversarial scenarios where it might become relevant are relatively easy to mitigate with high probability.
+    And in any case, a half decent hash function should do well on the range \(1, ..., n\).
+    The worst-case runtime of a single operation (the *latency*)
+    can also be improved by a more sophisticated implementation,
+    for example by nesting hash tables if they get large enough,
+    [as the map implementation of Go does](https://go.dev/blog/swisstable).
