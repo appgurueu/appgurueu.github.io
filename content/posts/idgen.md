@@ -91,6 +91,20 @@ Horrible things ensue.
 Now again, you can do things. You can mix timestamps in there. You can mix random in there.
 You can mix your grandmother's maiden name in there. But why not just use random at that point?
 
+There are also advantages to autoincremented IDs though: They are much more "sequential",
+they don't "jump around" as much. This matters for example in databases,
+which typically use some kind of B-trees for their indexes. If IDs are close to each other,
+there's a good chance that they will be in the same B-tree node and thus in the same page on disk.
+https://andersmurphy.com/2026/06/05/the-perils-of-uuid-primary-keys-in-sqlite.html
+(In-memory, the same goes for cache lines.)
+
+So say, for example, that you just add a bunch of objects. With autoincremented IDs,
+this will be wonderfully efficient: You are essentially always filling up the last B-tree leaf;
+when that's full you're splitting and propagating upwards. Most writes will be page & cache hits.
+
+With random IDs, it is a totally different story. Random IDs will be spread all over the B-tree.
+You're pretty much guaranteed to almost maximize page & cache misses.
+
 ## Do not reuse IDs
 
 If you reuse IDs, I will come for you.

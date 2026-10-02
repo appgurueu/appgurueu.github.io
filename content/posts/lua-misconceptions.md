@@ -559,7 +559,7 @@ local t = {f(); foo = "bar"}
 print(table.concat(t, ", ")) -- 1
 ```
 
-### "Collecting varargs in a table is fine"
+### "Varargs are best iterated by packing them up in a table"
 
 Every now and then you see something like
 
@@ -579,32 +579,171 @@ for i = 1, #t do
 end
 ```
 
-There are performance implications of this, but more importantly, this won't deal properly with `nil`s.
+There are performance implications of this (it creates a table and copies the vararg to it),
+but more importantly, this won't deal properly with `nil`s.
 
 The `ipairs` variant will simply ignore everything starting at the first `nil`,
 and the `#t` variant may choose *any* cut off at *any* `nil` value.
 
-### "`select` is linear time"
+Still, if you are sure that your vararg must not contain `nil`s, these methods are acceptable.
+
+If `nil`s are possible, you can use `select` to determine the true length of a vararg:
+
+```lua
+local t = {...}
+for i = 1, select("#", ...) do
+	local arg = t[i]
+	-- do something with arg...
+end
+```
+
+On Lua 5.2+, this can be shortened and optimized a bit by using `table.pack`:
+
+```lua
+local t = table.pack(...)
+for i = 1, t.n do
+	local arg = t[i]
+	-- do something with arg...
+end
+```
+
+
+On LuaJIT, there is an alternative optimization that gets rid of `t` as well.
+We can use `select(i, ...)` to obtain a vararg starting at the `i`-th element,
+which is then truncated to a single value:
+
+```lua
+for i = 1, select("#", ...) do
+	local arg = select(i, ...)
+	-- do something with arg...
+end
+```
+
+I always liked this "`select`-loop".
+There is no necessity for `local arg = select(i, ...)` to be slow here.
+Again the entire vararg is on the stack. A simple peephole optimization
+that turns a call to `select` immediately followed by a truncation
+into just indexing the relevant portion of the stack suffices. [^details]
+Alternatively, even in a naive implementation, varargs could be represented as *views* into the stack.
+`select` would then just return a different view, which only requires simple, constant time pointer arithmetic.
+
+[^details]: Some details may be nasty (for example, you need to make sure that
+`_G["select"]` is actually the builtin `select` function *at runtime*), but this is definitely doable.
+
+This will correctly visit `nil`s.
+
+You need not worry about the performance of `select(i, ...)`:
+
+### "`select` must be linear time"
+
+Not in a good implementation. That is to say, LuaJIT optimizes `select` properly,
+while PUC Lua **does not**.
+
+We can come up with a simple litmus test for `select` performance.
+Consider the following `sum` over the elements of a vararg:
+
+```lua
+local function sum(...)
+	local n = select("#", ...)
+	local s = 0
+	for i = 1, n do
+		s = s + select(i, ...)
+	end
+	return s
+end
+```
+
+We then experimentally test how runtime grows depending on the length of `...`:
+
+```lua
+local unpack = unpack or table.unpack
+-- Curiously, LuaJIT will not admit 2^13 many items for unpack,
+-- even though creating a vararg of that size
+-- by means of a recursive function is very well possible
+for i = 3, 12 do
+	local n = 2^i
+	local t = {}
+	for j = 1, n do
+		t[j] = j
+	end
+	local t1 = os.clock()
+	local n_runs = math.ceil(1e6 / n)
+	for _ = 1, n_runs do
+		assert(sum(unpack(t)) == n * (n+1) / 2)
+	end
+	local dt = (os.clock() - t1) / n_runs * 1e9 -- [ns]
+	print(("n=%6d dt=%6d us, per elem: %6.f, per elem sq: %6.f"):format(n, math.ceil(dt), dt / n, dt / n^2))
+end
+```
+
+There are two possible scenarios. If the calls to `select` are optimized to just peek at the stack
+at the appropriate position, we would expect linear time in \(n\).
+If however `select` is implemented naively, then the entire vararg `...` might first be copied on the stack
+just for the call to `select`.
+
+If we now test this on LuaJIT, we get what we expect: `select` is effectively constant time,
+the time per element does not increase meaningfully (in fact, it appears to *decrease* even).
+
+<details>
+<summary>Benchmark output on LuaJIT</summary>
+
+```
+```
+</details>
+
+On PUC Lua, the time per element *does* increase. The time per number of elements squared however stays roughly constant,
+which is in line with the theory.
+
+
+<details>
+<summary>Benchmark output on PUC Lua 5.5</summary>
+
+```
+```
+</details>
+
+And indeed we can easily confirm that PUC Lua uses a very naive implementation.
+Here, the entire vararg `...` will first be pushed on the stack before calling `select`.
+The implementation of `select` is then very simple.
+Essentially, it just tells Lua how many stack items to keep, which is precisely `n - (i - 1)`.
+
+It follows from that, when working with large varargs in PUC Lua, you want to avoid calling `select` too often.
+
+The preferred method is instead to first pack the vararg up in a table, which is then iterated based on the length
+of the vararg as determined by a single call to `select("#", ...)`. In PUC Lua 5.1:
+
+```lua
+local function sum(...)
+	local t = {...}
+	local s = 0
+	for i = 1, select("#", ...) do
+		s = s + t[i]
+	end
+	return s
+end
+```
+
+In PUC Lua 5.2, you can use `table.pack` to save the additional `select` call:
+
+```lua
+local function sum(...)
+	local t = table.pack(...)
+	local s = 0
+	for i = 1, t.n do
+		s = s + t[i]
+	end
+	return s
+end
+```
 
 Not in a good implementation.
 
-`select(n, ...)` returns a vararg starting at the `n`-th element of `...`.
+`select(i, ...)` returns a vararg starting at the \(n\)-th element of `...`.
 One might be led to believe that this could be implemented by copying the entire "tail".
 Alternatively, one might think that varargs could be implemented as linked lists,
-in which case selecting the `n`-th element would require following `n-1` pointers.
+in which case selecting the \(n\)-th element would require following \(n-1\) pointers.
 
 If either of these was the case, the following script ought to run in quadratic time in the length of the vararg `...`:
-
-```lua
-local sum = function(...)
-	local n = select("#", ...)
-	local sum = 0
-	for i = n, 1, -1 do
-		sum = sum + select(i, ...)
-	end
-	return sum
-end
-```
 
 In practice, neither of these seems to be the case. [^varargimpl]
 When you `select`, you effectively *slice* a vararg;
@@ -640,5 +779,52 @@ Upvalues live at least as long as any closure referencing them exists;
 after that they may be garbage-collected.
 Closures only keep specific *upvalues* and not entire *scopes* alive.
 
+## Order of evaluation
+
+The Lua reference manual does not guarantee an order of evaluation in expressions.
+
+For example, suppose you had a function `read_byte()` that, well, reads a byte from some binary stream.
+
+You might be inclined to implement a function `read_rgb()` to read a RGB color as follows:
+
+```lua
+local function read_rgb()
+	return {
+		r = read_byte(),
+		g = read_byte(),
+		b = read_byte(),
+	}
+end
+```
+
+and this will likely work as expected. However, there explicitly is no guarantee.
+Implementations are free to reorder the assignments inside the table constructor (e.g. during optimizations),
+permuting the order in which the RGB components are read.
+
+Instead, you ought to explicitly use statements to ensure the proper order of execution [^style]:
+
+```lua
+local function read_rgb()
+	local r = read_byte()
+	local g = read_byte()
+	local b = read_byte()
+	return {r = r, g = g, b = b}
+end
+```
+
+[^style]: You could also write this as
+	```lua
+	local function read_rgb()
+		local color = {}
+		color.r = read_byte()
+		color.g = read_byte()
+		color.b = read_byte()
+		return color
+	end
+	```
+	but this may have negative performance implications due to the table being built incrementally
+	and not allocated to the right size on the get go,
+	and does not read very nice to me either: In larger examples,
+	the structure of the table will not be immediately obvious at a glance.
 
 <!-- TODO evaluation order; beautiful global-local example -->

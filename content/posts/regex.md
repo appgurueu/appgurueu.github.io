@@ -10,12 +10,20 @@ tags:
 - cs
 math: true
 aliases:
+- "2023-02-21-how-regex-impls-suck.html"
 - "../2023/02/21/how-regex-impls-suck.html"
 ---
 
 Regular languages are a powerful and beautiful formal tool to validate or parse strings.
 
 Yet "regular" expression ("RegEx[p]") implementations are often despised by programmers for a couple (good) reasons:
+
+## A quick recap on regular languages
+
+* Regular grammar
+* RegEx
+* DFA
+* NFA
 
 ## More than just RegEx
 
@@ -25,61 +33,94 @@ they can't match brackets or keep track of indentation.
 
 This led to hacky extensions to RegEx to add such "features" like backreferences
 (which is even more powerful than counting) or bracket matching, extending the expressiveness of RegEx
-beyond that of regular grammars, making regular expressions nonregular and often matching context-free grammars (CFGs) or - even worse - context-sensitive grammars,
+beyond that of regular grammars, making regular expressions nonregular and often matching context-free grammars (CFGs) or -- even worse -- context-sensitive grammars,
 which in turn 99% of the time is backed by a horribly inefficient implementation.
 
 Use a proper CFG to do such heavy lifting. Possibly implement it using a recursive descent parser.
 
+Try to avoid context-sensitive grammars. If you have one, use a (partially) handwritten parser.
+
 ## Lookaround & the evil of captures
 
 It can be shown that (implicit) concatenation (`ab`), union (`a|b`), the Kleene star (`a*`) and parenthesis / "grouping" (`(a)`) are sufficient
-to give regular expressions the full expressive power of regular languages. Often `a+` is added as syntactical sugar for `aa*`, which is fine.
+to give regular expressions the full expressive power of regular languages, though by the necessity to repeat subexpressions,
+a regular expression may be considerably larger than an equivalent regular grammar.
+Often some syntactic sugar is added, for example `a+` as a shorthand for `aa*`, or `a?` as shorthand for `(a|)`,
+as well as character class notations.
+(What tends to be lacking however is a kind of "not" operator: Say, a word that is not a keyword. Negative lookahead captures this.)
+(TODO show it or link a proof?)
+
+(TODO can we implement negative stuff?)
 
 Now lookaround enters the scene, mainly due to captures: Perhaps you want your capture to be followed or preceded by something without capturing that.
 Lookaround often adds unnecessary complexity to RegEx implementations.
 
-It's a shame that the evil of captures has led to regular parenthesis being tainted; simple grouping requires *noncapturing* parenthesis: `(?:<expr>)`. These should have been the default.
+It's a shame that the evil of captures has led to regular parenthesis being tainted;
+simple grouping requires *noncapturing* parenthesis: `(?:<expr>)`. These should have been the default,
+captures should have gotten special notation, preferably one that facilitates naming.
+
+<!-- TODO rant about captures and capture structure? -->
 
 ## Substring matching
 
 Regular languages are *the* tool for tokenization.
-It is a shame any time a language comes around not allowing RegEx matching to be applied to a substring since this effectively makes RegEx useless for recursive descent parsing purposes
-and also pretty useless for a reasonable tokenization loop. JavaScript is to be named as a bad example here: It provides powerful RegEx, yet doesn't allow applying them to substrings.
+It is a shame any time a language comes around not allowing RegEx matching
+to be applied to a substring since this effectively makes RegEx useless for recursive descent parsing purposes
+and also pretty useless for a reasonable tokenization loop.
+JavaScript is to be named as a bad example here: It provides powerful RegEx, yet doesn't allow applying it to substrings efficiently.
+<!-- TODO isn't there a good solution now? -->
 
-The ugly "substring, then RegEx" workaround is not a solution: In languages with immutable strings and only copy substrings (no slices) this ends up with quadratic performance, way below
+The ugly "substring, then RegEx" workaround is not a solution:
+In languages with immutable strings and only copy substrings (no slices) this ends up with quadratic performance, way below
 the linear baseline of RegEx.
 
 Props to Lua for `string.find`.
 
 ## Patterns: Botched RegEx
 
-Patterns are a "linearized" form of RegEx which mostly gets rid of unions and grouping, allowing unions only at a character level through charsets
-and disallowing grouping entirely - quantifiers like `*` can only be applied to "items" - charsets or other special items.
+Patterns [^lua] are a "linearized" form of RegEx which mostly gets rid of unions and grouping,
+allowing unions only at a character level through charsets
+and disallowing grouping entirely -- quantifiers like `*` can only be applied to "items" -- charsets or other special items.
+
+[^lua]: Patterns in Lua specifically. There are various definitions.
 
 While this greatly simplifies the implementation, it also greatly restricts the expressive power.
-This would be fine if it was left at this, since most of the time patterns suffice to get the job done (although they may invite ugly, overly permissive workarounds).
+This would be fine if it was left at this, since most of the time patterns suffice to get the job done
+(although they may invite ugly, overly permissive workarounds).
 
 However patterns soon start adding other "useful" "more than just RegEx" features, running into the same issues.
 
 <!-- TODO "The odd thing" is what? -->
 
-## Poor syntax & Language support
+## Poor syntax & language support
 
-RegExes are usually "just strings". Some languages at least add special RegEx (or raw string literals) syntax to not make a mess out of escaping RegEx.
+RegExes are usually "just strings". Some languages at least add special RegEx (or raw string literals)
+syntax to not make a mess out of escaping RegEx.
 
-Ideally RegExes should be part of the language grammar though, validated at compile-time if possible. Editors should then be able to provide syntax highlighting for operators etc.
+Ideally RegExes (or rather: regular grammars) should be part of the language grammar, validated at compile-time.
+Editors would then be able to provide proper syntax highlighting and static analysis.
 
-[Comments and whitespace need to be possible](https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/) for complex RegEx without resorting to hacks like string concatenation to break up the RegEx.
+[Comments and whitespace need to be possible](https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/)
+for making complex RegExes understandable without resorting to hacks like string concatenation to break up the RegEx.
 
-The current syntax (`(?#comment)`) & flag to allow whitespace are rather messy & not supported everywhere.
+The current syntax (`(?#comment)`) and flag to allow whitespace are rather messy and not supported everywhere.
 
-Flags are a mess (especially ones like `/g` - this ought to be part of the func API). Also the entire line-orientation.
+Flags are a mess (especially ones like `/g` -- this ought to be part of the func API). Also the entire line-orientation.
 
-Building RegExes through string building is also messy. RegEx building - ideally through built-in language operators, as possible in Lua - should be implemented.
+Building RegExes through string building is also messy.
+As said above, a regular grammar should be specified.
+It should be possible to programmatically combine regular expression objects with a concise notation.
+One decent way to do this is by overloading built-in language operators as *parser combinators* do.
+This is what [LPeg](https://www.inf.puc-rio.br/~roberto/lpeg/), the go-to tool for Lua by one of the authors, does.
+(In fact it implements Parsing Expression Grammars (PEGs), which are even more powerful than regular grammars,
+yet can still be parsed efficiently.)
+
+<!-- TODO give example? -->
 
 RegEx syntax should possibly match that of EBNF (even though RegExes are usually more character oriented): `[x]` instead of `x?`; `{x}` instead of `x*`.
 
-At some point people might then stop using webapps to highlight & explain their RegExes to them as their editors are capable of the same, and in a distant future people might even understand the RegExes they are writing.
+At some point people might then stop using webapps to highlight and explain their RegExes to them as their editors are capable of the same,
+and in a distant future people might even understand the RegExes they are writing.
 
 ### Conciseness
 
@@ -139,13 +180,24 @@ But as described above, pattern matching sees an `a*` and now has two options: M
 or match `a` once, advancing the position both in pattern & search string (the latter option is tried first, since `*` is greedy), rinse and repeat, for every single `a*`,
 until the `b` lets the match fail (the `b` is required as otherwise we'd run into the best case where the first `a*` matches the entire string and everything early returns since a match has been found).
 
+## Mitigations
+
+There are some easy ways to sus out whether a regex fucks things up.
+<!-- TODO -->
+
+<!-- TODO: read and link https://swtch.com/~rsc/regexp/regexp1.html -->
+
 ## List of Shame
 
 By no means exhaustive.
 
-* Lua (bonus: will happily scream "pattern too complex" at you when it should rather error with "implementation too simple")
-* JavaScript (too powerful, the substring issue)
-* Python (too powerful)
+* Lua (bonus: will happily scream "pattern too complex" at you when it should rather error with "implementation too simple" [^expl])
+* JavaScript (too powerful [^resp], the substring issue)
+* Python (too powerful [^resp])
+
+[^resp]: with great power comes great ~~responsibility~~ runtime
+
+[^expl]: When does it scream this? <!-- TODO -->
 
 ## Hall of Fame
 
