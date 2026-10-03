@@ -163,15 +163,17 @@ Exponentiation (`^`) always casts to float, so `x^2` is always a float, and *not
 We also get a new `//` operator for integer division. Curiously, the result need not be an integer;
 if one of the two operands is a float, the result is again a float.
 So unless you need to compute a large (but not too large) integer quotient,
-`x / y` is just a way of writing `math.floor(x / y)`.
+`x // y` is just a way of writing `math.floor(x / y)`.
 
 This sucks, because we really want to use floats for integers, and not pretend they're some different thing;
 they are an extension of integers after all.
 
 Here is an especially funny consequence. You see, tables need to use keys by identity.
 But we also have optimizations such as the array part under the hood.
-Clearly, `t[1.0]` should be the same as `t[1]`, and typically will be stored in the first slot of the array part.
+Clearly [^why-though], `t[1.0]` should be the same as `t[1]`, and typically will be stored in the first slot of the array part.
 But oops! We've just thrown away our knowledge about the key type.
+
+[^why-though]: `t[1]` should be the same as `t[1.0]` since `rawequal(1, 1.0)` is `true`; we want `t[k]` to be consistent with raw equality.
 
 To deal with this, Lua simply stipulates the following:
 
