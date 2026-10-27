@@ -69,7 +69,7 @@ which leads to a very skewed distribution where some permutations are much more 
 or by computing the probabilities for some small examples by hand).
 
 <details>
-<summary>Bonus: Functional shuffling</summary>
+<summary><h3>Bonus: Functional shuffling</h3></summary>
 
 Shuffling is a stress test for functional programming languages:
 In addition to needing a way to represent a "random source", an efficient implementation relies fundamentally on random access.
@@ -226,7 +226,7 @@ with an asymptotically optimal approach for choosing more than \(n / 2\) element
 </details>
 
 <details>
-<summary>Straightforward solution</summary>
+<summary><h3>Straightforward solution</h3></summary>
 
 The idea is to use rejection sampling for choosing (up to) the first \(n/2\) items,
 and then shuffling the remaining \(n/2\) items in linear time,
@@ -294,7 +294,7 @@ to make an optimal tradeoff between the constant factors of the hash set and the
 
 
 <details>
-<summary>Cute solution</summary>
+<summary><h3>Cute solution</h3></summary>
 Using a hash map, we can get away with just a "lazy" Fisher-Yates:
 
 We maintain a permutation \(f\) as a hash map, where no entry for \(i\) existing means \(i\) maps to itself.
@@ -331,7 +331,7 @@ the end result is probably fine. either way it's trivial to address.
 </details>
 
 <details>
-<summary>Yet another solution</summary>
+<summary><h3>Yet another solution</h3></summary>
 
 If you examine the first solution closely, you might observe that we do not need Fisher-Yates at all!
 Rejection sampling alone suffices.

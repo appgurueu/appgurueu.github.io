@@ -101,3 +101,25 @@ blockquote {
     height: 1px;
     background-color: #7fc536;
 }
+
+details summary {
+    cursor: pointer;
+}
+
+details summary > * { 
+    display: inline;
+}
+
+details:not([open]) summary {
+    color: gray;
+}
+
+details summary::marker {
+    color: #7fc536;
+    content: "[show] ";
+    font-family: monospace;
+}
+
+details:open summary::marker {
+    content: "[hide] ";
+}
